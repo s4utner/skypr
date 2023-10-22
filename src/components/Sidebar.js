@@ -1,3 +1,5 @@
+import './Sidebar.css'
+
 function sidebar() {
     return (
         <div className="main__sidebar sidebar">

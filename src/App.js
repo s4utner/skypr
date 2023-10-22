@@ -1,20 +1,20 @@
 import './App.css';
 import './components/NavMenu.js'
-import navMenu from './components/NavMenu.js';
-import sidebar from './components/Sidebar.js';
-import tracklist from './components/Tracklist.js';
-import audioPlayer from './components/AudioPlayer.js';
+import NavMenu from './components/NavMenu.js';
+import Sidebar from './components/Sidebar.js';
+import AudioPlayer from './components/AudioPlayer.js';
+import Centerblock from './components/Centerblock';
 
 function App() {
   return (
     <div className="wrapper">
       <div className="container">
         <main className="main">
-          {navMenu()}
-          {tracklist()}
-          {sidebar()}
+          {NavMenu()}
+          {Centerblock()}
+          {Sidebar()}
         </main>
-        {audioPlayer()}
+        {AudioPlayer()}
         <footer className="footer"></footer>
       </div>
     </div>
