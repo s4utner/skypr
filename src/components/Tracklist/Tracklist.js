@@ -18,13 +18,26 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
                             {isLoading ? (
-                                <Skeleton />
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
                             ) : (
                                 <a className="track__title-link" href="http://">
                                     Guilt{' '}
@@ -35,7 +48,11 @@ const Tracklist = () => {
                     </div>
                     <div className="track__author">
                         {isLoading ? (
-                            <Skeleton width={120} />
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
                         ) : (
                             <a className="track__author-link" href="http://">
                                 Nero
@@ -44,7 +61,11 @@ const Tracklist = () => {
                     </div>
                     <div className="track__album">
                         {isLoading ? (
-                            <Skeleton width={120} />
+                            <Skeleton
+                                width={450}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
                         ) : (
                             <a className="track__album-link" href="http://">
                                 Welcome Reality
@@ -55,39 +76,68 @@ const Tracklist = () => {
                         <svg className="track__time-svg" alt="time">
                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                         </svg>
+                        <span className="track__time-text">4:44</span>
+                    </div>
+                </div>
+            </div>
+
+            <div className="playlist__item">
+                <div className="playlist__track track">
+                    <div className="track__title">
+                        <div className="track__title-image">
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
+                        </div>
+                        <div className="track__title-text">
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Elektro{' '}
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                    <div className="track__author">
                         {isLoading ? (
-                            <Skeleton width={30} />
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
                         ) : (
-                            <span className="track__time-text">4:44</span>
+                            <a className="track__author-link" href="http://">
+                                Dynoro, Outwork, Mr. Gee
+                            </a>
                         )}
                     </div>
-                </div>
-            </div>
-
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
-                        </div>
-                        <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Elektro{' '}
-                                <span className="track__title-span"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Dynoro, Outwork, Mr. Gee
-                        </a>
-                    </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Elektro
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Elektro
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -102,26 +152,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                I’m Fire{' '}
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    I’m Fire{' '}
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Ali Bakgor
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Ali Bakgor
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            I’m Fire
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                I’m Fire
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -136,28 +219,61 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Non Stop
+                                    <span className="track__title-span">
+                                        (Remix)
+                                    </span>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                    <div className="track__author">
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Стоункат, Psychopath
+                            </a>
+                        )}
+                    </div>
+                    <div className="track__album">
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
                                 Non Stop
-                                <span className="track__title-span">
-                                    (Remix)
-                                </span>
                             </a>
-                        </div>
-                    </div>
-                    <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Стоункат, Psychopath
-                        </a>
-                    </div>
-                    <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Non Stop
-                        </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -172,28 +288,61 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Run Run
-                                <span className="track__title-span">
-                                    (feat. AR/CO)
-                                </span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Run Run
+                                    <span className="track__title-span">
+                                        (feat. AR/CO)
+                                    </span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Jaded, Will Clarke, AR/CO
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Jaded, Will Clarke, AR/CO
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Run Run
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Run Run
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -208,28 +357,61 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Eyes on Fire
-                                <span className="track__title-span">
-                                    (Zeds Dead Remix)
-                                </span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Eyes on Fire
+                                    <span className="track__title-span">
+                                        (Zeds Dead Remix)
+                                    </span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Blue Foundation, Zeds Dead
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Blue Foundation, Zeds Dead
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Eyes on Fire
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Eyes on Fire
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -244,28 +426,61 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Mucho Bien
-                                <span className="track__title-span">
-                                    (Hi Profile Remix)
-                                </span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Mucho Bien
+                                    <span className="track__title-span">
+                                        (Hi Profile Remix)
+                                    </span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            HYBIT, Mr. Black, Offer Nissim, Hi Profile
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                HYBIT, Mr. Black, Offer Nissim, Hi Profile
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Mucho Bien
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Mucho Bien
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -280,26 +495,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -314,26 +562,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -347,26 +628,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -380,26 +694,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -413,26 +760,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -446,26 +826,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -479,26 +892,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Knives n Cherries
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Knives n Cherries
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            minthaze
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                minthaze
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Captivating
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Captivating
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -513,26 +959,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    How Deep Is Your Love
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                    <div className="track__author">
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Calvin Harris, Disciples
+                            </a>
+                        )}
+                    </div>
+                    <div className="track__album">
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
                                 How Deep Is Your Love
-                                <span className="track__title-span"></span>
                             </a>
-                        </div>
-                    </div>
-                    <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Calvin Harris, Disciples
-                        </a>
-                    </div>
-                    <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            How Deep Is Your Love
-                        </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -547,26 +1026,59 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Morena{' '}
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Morena{' '}
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Tom Boxer
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Tom Boxer
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Soundz Made in Romania
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Soundz Made in Romania
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
@@ -581,31 +1093,65 @@ const Tracklist = () => {
                 <div className="playlist__track track">
                     <div className="track__title">
                         <div className="track__title-image">
-                            <svg className="track__title-svg" alt="music">
-                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                            </svg>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <svg className="track__title-svg" alt="music">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                </svg>
+                            )}
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton
+                                    width={270}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Lost
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="https://">
-                            smth
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={270}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__author-link" href="https://">
+                                Linkin Park
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            smth
-                        </a>
+                        {isLoading ? (
+                            <Skeleton
+                                width={480}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Meteora
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                         </svg>
-                        <span className="track__time-text"></span>
+                        <span className="track__time-text">3:18</span>
                     </div>
                 </div>
             </div>
