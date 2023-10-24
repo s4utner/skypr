@@ -2,7 +2,7 @@ import './NavMenu.css'
 import { useState } from 'react'
 
 const NavMenu = () => {
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const clickOnBurger = () => setVisible(!visible)
     return (
         <nav className="main__nav nav">
@@ -39,4 +39,4 @@ const NavMenu = () => {
     )
 }
 
-export default NavMenu
+export default NavMenu;

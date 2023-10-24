@@ -1,6 +1,16 @@
 import './Tracklist.css'
+import { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
 
-const tracklist = () => {
+const Tracklist = () => {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 5000)
+    }, [])
+
     return (
         <div className="content__playlist playlist">
             <div className="playlist__item">
@@ -12,10 +22,14 @@ const tracklist = () => {
                             </svg>
                         </div>
                         <div className="track__title-text">
-                            <a className="track__title-link" href="http://">
-                                Guilt{' '}
-                                <span className="track__title-span"></span>
-                            </a>
+                            {isLoading ? (
+                                <Skeleton></Skeleton>
+                            ) : (
+                                <a className="track__title-link" href="http://">
+                                    Guilt{' '}
+                                    <span className="track__title-span"></span>
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="track__author">
@@ -586,4 +600,4 @@ const tracklist = () => {
     )
 }
 
-export default tracklist
+export default Tracklist
