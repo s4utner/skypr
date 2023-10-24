@@ -1,6 +1,16 @@
 import './AudioPlayer.css'
+import { useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-const audioPlayer = () => {
+const AudioPlayer = () => {
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 5000)
+    }, [])
+
     return (
         <div className="bar">
             <div className="bar__content">
@@ -53,31 +63,55 @@ const audioPlayer = () => {
                         <div className="player__track-play track-play">
                             <div className="track-play__contain">
                                 <div className="track-play__image">
-                                    <svg
-                                        className="track-play__svg"
-                                        alt="music"
-                                    >
-                                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                    </svg>
+                                    {isLoading ? (
+                                        <Skeleton
+                                            width={55}
+                                            height={55}
+                                            baseColor="#202020"
+                                            highlightColor="#444"
+                                        />
+                                    ) : (
+                                        <svg
+                                            className="track-play__svg"
+                                            alt="music"
+                                        >
+                                            <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                        </svg>
+                                    )}
                                 </div>
                                 <div className="track-play__author">
-                                    <a
-                                        className="track-play__author-link"
-                                        href="http://"
-                                    >
-                                        Ты та...
-                                    </a>
+                                    {isLoading ? (
+                                        <Skeleton
+                                            width={90}
+                                            baseColor="#202020"
+                                            highlightColor="#444"
+                                        />
+                                    ) : (
+                                        <a
+                                            className="track-play__author-link"
+                                            href="http://"
+                                        >
+                                            Ты та...
+                                        </a>
+                                    )}
                                 </div>
                                 <div className="track-play__album">
-                                    <a
-                                        className="track-play__album-link"
-                                        href="http://"
-                                    >
-                                        Баста
-                                    </a>
+                                    {isLoading ? (
+                                        <Skeleton
+                                            width={90}
+                                            baseColor="#202020"
+                                            highlightColor="#444"
+                                        />
+                                    ) : (
+                                        <a
+                                            className="track-play__album-link"
+                                            href="http://"
+                                        >
+                                            Баста
+                                        </a>
+                                    )}
                                 </div>
                             </div>
-
                             <div className="track-play__like-dis">
                                 <div className="track-play__like _btn-icon">
                                     <svg
@@ -120,4 +154,4 @@ const audioPlayer = () => {
     )
 }
 
-export default audioPlayer
+export default AudioPlayer
