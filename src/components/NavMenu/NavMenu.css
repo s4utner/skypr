@@ -28,6 +28,10 @@
     justify-content: space-between;
 }
 
+.nav__burger:hover {
+    cursor: pointer;
+}
+
 .nav__menu {
     display: block;
     visibility: visible;
