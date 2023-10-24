@@ -1,6 +1,7 @@
 import './Tracklist.css'
 import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Tracklist = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -23,7 +24,7 @@ const Tracklist = () => {
                         </div>
                         <div className="track__title-text">
                             {isLoading ? (
-                                <Skeleton></Skeleton>
+                                <Skeleton />
                             ) : (
                                 <a className="track__title-link" href="http://">
                                     Guilt{' '}
@@ -33,20 +34,32 @@ const Tracklist = () => {
                         </div>
                     </div>
                     <div className="track__author">
-                        <a className="track__author-link" href="http://">
-                            Nero
-                        </a>
+                        {isLoading ? (
+                            <Skeleton width={120} />
+                        ) : (
+                            <a className="track__author-link" href="http://">
+                                Nero
+                            </a>
+                        )}
                     </div>
                     <div className="track__album">
-                        <a className="track__album-link" href="http://">
-                            Welcome Reality
-                        </a>
+                        {isLoading ? (
+                            <Skeleton width={120} />
+                        ) : (
+                            <a className="track__album-link" href="http://">
+                                Welcome Reality
+                            </a>
+                        )}
                     </div>
                     <div className="track__time">
                         <svg className="track__time-svg" alt="time">
                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                         </svg>
-                        <span className="track__time-text">4:44</span>
+                        {isLoading ? (
+                            <Skeleton width={30} />
+                        ) : (
+                            <span className="track__time-text">4:44</span>
+                        )}
                     </div>
                 </div>
             </div>
