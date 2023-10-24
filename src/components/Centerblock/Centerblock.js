@@ -1,8 +1,7 @@
 import './Centerblock.css'
-import './Tracklist.js'
-import tracklist from './Tracklist.js'
+import tracklist from '../Tracklist/Tracklist.js'
 
-function Centerblock() {
+const Centerblock = () => {
     return (
         <div className="main__centerblock centerblock">
             <div className="centerblock__search search">

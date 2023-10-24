@@ -1,9 +1,8 @@
 import './App.css';
-import './components/NavMenu.js'
-import NavMenu from './components/NavMenu.js';
-import Sidebar from './components/Sidebar.js';
-import AudioPlayer from './components/AudioPlayer.js';
-import Centerblock from './components/Centerblock';
+import NavMenu from './components/NavMenu/NavMenu.js';
+import Sidebar from './components/Sidebar/Sidebar.js';
+import AudioPlayer from './components/AudioPlayer/AudioPlayer.js';
+import Centerblock from './components/Centerblock/Centerblock.js';
 
 function App() {
   return (

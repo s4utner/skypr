@@ -1,6 +1,6 @@
 import './Sidebar.css'
 
-function sidebar() {
+const sidebar = () => {
     return (
         <div className="main__sidebar sidebar">
             <div className="sidebar__personal">

@@ -1,6 +1,6 @@
 import './NavMenu.css'
 
-function navMenu() {
+const navMenu = () => {
     return (
         <nav className="main__nav nav">
             <div className="nav__logo logo">

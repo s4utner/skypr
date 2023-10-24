@@ -1,6 +1,6 @@
 import './Tracklist.css'
 
-function tracklist() {
+const tracklist = () => {
     return (
       <div className="content__playlist playlist">
       <div className="playlist__item">
