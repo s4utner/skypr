@@ -1,6 +1,6 @@
-import './App.css';
+import './SignUp.css.css';
 
-function signUp() {
+const signUp = () => {
     return(
       <div class="wrapper">
         <div class="container-enter">
