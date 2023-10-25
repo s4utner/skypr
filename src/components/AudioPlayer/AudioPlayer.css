@@ -4,6 +4,7 @@
     left: 0;
     width: 100%;
     background: rgba(28, 28, 28, 0.5);
+    z-index: 1;
 }
 
 .bar__content {

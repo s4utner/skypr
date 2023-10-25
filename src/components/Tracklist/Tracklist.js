@@ -62,7 +62,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={450}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -129,7 +129,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -196,7 +196,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -265,7 +265,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -334,7 +334,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -403,7 +403,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -472,7 +472,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -539,7 +539,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -606,7 +606,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -672,7 +672,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -738,7 +738,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -804,7 +804,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -870,7 +870,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -936,7 +936,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1003,7 +1003,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1070,7 +1070,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1137,7 +1137,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={480}
+                                width={315}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
