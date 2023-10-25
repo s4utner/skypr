@@ -1,8 +1,6 @@
 import './Centerblock.css'
 import tracklist from '../Tracklist/Tracklist.js'
-import { Author_filter } from '../Categories/Author_filter.js'
-import { Year_filter } from '../Categories/Year_filter.js'
-import { Genre_filter } from '../Categories/Genre_filter.js'
+import { Filter_buttons } from '../Filter_buttons/Filter_buttons.js'
 
 const Centerblock = () => {
     return (
@@ -19,12 +17,7 @@ const Centerblock = () => {
                 />
             </div>
             <h2 className="centerblock__h2">Треки</h2>
-            <div className="centerblock__filter filter">
-                <div className="filter__title">Искать по:</div>
-                {Author_filter()}
-                {Year_filter()}
-                {Genre_filter()}
-            </div>
+            {Filter_buttons()}
             <div className="centerblock__content">
                 <div className="content__title playlist-title">
                     <div className="playlist-title__col col01">Трек</div>
