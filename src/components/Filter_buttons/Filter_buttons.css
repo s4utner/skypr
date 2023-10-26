@@ -12,6 +12,14 @@
     margin-bottom: 51px;
 }
 
+.filter__content {
+    position: relative;
+}
+
+.filter__content:not(:last-child) {
+    margin-right: 10px;
+}
+
 .filter__button {
     font-style: normal;
     font-weight: 400;
@@ -22,6 +30,7 @@
     padding: 6px 20px;
 }
 
-.filter__button:not(:last-child) {
-    margin-right: 10px;
+.active {
+    color: #b672ff;
+    border-color: #b672ff;
 }
