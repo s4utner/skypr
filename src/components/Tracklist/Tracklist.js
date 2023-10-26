@@ -62,7 +62,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -73,10 +73,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">4:44</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">4:44</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -129,7 +139,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -140,10 +150,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">2:22</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">2:22</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -196,7 +216,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -207,10 +227,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">2:22</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">2:22</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -265,7 +295,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -276,10 +306,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">4:12</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">4:12</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -334,7 +374,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -345,10 +385,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">2:54</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">2:54</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -403,7 +453,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -414,10 +464,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">5:20</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">5:20</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -472,7 +532,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -483,10 +543,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">3:41</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">3:41</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -539,7 +609,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -550,10 +620,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -606,7 +686,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -617,10 +697,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -672,7 +762,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -683,10 +773,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -738,7 +838,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -749,10 +849,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -804,7 +914,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -815,10 +925,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -870,7 +990,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -881,10 +1001,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -936,7 +1066,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -947,10 +1077,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">1:48</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">1:48</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -1003,7 +1143,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1014,10 +1154,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">3:32</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">3:32</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -1070,7 +1220,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1081,10 +1231,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">3:36</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">3:36</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -1137,7 +1297,7 @@ const Tracklist = () => {
                     <div className="track__album">
                         {isLoading ? (
                             <Skeleton
-                                width={315}
+                                width={200}
                                 baseColor="#202020"
                                 highlightColor="#444"
                             />
@@ -1148,10 +1308,20 @@ const Tracklist = () => {
                         )}
                     </div>
                     <div className="track__time">
-                        <svg className="track__time-svg" alt="time">
-                            <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </svg>
-                        <span className="track__time-text">3:18</span>
+                        {isLoading ? (
+                            <Skeleton
+                                width={60}
+                                baseColor="#202020"
+                                highlightColor="#444"
+                            />
+                        ) : (
+                            <>
+                                <svg className="track__time-svg" alt="time">
+                                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                </svg>
+                                <span className="track__time-text">3:18</span>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
