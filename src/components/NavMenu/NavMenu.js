@@ -1,42 +1,36 @@
-import './NavMenu.css'
 import { useState } from 'react'
+import * as S from './NavMenuStyles.js'
 
 const NavMenu = () => {
     const [visible, setVisible] = useState(false)
     const clickOnBurger = () => setVisible(!visible)
     return (
-        <nav className="main__nav nav">
-            <div className="nav__logo logo">
-                <img className="logo__image" src="img/logo.png" alt="logo" />
-            </div>
-            <div className="nav__burger burger" onClick={clickOnBurger}>
-                <span className="burger__line"></span>
-                <span className="burger__line"></span>
-                <span className="burger__line"></span>
-            </div>
+        <S.MainNav>
+            <S.NavLogo>
+                <S.LogoImage src="img/logo.png" alt="logo" />
+            </S.NavLogo>
+            <S.NavBurger onClick={clickOnBurger}>
+                <S.BurgerLine></S.BurgerLine>
+                <S.BurgerLine></S.BurgerLine>
+                <S.BurgerLine></S.BurgerLine>
+            </S.NavBurger>
             {visible && (
-                <div className="nav__menu menu">
-                    <ul className="menu__list">
-                        <li className="menu__item">
-                            <a href="#123" className="menu__link">
-                                Главное
-                            </a>
-                        </li>
-                        <li className="menu__item">
-                            <a href="#123" className="menu__link">
-                                Мой плейлист
-                            </a>
-                        </li>
-                        <li className="menu__item">
-                            <a href="../signin.html" className="menu__link">
-                                Войти
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <S.NavMenu>
+                    <S.MenuList>
+                        <S.MenuItem>
+                            <S.MenuLink href="#123">Главное</S.MenuLink>
+                        </S.MenuItem>
+                        <S.MenuItem>
+                            <S.MenuLink href="#123">Мой плейлист</S.MenuLink>
+                        </S.MenuItem>
+                        <S.MenuItem>
+                            <S.MenuLink href="../signin.html">Войти</S.MenuLink>
+                        </S.MenuItem>
+                    </S.MenuList>
+                </S.NavMenu>
             )}
-        </nav>
+        </S.MainNav>
     )
 }
 
-export default NavMenu;
+export default NavMenu
