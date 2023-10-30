@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { AuthorList } from '../Filter_lists/Author_list.js'
-import { YearList } from '../Filter_lists/Year_list.js'
-import { GenreList } from '../Filter_lists/Genre_list.js'
+import { AuthorList } from '../FilterLists/AuthorList.js'
+import { YearList } from '../FilterLists/YearList.js'
+import { GenreList } from '../FilterLists/GenreList.js'
 import * as S from './FilterButtonsStyles.js'
 
 export const FilterButtons = () => {

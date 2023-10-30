@@ -1,5 +1,5 @@
 import tracklist from '../Tracklist/Tracklist.js'
-import { FilterButtons } from '../Filter_buttons/FilterButtons.js'
+import { FilterButtons } from '../FilterButtons/FilterButtons.js'
 import * as S from './CenterblockStyles.js'
 
 const Centerblock = () => {
