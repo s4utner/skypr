@@ -1,4 +1,6 @@
-.centerblock__filter {
+import { styled } from 'styled-components'
+
+export const CenterblockFilter = styled.div`
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -10,35 +12,36 @@
     -ms-flex-align: center;
     align-items: center;
     margin-bottom: 51px;
-}
+`
 
-.filter__title {
+export const FilterTitle = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     margin-right: 15px;
-}
+`
 
-.filter__content {
+export const FilterContent = styled.div`
     position: relative;
-}
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+`
 
-.filter__content:not(:last-child) {
-    margin-right: 10px;
-}
-
-.filter__button {
+export const FilterButton = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    border: 1px solid #ffffff;
     border-radius: 60px;
     padding: 6px 20px;
-}
-
-.active {
-    color: #b672ff;
-    border-color: #b672ff;
-}
+    &:hover {
+        border-color: #d9b6ff;
+        color: #d9b6ff;
+        cursor: pointer;
+    }
+    border: ${(props) =>
+        props.isActive ? '1px solid #ad61ff' : '1px solid #ffffff'};
+    color: ${(props) => (props.isActive ? '#ad61ff' : '')};
+`

@@ -1,5 +1,5 @@
 import tracklist from '../Tracklist/Tracklist.js'
-import { Filter_buttons } from '../Filter_buttons/Filter_buttons.js'
+import { FilterButtons } from '../Filter_buttons/FilterButtons.js'
 import * as S from './CenterblockStyles.js'
 
 const Centerblock = () => {
@@ -12,7 +12,7 @@ const Centerblock = () => {
                 <S.SearchText type="search" placeholder="Поиск" name="search" />
             </S.CenterblockSearch>
             <S.CenterblockHeading>Треки</S.CenterblockHeading>
-            {Filter_buttons()}
+            {FilterButtons()}
             <S.CenterblockContent>
                 <S.ContentTitle>
                     <S.PlaylistTitleTrack>Трек</S.PlaylistTitleTrack>
