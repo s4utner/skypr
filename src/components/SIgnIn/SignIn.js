@@ -1,38 +1,38 @@
-import './SignIn.css'
+import * as S from './SignInStyles.js'
 
 const signIn = () => {
     return (
-        <div class="wrapper">
-            <div class="container-enter">
-                <div class="modal__block">
-                    <form class="modal__form-login" action="#">
-                        <a href="../">
-                            <div class="modal__logo">
+        <S.Wrapper>
+            <S.ContainerEnter>
+                <S.ModalBlock>
+                    <S.ModalFormLogin action="#">
+                        <S.Link href="../">
+                            <S.ModalLogo>
                                 <img src="../img/logo_modal.png" alt="logo" />
-                            </div>
-                        </a>
-                        <input
-                            class="modal__input login"
+                            </S.ModalLogo>
+                        </S.Link>
+                        <S.ModalInputLogin
                             type="text"
                             name="login"
                             placeholder="Почта"
                         />
-                        <input
-                            class="modal__input password"
+                        <S.ModalInput
                             type="password"
                             name="password"
                             placeholder="Пароль"
                         />
-                        <button class="modal__btn-enter">
-                            <a href="../index.html">Войти</a>
-                        </button>
-                        <button class="modal__btn-signup">
-                            <a href="signup.html">Зарегистрироваться</a>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                        <S.ModalButtonEnter>
+                            <S.Link href="../index.html">Войти</S.Link>
+                        </S.ModalButtonEnter>
+                        <S.ModalButtonSignup>
+                            <S.Link href="signup.html">
+                                Зарегистрироваться
+                            </S.Link>
+                        </S.ModalButtonSignup>
+                    </S.ModalFormLogin>
+                </S.ModalBlock>
+            </S.ContainerEnter>
+        </S.Wrapper>
     )
 }
 
