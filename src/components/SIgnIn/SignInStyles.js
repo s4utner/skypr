@@ -1,44 +1,4 @@
-import { styled, createGlobalStyle } from 'styled-components'
-
-export const GlobalStyle = createGlobalStyle`
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  *:before,
-  *:after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  button,
-  ._btn {
-    cursor: pointer;
-  }
-  
-  ul li {
-    list-style: none;
-  }
-  
-  @font-face {
-    font-family: "StratosSkyeng";
-    src: local("StratosSkyeng"), local("StratosSkyeng"),
-      url("../public/fonts/StratosSkyeng.woff2") format("woff2"),
-      url("../public/fonts/StratosSkyeng.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    font-family: "StratosSkyeng", sans-serif;
-  }
-`
+import { styled } from 'styled-components'
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -80,17 +40,6 @@ export const ModalFormLogin = styled.form`
     padding: 43px 47px 47px 40px;
     & input:first-child {
         margin-bottom: 30px;
-    }
-`
-
-export const Link = styled.a`
-    text-decoration: none;
-    font-family: 'StratosSkyeng', sans-serif;
-    cursor: pointer;
-    &:visited {
-        text-decoration: none;
-        font-family: 'StratosSkyeng', sans-serif;
-        cursor: pointer;
     }
 `
 
