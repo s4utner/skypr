@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components'
+
+export const GlobalStyle = createGlobalStyle`
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +21,14 @@ a:visited {
     cursor: pointer;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'StratosSkyeng', sans-serif;
+    color: #ffffff;
+}
+
 button,
 ._btn {
     cursor: pointer;
@@ -36,29 +47,6 @@ ul li {
         url('../public/fonts/StratosSkyeng.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    font-family: 'StratosSkyeng', sans-serif;
-    color: #ffffff;
-}
-
-.wrapper {
-    width: 100%;
-    min-height: 100%;
-    overflow: hidden;
-    background-color: #383838;
-}
-
-.container {
-    max-width: 1920px;
-    height: 100vh;
-    margin: 0 auto;
-    position: relative;
-    background-color: #181818;
 }
 
 ._btn-text:hover {
@@ -91,17 +79,4 @@ body {
     stroke: #ffffff;
     cursor: pointer;
 }
-
-.main {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
+`
