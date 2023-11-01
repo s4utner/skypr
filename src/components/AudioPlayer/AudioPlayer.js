@@ -23,7 +23,7 @@ const AudioPlayer = () => {
                                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                                 </S.PlayerButtonPrevSvg>
                             </S.PlayerButtonPrev>
-                            <S.PlayerButtonPlay className="_btn">
+                            <S.PlayerButtonPlay>
                                 <S.PlayerButtonPlaySvg alt="play">
                                     <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                                 </S.PlayerButtonPlaySvg>
@@ -33,12 +33,12 @@ const AudioPlayer = () => {
                                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                                 </S.PlayerButtonNextSvg>
                             </S.PlayerButtonNext>
-                            <S.PlayerButtonRepeat className="_btn-icon">
+                            <S.PlayerButtonRepeat>
                                 <S.PlayerButtonRepeatSvg alt="repeat">
                                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                                 </S.PlayerButtonRepeatSvg>
                             </S.PlayerButtonRepeat>
-                            <S.PlayerButtonShuffle className="_btn-icon">
+                            <S.PlayerButtonShuffle>
                                 <S.PlayerButtonShuffleSvg alt="shuffle">
                                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                                 </S.PlayerButtonShuffleSvg>
@@ -89,12 +89,12 @@ const AudioPlayer = () => {
                                 </S.TrackPlayAlbum>
                             </S.TrackPlayContain>
                             <S.TrackPlayLikeDis>
-                                <S.TrackPlayLike className="_btn-icon">
+                                <S.TrackPlayLike>
                                     <S.TrackPlayLikeSvg alt="like">
                                         <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                                     </S.TrackPlayLikeSvg>
                                 </S.TrackPlayLike>
-                                <S.TrackPlayDislike className="_btn-icon">
+                                <S.TrackPlayDislike>
                                     <S.TrackPlayDislikeSvg alt="dislike">
                                         <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                                     </S.TrackPlayDislikeSvg>
@@ -109,9 +109,8 @@ const AudioPlayer = () => {
                                     <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                                 </S.VolumeSvg>
                             </S.VolumeImage>
-                            <S.VolumeProgress className="_btn">
+                            <S.VolumeProgress>
                                 <S.VolumeProgressLine
-                                    className="_btn"
                                     type="range"
                                     name="range"
                                 />

@@ -69,6 +69,7 @@ export const PlayerButton = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    cursor: pointer;
 `
 
 export const PlayerButtonPrev = styled(PlayerButton)`
@@ -219,6 +220,7 @@ export const TrackPlayLikeDis = styled.div`
     -ms-flex-align: center;
     align-items: center;
     margin-left: 26%;
+    cursor: pointer;
 `
 
 export const TrackPlayLike = styled.div`
@@ -274,6 +276,7 @@ export const VolumeImage = styled.div`
     width: 13px;
     height: 18px;
     margin-right: 17px;
+    cursor: pointer;
 `
 
 export const VolumeSvg = styled.svg`
