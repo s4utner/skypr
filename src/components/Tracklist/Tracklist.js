@@ -1,7 +1,7 @@
-import './Tracklist.css'
 import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S from './TracklistStyles.js'
 
 const Tracklist = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -13,11 +13,11 @@ const Tracklist = () => {
     }, [])
 
     return (
-        <div className="content__playlist playlist">
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+        <S.ContentPlaylist>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -26,12 +26,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -39,14 +39,13 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
-                                    Guilt{' '}
-                                    <span className="track__title-span"></span>
-                                </a>
+                                <S.TrackTitleLink href="http://">
+                                    Guilt <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -54,12 +53,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Nero
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -67,12 +66,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Welcome Reality
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -81,20 +80,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">4:44</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>4:44</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -103,12 +102,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -116,14 +115,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Elektro{' '}
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -131,12 +130,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Dynoro, Outwork, Mr. Gee
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -144,12 +143,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Elektro
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -158,20 +157,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">2:22</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>2:22</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -180,12 +179,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -193,14 +192,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     I’m Fire{' '}
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -208,12 +207,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Ali Bakgor
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -221,12 +220,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 I’m Fire
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -235,20 +234,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">2:22</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>2:22</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -257,12 +256,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -270,16 +269,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Non Stop
-                                    <span className="track__title-span">
-                                        (Remix)
-                                    </span>
-                                </a>
+                                    <S.TrackTitleSpan>(Remix)</S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -287,12 +284,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Стоункат, Psychopath
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -300,12 +297,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Non Stop
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -314,20 +311,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">4:12</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>4:12</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -336,12 +333,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -349,16 +346,16 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Run Run
-                                    <span className="track__title-span">
+                                    <S.TrackTitleSpan>
                                         (feat. AR/CO)
-                                    </span>
-                                </a>
+                                    </S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -366,12 +363,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Jaded, Will Clarke, AR/CO
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -379,12 +376,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Run Run
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -393,20 +390,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">2:54</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>2:54</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -415,12 +412,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -428,16 +425,16 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Eyes on Fire
-                                    <span className="track__title-span">
+                                    <S.TrackTitleSpan>
                                         (Zeds Dead Remix)
-                                    </span>
-                                </a>
+                                    </S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -445,12 +442,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Blue Foundation, Zeds Dead
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -458,12 +455,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Eyes on Fire
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -472,20 +469,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">5:20</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>5:20</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -494,12 +491,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -507,16 +504,16 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Mucho Bien
-                                    <span className="track__title-span">
+                                    <S.TrackTitleSpan>
                                         (Hi Profile Remix)
-                                    </span>
-                                </a>
+                                    </S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -524,12 +521,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 HYBIT, Mr. Black, Offer Nissim, Hi Profile
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -537,12 +534,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Mucho Bien
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -551,20 +548,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">3:41</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>3:41</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -573,12 +570,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -586,14 +583,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -601,12 +598,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -614,12 +611,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -628,20 +625,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -650,12 +647,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -663,14 +660,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -678,12 +675,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -691,12 +688,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -705,19 +702,19 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -726,12 +723,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -739,14 +736,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -754,12 +751,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -767,12 +764,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -781,19 +778,19 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -802,12 +799,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -815,14 +812,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -830,12 +827,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -843,12 +840,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -857,19 +854,19 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -878,12 +875,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -891,14 +888,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -906,12 +903,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -919,12 +916,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -933,19 +930,19 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -954,12 +951,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -967,14 +964,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -982,12 +979,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -995,12 +992,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -1009,19 +1006,19 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -1030,12 +1027,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -1043,14 +1040,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Knives n Cherries
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -1058,12 +1055,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 minthaze
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -1071,12 +1068,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Captivating
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -1085,20 +1082,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">1:48</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>1:48</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -1107,12 +1104,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -1120,14 +1117,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     How Deep Is Your Love
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -1135,12 +1132,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Calvin Harris, Disciples
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -1148,12 +1145,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 How Deep Is Your Love
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -1162,20 +1159,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">3:32</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>3:32</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -1184,12 +1181,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -1197,14 +1194,13 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
-                                    Morena{' '}
-                                    <span className="track__title-span"></span>
-                                </a>
+                                <S.TrackTitleLink href="http://">
+                                    Morena <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -1212,12 +1208,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="http://">
+                            <S.TrackAuthorLink href="http://">
                                 Tom Boxer
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -1225,12 +1221,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Soundz Made in Romania
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -1239,20 +1235,20 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">3:36</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>3:36</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
 
-            <div className="playlist__item">
-                <div className="playlist__track track">
-                    <div className="track__title">
-                        <div className="track__title-image">
+            <S.PlaylistItem>
+                <S.PlaylistTrack>
+                    <S.TrackTitle>
+                        <S.TrackTitleImage>
                             {isLoading ? (
                                 <Skeleton
                                     width={55}
@@ -1261,12 +1257,12 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <svg className="track__title-svg" alt="music">
+                                <S.TrackTitleSvg alt="music">
                                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                </svg>
+                                </S.TrackTitleSvg>
                             )}
-                        </div>
-                        <div className="track__title-text">
+                        </S.TrackTitleImage>
+                        <div>
                             {isLoading ? (
                                 <Skeleton
                                     width={270}
@@ -1274,14 +1270,14 @@ const Tracklist = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <a className="track__title-link" href="http://">
+                                <S.TrackTitleLink href="http://">
                                     Lost
-                                    <span className="track__title-span"></span>
-                                </a>
+                                    <S.TrackTitleSpan></S.TrackTitleSpan>
+                                </S.TrackTitleLink>
                             )}
                         </div>
-                    </div>
-                    <div className="track__author">
+                    </S.TrackTitle>
+                    <S.TrackAuthor>
                         {isLoading ? (
                             <Skeleton
                                 width={270}
@@ -1289,12 +1285,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__author-link" href="https://">
+                            <S.TrackAuthorLink href="https://">
                                 Linkin Park
-                            </a>
+                            </S.TrackAuthorLink>
                         )}
-                    </div>
-                    <div className="track__album">
+                    </S.TrackAuthor>
+                    <S.TrackAlbum>
                         {isLoading ? (
                             <Skeleton
                                 width={200}
@@ -1302,12 +1298,12 @@ const Tracklist = () => {
                                 highlightColor="#444"
                             />
                         ) : (
-                            <a className="track__album-link" href="http://">
+                            <S.TrackAlbumLink href="http://">
                                 Meteora
-                            </a>
+                            </S.TrackAlbumLink>
                         )}
-                    </div>
-                    <div className="track__time">
+                    </S.TrackAlbum>
+                    <div>
                         {isLoading ? (
                             <Skeleton
                                 width={60}
@@ -1316,16 +1312,16 @@ const Tracklist = () => {
                             />
                         ) : (
                             <>
-                                <svg className="track__time-svg" alt="time">
+                                <S.TrackTimeSvg alt="time">
                                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                                </svg>
-                                <span className="track__time-text">3:18</span>
+                                </S.TrackTimeSvg>
+                                <S.TrackTimeText>3:18</S.TrackTimeText>
                             </>
                         )}
                     </div>
-                </div>
-            </div>
-        </div>
+                </S.PlaylistTrack>
+            </S.PlaylistItem>
+        </S.ContentPlaylist>
     )
 }
 

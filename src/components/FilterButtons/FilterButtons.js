@@ -1,10 +1,14 @@
-import './Filter_buttons.css'
 import { useState } from 'react'
-import { AuthorList } from '../Filter_lists/Author_list.js'
-import { YearList } from '../Filter_lists/Year_list.js'
-import { GenreList } from '../Filter_lists/Genre_list.js'
+import { AuthorList } from '../FilterLists/AuthorList.js'
+import { YearList } from '../FilterLists/YearList.js'
+import { GenreList } from '../FilterLists/GenreList.js'
+import * as S from './FilterButtonsStyles.js'
 
-export const Filter_buttons = () => {
+export const FilterButtons = () => {
+    const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
+    const [isActiveYearButton, setIsActiveYearButton] = useState(false)
+    const [isActiveGenreButton, setIsActiveGenreButton] = useState(false)
+
     const [activeAuthor, setActiveAuthor] = useState(false)
     const [activeYear, setActiveYear] = useState(false)
     const [activeGenre, setActiveGenre] = useState(false)
@@ -14,6 +18,9 @@ export const Filter_buttons = () => {
     const [visibleGenre, setVisibleGenre] = useState(false)
 
     const clickOnAuthorFilter = () => {
+        setIsActiveAuthorButton(!isActiveAuthorButton)
+        setIsActiveYearButton(false)
+        setIsActiveGenreButton(false)
         setActiveAuthor(!activeAuthor)
         setActiveYear(false)
         setActiveGenre(false)
@@ -22,6 +29,9 @@ export const Filter_buttons = () => {
         setVisibleGenre(false)
     }
     const clickOnYearFilter = () => {
+        setIsActiveAuthorButton(false)
+        setIsActiveYearButton(!isActiveYearButton)
+        setIsActiveGenreButton(false)
         setActiveAuthor(false)
         setActiveYear(!activeYear)
         setActiveGenre(false)
@@ -30,6 +40,9 @@ export const Filter_buttons = () => {
         setVisibleGenre(false)
     }
     const clickOnGenreFilter = () => {
+        setIsActiveAuthorButton(false)
+        setIsActiveYearButton(false)
+        setIsActiveGenreButton(!isActiveGenreButton)
         setActiveAuthor(false)
         setActiveYear(false)
         setActiveGenre(!activeGenre)
@@ -39,41 +52,35 @@ export const Filter_buttons = () => {
     }
 
     return (
-        <div className="centerblock__filter filter">
-            <div className="filter__title">Искать по:</div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-author _btn-text ${
-                        activeAuthor ? 'active margin' : ''
-                    }`}
+        <S.CenterblockFilter>
+            <S.FilterTitle>Искать по:</S.FilterTitle>
+            <S.FilterContent>
+                <S.FilterButton
+                    $isActive={isActiveAuthorButton}
                     onClick={clickOnAuthorFilter}
                 >
                     исполнителю
-                </div>
+                </S.FilterButton>
                 {visibleAuthor && AuthorList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-year _btn-text ${
-                        activeYear ? 'active' : ''
-                    }`}
+            </S.FilterContent>
+            <S.FilterContent>
+                <S.FilterButton
+                    $isActive={isActiveYearButton}
                     onClick={clickOnYearFilter}
                 >
                     году выпуска
-                </div>
+                </S.FilterButton>
                 {visibleYear && YearList()}
-            </div>
-            <div className="filter__content">
-                <div
-                    className={`filter__button button-genre _btn-text ${
-                        activeGenre ? 'active' : ''
-                    }`}
+            </S.FilterContent>
+            <S.FilterContent>
+                <S.FilterButton
+                    $isActive={isActiveGenreButton}
                     onClick={clickOnGenreFilter}
                 >
                     жанру
-                </div>
+                </S.FilterButton>
                 {visibleGenre && GenreList()}
-            </div>
-        </div>
+            </S.FilterContent>
+        </S.CenterblockFilter>
     )
 }

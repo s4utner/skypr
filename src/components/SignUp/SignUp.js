@@ -1,38 +1,43 @@
-import './SignUp.css.css'
+import * as S from './SignUpStyles.js'
+import { GlobalStyle } from '../../GlobalStyle.js'
 
 const signUp = () => {
     return (
-        <div class="wrapper">
-            <div class="container-enter">
-                <div class="modal__block">
-                    <form class="modal__form-login" action="#">
-                        <a href="../">
-                            <div class="modal__logo">
-                                <img src="../img/logo_modal.png" alt="logo" />
-                            </div>
-                        </a>
-                        <input
-                            class="modal__input login"
-                            type="text"
-                            name="login"
-                            placeholder="Почта"
-                        />
-                        <input
-                            class="modal__input password"
-                            type="password"
-                            name="password"
-                            placeholder="Пароль"
-                        />
-                        <button class="modal__btn-enter">
-                            <a href="../index.html">Войти</a>
-                        </button>
-                        <button class="modal__btn-signup">
-                            <a href="signup.html">Зарегистрироваться</a>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <>
+            <GlobalStyle />
+            <S.Wrapper>
+                <S.ContainerSignup>
+                    <S.ModalBlock>
+                        <S.ModalFormLogin action="#">
+                            <a href="../">
+                                <S.ModalLogo>
+                                    <img
+                                        src="../img/logo_modal.png"
+                                        alt="logo"
+                                    />
+                                </S.ModalLogo>
+                            </a>
+                            <S.ModalInput
+                                type="text"
+                                name="login"
+                                placeholder="Почта"
+                            />
+                            <S.ModalInput
+                                type="password"
+                                name="password"
+                                placeholder="Пароль"
+                            />
+                            <S.ModalButton>
+                                <a href="../index.html">Войти</a>
+                            </S.ModalButton>
+                            <S.ModalButton>
+                                <a href="signup.html">Зарегистрироваться</a>
+                            </S.ModalButton>
+                        </S.ModalFormLogin>
+                    </S.ModalBlock>
+                </S.ContainerSignup>
+            </S.Wrapper>
+        </>
     )
 }
 

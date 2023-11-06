@@ -1,7 +1,7 @@
-import './Sidebar.css'
 import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S from './SidebarStyles.js'
 
 const Sidebar = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -12,19 +12,19 @@ const Sidebar = () => {
     }, [])
 
     return (
-        <div className="main__sidebar sidebar">
-            <div className="sidebar__personal">
-                <p className="sidebar__personal-name">Denis Sautner</p>
-                <div className="sidebar__icon">
+        <S.MainSidebar>
+            <S.SidebarPersonal>
+                <S.SidebarPersonalName>Denis Sautner</S.SidebarPersonalName>
+                <S.SidebarIcon>
                     <svg alt="logout">
                         <use xlinkHref="img/icon/sprite.svg#logout"></use>
                     </svg>
-                </div>
-            </div>
-            <div className="sidebar__block">
-                <div className="sidebar__list">
-                    <div className="sidebar__item">
-                        <a className="sidebar__link" href="#123">
+                </S.SidebarIcon>
+            </S.SidebarPersonal>
+            <S.SidebarBlock>
+                <S.SidebarList>
+                    <S.SidebarItem>
+                        <S.SidebarLink href="#123">
                             {isLoading ? (
                                 <Skeleton
                                     width={250}
@@ -33,16 +33,15 @@ const Sidebar = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <img
-                                    className="sidebar__img"
+                                <S.SidebarImg
                                     src="img/playlist01.png"
                                     alt="day's playlist"
                                 />
                             )}
-                        </a>
-                    </div>
-                    <div className="sidebar__item">
-                        <a className="sidebar__link" href="#123">
+                        </S.SidebarLink>
+                    </S.SidebarItem>
+                    <S.SidebarItem>
+                        <S.SidebarLink href="#123">
                             {isLoading ? (
                                 <Skeleton
                                     width={250}
@@ -51,16 +50,15 @@ const Sidebar = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <img
-                                    className="sidebar__img"
+                                <S.SidebarImg
                                     src="img/playlist02.png"
                                     alt="day's playlist"
                                 />
                             )}
-                        </a>
-                    </div>
-                    <div className="sidebar__item">
-                        <a className="sidebar__link" href="#123">
+                        </S.SidebarLink>
+                    </S.SidebarItem>
+                    <S.SidebarItem>
+                        <S.SidebarLink href="#123">
                             {isLoading ? (
                                 <Skeleton
                                     width={250}
@@ -69,17 +67,16 @@ const Sidebar = () => {
                                     highlightColor="#444"
                                 />
                             ) : (
-                                <img
-                                    className="sidebar__img"
+                                <S.SidebarImg
                                     src="img/playlist03.png"
                                     alt="day's playlist"
                                 />
                             )}
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </S.SidebarLink>
+                    </S.SidebarItem>
+                </S.SidebarList>
+            </S.SidebarBlock>
+        </S.MainSidebar>
     )
 }
 

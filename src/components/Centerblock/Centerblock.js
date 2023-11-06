@@ -1,37 +1,32 @@
-import './Centerblock.css'
 import tracklist from '../Tracklist/Tracklist.js'
-import { Filter_buttons } from '../Filter_buttons/Filter_buttons.js'
+import { FilterButtons } from '../FilterButtons/FilterButtons.js'
+import * as S from './CenterblockStyles.js'
 
 const Centerblock = () => {
     return (
-        <div className="main__centerblock centerblock">
-            <div className="centerblock__search search">
-                <svg className="search__svg">
+        <S.MainCenterblock>
+            <S.CenterblockSearch>
+                <S.SearchSvg>
                     <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-                </svg>
-                <input
-                    className="search__text"
-                    type="search"
-                    placeholder="Поиск"
-                    name="search"
-                />
-            </div>
-            <h2 className="centerblock__h2">Треки</h2>
-            {Filter_buttons()}
-            <div className="centerblock__content">
-                <div className="content__title playlist-title">
-                    <div className="playlist-title__col col01">Трек</div>
-                    <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-                    <div className="playlist-title__col col03">АЛЬБОМ</div>
-                    <div className="playlist-title__col col04">
-                        <svg className="playlist-title__svg" alt="time">
+                </S.SearchSvg>
+                <S.SearchText type="search" placeholder="Поиск" name="search" />
+            </S.CenterblockSearch>
+            <S.CenterblockHeading>Треки</S.CenterblockHeading>
+            {FilterButtons()}
+            <S.CenterblockContent>
+                <S.ContentTitle>
+                    <S.PlaylistTitleTrack>Трек</S.PlaylistTitleTrack>
+                    <S.PlaylistTitleAuthor>ИСПОЛНИТЕЛЬ</S.PlaylistTitleAuthor>
+                    <S.PlaylistTitleAlbum>АЛЬБОМ</S.PlaylistTitleAlbum>
+                    <S.PlaylistTitleImage>
+                        <S.PlaylistTitleSvg alt="time">
                             <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-                        </svg>
-                    </div>
-                </div>
+                        </S.PlaylistTitleSvg>
+                    </S.PlaylistTitleImage>
+                </S.ContentTitle>
                 {tracklist()}
-            </div>
-        </div>
+            </S.CenterblockContent>
+        </S.MainCenterblock>
     )
 }
 
