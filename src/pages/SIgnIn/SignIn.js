@@ -9,14 +9,14 @@ export const SignIn = () => {
                 <S.ContainerEnter>
                     <S.ModalBlock>
                         <S.ModalFormLogin action="#">
-                            <a href="../">
+                            <S.ModalButtonLink to="/">
                                 <S.ModalLogo>
                                     <img
                                         src="../img/logo_modal.png"
                                         alt="logo"
                                     />
                                 </S.ModalLogo>
-                            </a>
+                            </S.ModalButtonLink>
                             <S.ModalInputLogin
                                 type="text"
                                 name="login"
@@ -28,10 +28,14 @@ export const SignIn = () => {
                                 placeholder="Пароль"
                             />
                             <S.ModalButtonEnter>
-                                <a href="../index.html">Войти</a>
+                                <S.ModalButtonLink to="/">
+                                    Войти
+                                </S.ModalButtonLink>
                             </S.ModalButtonEnter>
                             <S.ModalButtonSignup>
-                                <a href="signup.html">Зарегистрироваться</a>
+                                <S.ModalButtonLink to="/register">
+                                    Зарегистрироваться
+                                </S.ModalButtonLink>
                             </S.ModalButtonSignup>
                         </S.ModalFormLogin>
                     </S.ModalBlock>
@@ -40,4 +44,3 @@ export const SignIn = () => {
         </>
     )
 }
-

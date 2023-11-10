@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -188,5 +189,16 @@ export const ModalButtonSignup = styled.button`
     }
     &:hover {
         background-color: #f4f5f6;
+    }
+`
+
+export const ModalButtonLink = styled(Link)`
+    text-decoration: none;
+    font-family: 'StratosSkyeng', sans-serif;
+    cursor: pointer;
+    &:visited {
+        text-decoration: none;
+        font-family: 'StratosSkyeng', sans-serif;
+        cursor: pointer;
     }
 `
