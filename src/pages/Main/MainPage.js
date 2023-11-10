@@ -3,9 +3,9 @@ import Sidebar from '../../components/Sidebar/Sidebar.js'
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer.js'
 import Centerblock from '../../components/Centerblock/Centerblock.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
-import * as S from './AppStyles.js'
+import * as S from './MainPageStyles.js'
 
-function App() {
+export const MainPage = () => {
     return (
         <>
             <GlobalStyle />
@@ -23,5 +23,3 @@ function App() {
         </>
     )
 }
-
-export default App

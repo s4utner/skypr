@@ -1,7 +1,7 @@
 import * as S from './SignInStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 
-const signIn = () => {
+export const SignIn = () => {
     return (
         <>
             <GlobalStyle />
@@ -41,4 +41,3 @@ const signIn = () => {
     )
 }
 
-export default signIn

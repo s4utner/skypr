@@ -1,7 +1,7 @@
 import * as S from './SignUpStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 
-const signUp = () => {
+export const SignUp = () => {
     return (
         <>
             <GlobalStyle />
@@ -27,9 +27,9 @@ const signUp = () => {
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <S.ModalButton>
+                            <S.ModalButtonSignin>
                                 <a href="../index.html">Войти</a>
-                            </S.ModalButton>
+                            </S.ModalButtonSignin>
                             <S.ModalButton>
                                 <a href="signup.html">Зарегистрироваться</a>
                             </S.ModalButton>
@@ -40,5 +40,3 @@ const signUp = () => {
         </>
     )
 }
-
-export default signUp
