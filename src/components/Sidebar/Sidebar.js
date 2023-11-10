@@ -26,28 +26,26 @@ const Sidebar = () => {
                 <S.SidebarList>
                     {Categories.map((category) => {
                         return (
-                            <>
-                                <S.SidebarItem>
-                                    <S.SidebarLink
-                                        id={category.id}
-                                        to={`/category/${category.id}`}
-                                    >
-                                        {isLoading ? (
-                                            <Skeleton
-                                                width={250}
-                                                height={150}
-                                                baseColor="#202020"
-                                                highlightColor="#444"
-                                            />
-                                        ) : (
-                                            <S.SidebarImg
-                                                src={category.img}
-                                                alt={category.alt}
-                                            />
-                                        )}
-                                    </S.SidebarLink>
-                                </S.SidebarItem>
-                            </>
+                            <S.SidebarItem key={category.id}>
+                                <S.SidebarLink
+                                    id={category.id}
+                                    to={`/category/${category.id}`}
+                                >
+                                    {isLoading ? (
+                                        <Skeleton
+                                            width={250}
+                                            height={150}
+                                            baseColor="#202020"
+                                            highlightColor="#444"
+                                        />
+                                    ) : (
+                                        <S.SidebarImg
+                                            src={category.img}
+                                            alt={category.alt}
+                                        />
+                                    )}
+                                </S.SidebarLink>
+                            </S.SidebarItem>
                         )
                     })}
                 </S.SidebarList>

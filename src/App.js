@@ -8,7 +8,7 @@ function App() {
             <GlobalStyle />
             <S.Wrapper>
                 <S.Container>
-                    <AppRoutes />
+                    <AppRoutes user={localStorage.getItem('user')} />
                 </S.Container>
             </S.Wrapper>
         </>

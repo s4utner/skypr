@@ -4,6 +4,10 @@ import * as S from './NavMenuStyles.js'
 const NavMenu = () => {
     const [visible, setVisible] = useState(false)
     const clickOnBurger = () => setVisible(!visible)
+    const clearLocalStorage = () => {
+        localStorage.removeItem('user')
+    }
+
     return (
         <S.MainNav>
             <S.NavLogo>
@@ -26,7 +30,11 @@ const NavMenu = () => {
                             </S.MenuLink>
                         </S.MenuItem>
                         <S.MenuItem>
-                            <S.MenuLink to="/login">Войти</S.MenuLink>
+                            <S.MenuLink to="/login">
+                                {localStorage.getItem('user')
+                                    ? 'Выйти'
+                                    : 'Войти'}
+                            </S.MenuLink>
                         </S.MenuItem>
                     </S.MenuList>
                 </S.NavMenu>

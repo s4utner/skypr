@@ -27,7 +27,9 @@ export const SignIn = () => {
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <S.ModalButtonEnter>
+                            <S.ModalButtonEnter
+                                onClick={localStorage.setItem('user', 'token')}
+                            >
                                 <S.ModalButtonLink to="/">
                                     Войти
                                 </S.ModalButtonLink>
