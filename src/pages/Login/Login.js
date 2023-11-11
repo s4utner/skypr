@@ -6,7 +6,6 @@ export const Login = () => {
     const navigate = useNavigate()
     const onClick = () => {
         localStorage.setItem('user', 'token')
-        console.log(localStorage.getItem('user'))
         navigate('/')
     }
 

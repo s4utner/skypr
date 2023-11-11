@@ -12,7 +12,6 @@ const NavMenu = () => {
         if (user) {
             localStorage.removeItem('user')
         }
-        console.log(localStorage.getItem('user'))
         navigate('/login')
     }
 
