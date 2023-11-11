@@ -1,11 +1,19 @@
 import { useState } from 'react'
 import * as S from './NavMenuStyles.js'
+import { useNavigate } from 'react-router-dom'
 
 const NavMenu = () => {
     const [visible, setVisible] = useState(false)
     const clickOnBurger = () => setVisible(!visible)
-    const clearLocalStorage = () => {
-        localStorage.removeItem('user')
+
+    const navigate = useNavigate()
+    const onClick = () => {
+        const user = localStorage.getItem('user')
+        if (user) {
+            localStorage.removeItem('user')
+        }
+        console.log(localStorage.getItem('user'))
+        navigate('/login')
     }
 
     return (
@@ -29,12 +37,8 @@ const NavMenu = () => {
                                 Мой плейлист
                             </S.MenuLink>
                         </S.MenuItem>
-                        <S.MenuItem>
-                            <S.MenuLink to="/login">
-                                {localStorage.getItem('user')
-                                    ? 'Выйти'
-                                    : 'Войти'}
-                            </S.MenuLink>
+                        <S.MenuItem onClick={onClick}>
+                            {localStorage.getItem('user') ? 'Выйти' : 'Войти'}
                         </S.MenuItem>
                     </S.MenuList>
                 </S.NavMenu>

@@ -1,12 +1,12 @@
-import * as S from './SignInStyles.js'
+import * as S from './RegisterStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 
-export const SignIn = () => {
+export const Register = () => {
     return (
         <>
             <GlobalStyle />
             <S.Wrapper>
-                <S.ContainerEnter>
+                <S.ContainerSignup>
                     <S.ModalBlock>
                         <S.ModalFormLogin action="#">
                             <S.ModalButtonLink to="/">
@@ -17,7 +17,7 @@ export const SignIn = () => {
                                     />
                                 </S.ModalLogo>
                             </S.ModalButtonLink>
-                            <S.ModalInputLogin
+                            <S.ModalInput
                                 type="text"
                                 name="login"
                                 placeholder="Почта"
@@ -27,21 +27,19 @@ export const SignIn = () => {
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <S.ModalButtonEnter
-                                onClick={localStorage.setItem('user', 'token')}
-                            >
-                                <S.ModalButtonLink to="/">
+                            <S.ModalButtonSignin>
+                                <S.ModalButtonLink to="/login">
                                     Войти
                                 </S.ModalButtonLink>
-                            </S.ModalButtonEnter>
-                            <S.ModalButtonSignup>
-                                <S.ModalButtonLink to="/register">
+                            </S.ModalButtonSignin>
+                            <S.ModalButton>
+                                <S.ModalButtonLink to="/">
                                     Зарегистрироваться
                                 </S.ModalButtonLink>
-                            </S.ModalButtonSignup>
+                            </S.ModalButton>
                         </S.ModalFormLogin>
                     </S.ModalBlock>
-                </S.ContainerEnter>
+                </S.ContainerSignup>
             </S.Wrapper>
         </>
     )

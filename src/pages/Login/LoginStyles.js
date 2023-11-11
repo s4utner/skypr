@@ -117,9 +117,7 @@ export const ModalButtonEnter = styled.button`
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    & a {
-        width: 100%;
-        height: 100%;
+    & {
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
