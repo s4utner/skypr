@@ -1,23 +1,23 @@
-import * as S from './SignInStyles.js'
+import * as S from './RegisterStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 
-const signIn = () => {
+export const Register = () => {
     return (
         <>
             <GlobalStyle />
             <S.Wrapper>
-                <S.ContainerEnter>
+                <S.ContainerSignup>
                     <S.ModalBlock>
                         <S.ModalFormLogin action="#">
-                            <a href="../">
+                            <S.ModalButtonLink to="/">
                                 <S.ModalLogo>
                                     <img
                                         src="../img/logo_modal.png"
                                         alt="logo"
                                     />
                                 </S.ModalLogo>
-                            </a>
-                            <S.ModalInputLogin
+                            </S.ModalButtonLink>
+                            <S.ModalInput
                                 type="text"
                                 name="login"
                                 placeholder="Почта"
@@ -27,18 +27,20 @@ const signIn = () => {
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <S.ModalButtonEnter>
-                                <a href="../index.html">Войти</a>
-                            </S.ModalButtonEnter>
-                            <S.ModalButtonSignup>
-                                <a href="signup.html">Зарегистрироваться</a>
-                            </S.ModalButtonSignup>
+                            <S.ModalButtonSignin>
+                                <S.ModalButtonLink to="/login">
+                                    Войти
+                                </S.ModalButtonLink>
+                            </S.ModalButtonSignin>
+                            <S.ModalButton>
+                                <S.ModalButtonLink to="/">
+                                    Зарегистрироваться
+                                </S.ModalButtonLink>
+                            </S.ModalButton>
                         </S.ModalFormLogin>
                     </S.ModalBlock>
-                </S.ContainerEnter>
+                </S.ContainerSignup>
             </S.Wrapper>
         </>
     )
 }
-
-export default signIn

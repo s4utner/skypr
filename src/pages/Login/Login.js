@@ -1,23 +1,30 @@
-import * as S from './SignUpStyles.js'
+import * as S from './LoginStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
+import { useNavigate } from 'react-router-dom'
 
-const signUp = () => {
+export const Login = () => {
+    const navigate = useNavigate()
+    const onClick = () => {
+        localStorage.setItem('user', 'token')
+        navigate('/')
+    }
+
     return (
         <>
             <GlobalStyle />
             <S.Wrapper>
-                <S.ContainerSignup>
+                <S.ContainerEnter>
                     <S.ModalBlock>
                         <S.ModalFormLogin action="#">
-                            <a href="../">
+                            <S.ModalButtonLink to="/">
                                 <S.ModalLogo>
                                     <img
                                         src="../img/logo_modal.png"
                                         alt="logo"
                                     />
                                 </S.ModalLogo>
-                            </a>
-                            <S.ModalInput
+                            </S.ModalButtonLink>
+                            <S.ModalInputLogin
                                 type="text"
                                 name="login"
                                 placeholder="Почта"
@@ -27,18 +34,18 @@ const signUp = () => {
                                 name="password"
                                 placeholder="Пароль"
                             />
-                            <S.ModalButton>
-                                <a href="../index.html">Войти</a>
-                            </S.ModalButton>
-                            <S.ModalButton>
-                                <a href="signup.html">Зарегистрироваться</a>
-                            </S.ModalButton>
+                            <S.ModalButtonEnter onClick={onClick}>
+                                Войти
+                            </S.ModalButtonEnter>
+                            <S.ModalButtonSignup>
+                                <S.ModalButtonLink to="/register">
+                                    Зарегистрироваться
+                                </S.ModalButtonLink>
+                            </S.ModalButtonSignup>
                         </S.ModalFormLogin>
                     </S.ModalBlock>
-                </S.ContainerSignup>
+                </S.ContainerEnter>
             </S.Wrapper>
         </>
     )
 }
-
-export default signUp
