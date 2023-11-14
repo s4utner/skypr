@@ -5,7 +5,20 @@ import * as S from './TracklistStyles.js'
 import { getAllTracks } from '../../Api.js'
 
 const Tracklist = () => {
-    const [tracks, setTracks] = useState(null)
+    const [tracks, setTracks] = useState([
+        {
+            album: 'Chase',
+            author: 'Alexander Nakarada',
+            duration_in_seconds: 205,
+            genre: 'Классическая музыка',
+            id: 8,
+            logo: null,
+            name: 'Chase',
+            release_date: '2005-06-11',
+            stared_user: [{}],
+            track_file: '',
+        },
+    ])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -18,6 +31,7 @@ const Tracklist = () => {
         getAllTracks().then((response) => {
             console.log(response)
             setTracks(tracks.response)
+            console.log(tracks)
         })
     }, [])
 
