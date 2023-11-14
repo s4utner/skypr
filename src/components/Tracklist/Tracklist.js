@@ -2,14 +2,23 @@ import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
+import { getAllTracks } from '../../Api.js'
 
 const Tracklist = () => {
+    const [tracks, setTracks] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
         }, 5000)
+    }, [])
+
+    useEffect(() => {
+        getAllTracks().then((response) => {
+            console.log(response)
+            setTracks(tracks.response)
+        })
     }, [])
 
     return (
