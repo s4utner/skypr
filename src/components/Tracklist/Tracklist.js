@@ -17,7 +17,7 @@ const Tracklist = () => {
     useEffect(() => {
         getAllTracks().then((response) => {
             console.log(response)
-            setTracks(response)
+            setTracks(tracks)
             console.log(tracks)
         })
     }, [])
@@ -25,6 +25,7 @@ const Tracklist = () => {
     return (
         <S.ContentPlaylist>
             <S.PlaylistItem>
+                {console.log(tracks)}
                 <S.PlaylistTrack>
                     <S.TrackTitle>
                         <S.TrackTitleImage>
