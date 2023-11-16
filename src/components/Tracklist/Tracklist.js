@@ -18,12 +18,11 @@ const Tracklist = () => {
         { id: 10, name: 10, author: 10, album: 10, duration_in_seconds: 10 },
     ])
     const [isLoading, setIsLoading] = useState(false)
-    const [isPlayerVisible, setIsPlayerVisible] = useState(false)
+    const [isPlayerVisible, setIsPlayerVisible] = useState(true)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
 
     useEffect(() => {
         try {
-            setIsLoading(true)
             getAllTracks().then((response) => {
                 setTracks(response)
             })
