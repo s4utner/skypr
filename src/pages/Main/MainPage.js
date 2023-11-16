@@ -16,8 +16,6 @@ export const MainPage = () => {
                         {Centerblock()}
                         {Sidebar()}
                     </S.Main>
-                    {AudioPlayer()}
-                    <footer></footer>
                 </S.Container>
             </S.Wrapper>
         </>

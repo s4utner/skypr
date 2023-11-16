@@ -4,9 +4,7 @@ export async function getAllTracks() {
     )
 
     if (!response.ok) {
-        if (response.status === 500) {
-            throw new Error('Ошибка сервера')
-        }
+        throw new Error('Произошла ошибка, попробуй позже')
     }
 
     const data = await response.json()
