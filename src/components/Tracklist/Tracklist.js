@@ -7,6 +7,7 @@ const Tracklist = ({
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
+    setActiveTrack,
 }) => {
     return (
         <S.ContentPlaylist>
@@ -22,6 +23,7 @@ const Tracklist = ({
                         key={track.id}
                         onClick={() => {
                             setIsPlayerVisible(true)
+                            setActiveTrack(track)
                         }}
                     >
                         <S.PlaylistTrack>

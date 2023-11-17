@@ -21,6 +21,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
+    const [activeTrack, setActiveTrack] = useState(null)
 
     useEffect(() => {
         try {
@@ -49,8 +50,13 @@ function App() {
                             isPlayerVisible={isPlayerVisible}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
+                            setActiveTrack={setActiveTrack}
                         />
-                        {AudioPlayer({ isPlayerVisible, isLoading })}
+                        {AudioPlayer({
+                            isPlayerVisible,
+                            isLoading,
+                            activeTrack,
+                        })}
                     </>
                 </S.Container>
             </S.Wrapper>

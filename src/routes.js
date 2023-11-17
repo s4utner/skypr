@@ -16,6 +16,7 @@ export const AppRoutes = ({
     isPlayerVisible,
     setIsPlayerVisible,
     loadingTracksError,
+    setActiveTrack,
 }) => {
     return (
         <Routes>
@@ -35,6 +36,7 @@ export const AppRoutes = ({
                             isPlayerVisible={isPlayerVisible}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
+                            setActiveTrack={setActiveTrack}
                         />
                     }
                 ></Route>

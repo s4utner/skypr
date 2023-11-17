@@ -5,7 +5,7 @@ import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
 
 export const MainPage = ({
-    isPlayerVisible,
+    setActiveTrack,
     tracks,
     isLoading,
     setIsPlayerVisible,
@@ -23,6 +23,7 @@ export const MainPage = ({
                             isLoading,
                             setIsPlayerVisible,
                             loadingTracksError,
+                            setActiveTrack,
                         })}
                         {Sidebar({ isLoading })}
                     </S.Main>

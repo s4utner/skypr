@@ -2,7 +2,8 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
 
-export const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
+export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
+    console.log(activeTrack)
     return (
         isPlayerVisible && (
             <S.Bar>
@@ -50,7 +51,11 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
                                             />
                                         ) : (
                                             <S.TrackPlaySvg alt="music">
-                                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                                {activeTrack ? (
+                                                    activeTrack.logo
+                                                ) : (
+                                                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                                )}
                                             </S.TrackPlaySvg>
                                         )}
                                     </S.TrackPlayImage>
@@ -63,7 +68,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
                                             />
                                         ) : (
                                             <S.TrackPlayAuthorLink href="http://">
-                                                Ты та...
+                                                {activeTrack.name}
                                             </S.TrackPlayAuthorLink>
                                         )}
                                     </S.TrackPlayAuthor>
@@ -76,7 +81,7 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
                                             />
                                         ) : (
                                             <S.TrackPlayAlbumLink href="http://">
-                                                Баста
+                                                {activeTrack.author}
                                             </S.TrackPlayAlbumLink>
                                         )}
                                     </S.TrackPlayAlbum>

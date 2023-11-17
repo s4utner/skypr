@@ -7,6 +7,7 @@ const Centerblock = (
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
+    setActiveTrack
 ) => {
     return (
         <S.MainCenterblock>
@@ -34,6 +35,7 @@ const Centerblock = (
                     isLoading,
                     setIsPlayerVisible,
                     loadingTracksError,
+                    setActiveTrack,
                 )}
             </S.CenterblockContent>
         </S.MainCenterblock>
