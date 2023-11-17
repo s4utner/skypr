@@ -3,6 +3,7 @@ import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
 import { useState, useEffect } from 'react'
 import { getAllTracks } from './Api.js'
+import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 
 function App() {
     const [tracks, setTracks] = useState([
@@ -38,16 +39,19 @@ function App() {
             <GlobalStyle />
             <S.Wrapper>
                 <S.Container>
-                    <AppRoutes
-                        user={localStorage.getItem('user')}
-                        tracks={tracks}
-                        setTracks={setTracks}
-                        isLoading={isLoading}
-                        setIsLoading={setIsLoading}
-                        isPlayerVisible={isPlayerVisible}
-                        setIsPlayerVisible={setIsPlayerVisible}
-                        loadingTracksError={loadingTracksError}
-                    />
+                    <>
+                        <AppRoutes
+                            user={localStorage.getItem('user')}
+                            tracks={tracks}
+                            setTracks={setTracks}
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            isPlayerVisible={isPlayerVisible}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                        />
+                        {AudioPlayer({ isPlayerVisible, isLoading })}
+                    </>
                 </S.Container>
             </S.Wrapper>
         </>

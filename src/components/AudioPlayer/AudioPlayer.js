@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
 
-const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
+export const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
     return (
         isPlayerVisible && (
             <S.Bar>
@@ -116,5 +116,3 @@ const AudioPlayer = ({ isPlayerVisible, isLoading }) => {
         )
     )
 }
-
-export default AudioPlayer
