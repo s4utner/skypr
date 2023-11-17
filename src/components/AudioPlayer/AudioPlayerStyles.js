@@ -181,7 +181,7 @@ export const TrackPlayAuthor = styled.div`
     -ms-grid-row: 1;
     -ms-grid-column: 2;
     grid-area: author;
-    min-width: 98px;
+    min-width: 120px;
 `
 
 export const TrackPlayAuthorLink = styled.a`
@@ -197,7 +197,7 @@ export const TrackPlayAlbum = styled.div`
     -ms-grid-row: 2;
     -ms-grid-column: 2;
     grid-area: album;
-    min-width: 98px;
+    min-width: 120px;
 `
 
 export const TrackPlayAlbumLink = styled.a`

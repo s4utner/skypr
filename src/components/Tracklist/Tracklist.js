@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
+import moment from 'moment'
 
 const Tracklist = ({
     tracks,
@@ -96,7 +97,9 @@ const Tracklist = ({
                                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                                         </S.TrackTimeSvg>
                                         <S.TrackTimeText>
-                                            {track.duration_in_seconds}
+                                            {moment(
+                                                track.duration_in_seconds * 1000,
+                                            ).format('m:ss')}
                                         </S.TrackTimeText>
                                     </>
                                 )}

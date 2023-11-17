@@ -15,6 +15,7 @@ export const PlaylistItem = styled.div`
     width: 100%;
     display: block;
     margin-bottom: 12px;
+    cursor: pointer;
 `
 
 export const PlaylistTrack = styled.div`

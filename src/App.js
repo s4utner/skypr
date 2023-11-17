@@ -24,15 +24,14 @@ function App() {
     const [activeTrack, setActiveTrack] = useState(null)
 
     useEffect(() => {
-        try {
-            getAllTracks().then((response) => {
+        getAllTracks()
+            .then((response) => {
                 setTracks(response)
             })
-        } catch (error) {
-            setLoadingTracksError(error.message)
-        } finally {
-            setIsLoading(false)
-        }
+            .catch((error) => {
+                setLoadingTracksError(error.message)
+            })
+            .finally(() => setIsLoading(false))
     }, [])
 
     return (
