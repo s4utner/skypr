@@ -5,13 +5,13 @@ import Centerblock from '../../components/Centerblock/Centerblock.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
 
-export const MainPage = (
+export const MainPage = ({
     isPlayerVisible,
     tracks,
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
-) => {
+}) => {
     return (
         <>
             <GlobalStyle />
@@ -27,7 +27,7 @@ export const MainPage = (
                         })}
                         {Sidebar()}
                     </S.Main>
-                    {isPlayerVisible && AudioPlayer()}
+                    {AudioPlayer({ isPlayerVisible })}
                 </S.Container>
             </S.Wrapper>
         </>
