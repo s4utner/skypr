@@ -17,7 +17,7 @@ function App() {
         { id: 9, name: 9, author: 9, album: 9, duration_in_seconds: 9 },
         { id: 10, name: 10, author: 10, album: 10, duration_in_seconds: 10 },
     ])
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
 

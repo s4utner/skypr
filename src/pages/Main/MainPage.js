@@ -25,9 +25,9 @@ export const MainPage = ({
                             setIsPlayerVisible,
                             loadingTracksError,
                         })}
-                        {Sidebar()}
+                        {Sidebar({ isLoading })}
                     </S.Main>
-                    {AudioPlayer({ isPlayerVisible })}
+                    {AudioPlayer({ isPlayerVisible, isLoading })}
                 </S.Container>
             </S.Wrapper>
         </>
