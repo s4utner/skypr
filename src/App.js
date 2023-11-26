@@ -1,7 +1,7 @@
 import { GlobalStyle } from './GlobalStyle.js'
 import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 
@@ -22,6 +22,10 @@ function App() {
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [isLooped, setIsLooped] = useState(false)
+
+    const audioRef = useRef(null)
 
     useEffect(() => {
         getAllTracks()
@@ -33,6 +37,30 @@ function App() {
             })
             .finally(() => setIsLoading(false))
     }, [])
+
+    const handlePlay = () => {
+        audioRef.current.play()
+        setIsPlaying(true)
+    }
+
+    const handlePause = () => {
+        audioRef.current.pause()
+        setIsPlaying(false)
+    }
+
+    const togglePlay = isPlaying ? handlePause : handlePlay
+
+    const toggleLoop = () => {
+        if (isLooped) {
+            setIsLooped(false)
+        } else {
+            setIsLooped(true)
+        }
+    }
+
+    useEffect(() => {
+        console.log(audioRef)
+    })
 
     return (
         <>
@@ -50,11 +78,25 @@ function App() {
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
+                            setIsPlaying={setIsPlaying}
+                            isPlaying={isPlaying}
+                            togglePlay={togglePlay}
                         />
+                        <S.AudioHTML
+                            ref={audioRef}
+                            controls
+                            src={activeTrack ? activeTrack.track_file : null}
+                        ></S.AudioHTML>
                         {AudioPlayer({
+                            isPlaying,
+                            setIsPlaying,
                             isPlayerVisible,
                             isLoading,
                             activeTrack,
+                            audioRef,
+                            togglePlay,
+                            isLooped,
+                            toggleLoop,
                         })}
                     </>
                 </S.Container>

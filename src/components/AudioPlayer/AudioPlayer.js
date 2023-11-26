@@ -1,14 +1,39 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
+import { useState } from 'react'
 
-export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
-    console.log(activeTrack)
+const ProgressBar = () => {
+    const [currentTime, setCurrentTime] = useState(70)
+    const duration = 230
+
+    return (
+        <S.ProgressInput
+            type="range"
+            min={0}
+            max={duration}
+            value={currentTime}
+            step={0.01}
+            onChange={(event) => setCurrentTime(event.target.value)}
+            $color="#ff0000"
+        />
+    )
+}
+
+export const AudioPlayer = ({
+    isPlayerVisible,
+    isLoading,
+    activeTrack,
+    isPlaying,
+    togglePlay,
+    isLooped,
+    toggleLoop,
+}) => {
     return (
         isPlayerVisible && (
             <S.Bar>
                 <S.BarContent>
-                    <S.BarPlayerProgress></S.BarPlayerProgress>
+                    {ProgressBar()}
                     <S.BarPlayerBlock>
                         <S.BarPlayer>
                             <S.PlayerControls>
@@ -18,8 +43,17 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
                                     </S.PlayerButtonPrevSvg>
                                 </S.PlayerButtonPrev>
                                 <S.PlayerButtonPlay>
-                                    <S.PlayerButtonPlaySvg alt="play">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                                    <S.PlayerButtonPlaySvg
+                                        alt="play"
+                                        onClick={togglePlay}
+                                    >
+                                        <use
+                                            xlinkHref={
+                                                isPlaying
+                                                    ? 'img/icon/sprite.svg#icon-pause'
+                                                    : 'img/icon/sprite.svg#icon-play'
+                                            }
+                                        ></use>
                                     </S.PlayerButtonPlaySvg>
                                 </S.PlayerButtonPlay>
                                 <S.PlayerButtonNext>
@@ -28,8 +62,17 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
                                     </S.PlayerButtonNextSvg>
                                 </S.PlayerButtonNext>
                                 <S.PlayerButtonRepeat>
-                                    <S.PlayerButtonRepeatSvg alt="repeat">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                                    <S.PlayerButtonRepeatSvg
+                                        alt="repeat"
+                                        onClick={toggleLoop}
+                                    >
+                                        <use
+                                            xlinkHref={
+                                                isLooped
+                                                    ? 'img/icon/sprite.svg#icon-repeat-active'
+                                                    : 'img/icon/sprite.svg#icon-repeat'
+                                            }
+                                        ></use>
                                     </S.PlayerButtonRepeatSvg>
                                 </S.PlayerButtonRepeat>
                                 <S.PlayerButtonShuffle>

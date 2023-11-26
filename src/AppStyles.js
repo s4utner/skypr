@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
     max-width: 1920px;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0 auto;
     position: relative;
     background-color: #181818;
@@ -27,4 +27,8 @@ export const Main = styled.main`
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+`
+
+export const AudioHTML = styled.audio`
+    display: none;
 `

@@ -10,6 +10,9 @@ export const MainPage = ({
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
+    setIsPlaying,
+    isPlaying,
+    togglePlay,
 }) => {
     return (
         <>
@@ -24,6 +27,9 @@ export const MainPage = ({
                             setIsPlayerVisible,
                             loadingTracksError,
                             setActiveTrack,
+                            setIsPlaying,
+                            isPlaying,
+                            togglePlay,
                         })}
                         {Sidebar({ isLoading })}
                     </S.Main>

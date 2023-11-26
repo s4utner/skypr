@@ -17,6 +17,9 @@ export const AppRoutes = ({
     setIsPlayerVisible,
     loadingTracksError,
     setActiveTrack,
+    setIsPlaying,
+    isPlaying,
+    togglePlay,
 }) => {
     return (
         <Routes>
@@ -37,6 +40,9 @@ export const AppRoutes = ({
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
+                            setIsPlaying={setIsPlaying}
+                            isPlaying={isPlaying}
+                            togglePlay={togglePlay}
                         />
                     }
                 ></Route>
