@@ -1,17 +1,9 @@
-import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './SidebarStyles.js'
 import { Categories } from '../../constants.js'
 
-const Sidebar = () => {
-    const [isLoading, setIsLoading] = useState(true)
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 5000)
-    }, [])
-
+const Sidebar = ({ isLoading }) => {
     return (
         <S.MainSidebar>
             <S.SidebarPersonal>

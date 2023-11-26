@@ -15,6 +15,7 @@ export const PlaylistItem = styled.div`
     width: 100%;
     display: block;
     margin-bottom: 12px;
+    cursor: pointer;
 `
 
 export const PlaylistTrack = styled.div`
@@ -133,4 +134,14 @@ export const TrackTimeText = styled.span`
     line-height: 24px;
     text-align: right;
     color: #696969;
+`
+
+export const LoadingTracksError = styled.p`
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 64px;
+    text-align: center;
+    color: red;
+    padding: 20px;
 `

@@ -1,8 +1,14 @@
-import tracklist from '../Tracklist/Tracklist.js'
+import Tracklist from '../Tracklist/Tracklist.js'
 import { FilterButtons } from '../FilterButtons/FilterButtons.js'
 import * as S from './CenterblockStyles.js'
 
-const Centerblock = () => {
+const Centerblock = (
+    tracks,
+    isLoading,
+    setIsPlayerVisible,
+    loadingTracksError,
+    setActiveTrack
+) => {
     return (
         <S.MainCenterblock>
             <S.CenterblockSearch>
@@ -24,7 +30,13 @@ const Centerblock = () => {
                         </S.PlaylistTitleSvg>
                     </S.PlaylistTitleImage>
                 </S.ContentTitle>
-                {tracklist()}
+                {Tracklist(
+                    tracks,
+                    isLoading,
+                    setIsPlayerVisible,
+                    loadingTracksError,
+                    setActiveTrack,
+                )}
             </S.CenterblockContent>
         </S.MainCenterblock>
     )
