@@ -28,7 +28,7 @@ const Tracklist = ({
                             setActiveTrack(track)
                         }}
                     >
-                        <S.PlaylistTrack onClick={togglePlay}>
+                        <S.PlaylistTrack>
                             <S.TrackTitle>
                                 <S.TrackTitleImage>
                                     {isLoading ? (

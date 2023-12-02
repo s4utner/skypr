@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
+import { useEffect, useState } from 'react'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -11,6 +12,16 @@ export const AudioPlayer = ({
     isPlaying,
 }) => {
     console.log(audioRef)
+    const [currentTime, setCurrentTime] = useState(0)
+    const duration = audioRef.current ? audioRef.current.duration : 0
+
+    useEffect(() => {
+        if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime)
+        } else {
+            setCurrentTime(0)
+        }
+    })
 
     return (
         isPlayerVisible && (
@@ -22,7 +33,17 @@ export const AudioPlayer = ({
                 ></audio>
                 <S.Bar>
                     <S.BarContent>
-                        <S.BarPlayerProgress></S.BarPlayerProgress>
+                        <S.ProgressInput
+                            type="range"
+                            min={0}
+                            max={duration}
+                            value={currentTime}
+                            step={0.01}
+                            onChange={() =>
+                                setCurrentTime(audioRef.current.currentTime)
+                            }
+                            $color="#ff0000"
+                        />
                         <S.BarPlayerBlock>
                             <S.BarPlayer>
                                 <S.PlayerControls>
