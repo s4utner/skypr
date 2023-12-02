@@ -1,7 +1,7 @@
 import { GlobalStyle } from './GlobalStyle.js'
 import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 
@@ -22,6 +22,21 @@ function App() {
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const audioRef = useRef(null)
+
+    const handleStart = () => {
+        audioRef.current.play()
+        setIsPlaying(true)
+    }
+
+    const handleStop = () => {
+        audioRef.current.pause()
+        setIsPlaying(false)
+    }
+
+    const togglePlay = isPlaying ? handleStop : handleStart
 
     useEffect(() => {
         getAllTracks()
@@ -52,6 +67,9 @@ function App() {
                             setActiveTrack={setActiveTrack}
                         />
                         {AudioPlayer({
+                            audioRef,
+                            togglePlay,
+                            isPlaying,
                             isPlayerVisible,
                             isLoading,
                             activeTrack,

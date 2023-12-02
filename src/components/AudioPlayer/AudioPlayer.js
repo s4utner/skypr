@@ -1,24 +1,16 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
-import { useRef, useState } from 'react'
 
-export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
+export const AudioPlayer = ({
+    isPlayerVisible,
+    isLoading,
+    activeTrack,
+    audioRef,
+    togglePlay,
+    isPlaying,
+}) => {
     console.log(activeTrack)
-    const audioRef = useRef(null)
-    const [isPlaying, setIsPlaying] = useState(false)
-
-    const handleStart = () => {
-        audioRef.current.play()
-        setIsPlaying(true)
-    }
-
-    const handleStop = () => {
-        audioRef.current.pause()
-        setIsPlaying(false)
-    }
-
-    const togglePlay = isPlaying ? handleStop : handleStart
 
     return (
         isPlayerVisible && (
