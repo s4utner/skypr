@@ -40,8 +40,15 @@ export const AudioPlayer = ({ isPlayerVisible, isLoading, activeTrack }) => {
                                         </S.PlayerButtonPrevSvg>
                                     </S.PlayerButtonPrev>
                                     <S.PlayerButtonPlay>
-                                        <S.PlayerButtonPlaySvg alt="play" onClick={togglePlay}>
-                                            <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                                        <S.PlayerButtonPlaySvg
+                                            alt="play"
+                                            onClick={togglePlay}
+                                        >
+                                            {isPlaying ? (
+                                                <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                                            ) : (
+                                                <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                                            )}
                                         </S.PlayerButtonPlaySvg>
                                     </S.PlayerButtonPlay>
                                     <S.PlayerButtonNext>
