@@ -9,6 +9,7 @@ const Tracklist = ({
     setIsPlayerVisible,
     loadingTracksError,
     setActiveTrack,
+    togglePlay,
 }) => {
     return (
         <S.ContentPlaylist>
@@ -27,7 +28,7 @@ const Tracklist = ({
                             setActiveTrack(track)
                         }}
                     >
-                        <S.PlaylistTrack>
+                        <S.PlaylistTrack onClick={togglePlay}>
                             <S.TrackTitle>
                                 <S.TrackTitleImage>
                                     {isLoading ? (
@@ -98,7 +99,8 @@ const Tracklist = ({
                                         </S.TrackTimeSvg>
                                         <S.TrackTimeText>
                                             {moment(
-                                                track.duration_in_seconds * 1000,
+                                                track.duration_in_seconds *
+                                                    1000,
                                             ).format('m:ss')}
                                         </S.TrackTimeText>
                                     </>

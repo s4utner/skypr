@@ -65,6 +65,7 @@ function App() {
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
+                            togglePlay={togglePlay}
                         />
                         {AudioPlayer({
                             audioRef,

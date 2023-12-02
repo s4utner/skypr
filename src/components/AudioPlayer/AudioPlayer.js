@@ -10,7 +10,7 @@ export const AudioPlayer = ({
     togglePlay,
     isPlaying,
 }) => {
-    console.log(activeTrack)
+    console.log(audioRef)
 
     return (
         isPlayerVisible && (
