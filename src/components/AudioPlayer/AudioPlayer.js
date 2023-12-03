@@ -13,8 +13,14 @@ export const AudioPlayer = ({
     setCurrentTime,
     duration,
     progressBarRef,
+    convertSecondsToMinutesAndSeconds,
+    currentVolume,
+    setCurrentVolume,
+    volumeBarRef,
+    toggleLoop,
+    isLooped,
+    //    muteAudio,
 }) => {
-    console.log(currentTime)
     return (
         isPlayerVisible && (
             <>
@@ -26,6 +32,14 @@ export const AudioPlayer = ({
                         setCurrentTime(audioRef.current.currentTime)
                     }}
                 ></audio>
+                <S.TrackTime>
+                    {duration &&
+                        convertSecondsToMinutesAndSeconds(currentTime) +
+                            ' ' +
+                            '/' +
+                            ' ' +
+                            convertSecondsToMinutesAndSeconds(duration)}
+                </S.TrackTime>
                 <S.Bar>
                     <S.BarContent>
                         <S.ProgressInput
@@ -68,7 +82,11 @@ export const AudioPlayer = ({
                                         </S.PlayerButtonNextSvg>
                                     </S.PlayerButtonNext>
                                     <S.PlayerButtonRepeat>
-                                        <S.PlayerButtonRepeatSvg alt="repeat">
+                                        <S.PlayerButtonRepeatSvg
+                                            alt="repeat"
+                                            islooped={isLooped}
+                                            onClick={toggleLoop}
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                                         </S.PlayerButtonRepeatSvg>
                                     </S.PlayerButtonRepeat>
@@ -143,7 +161,10 @@ export const AudioPlayer = ({
                             <S.BarVolumeBlock>
                                 <S.VolumeContent>
                                     <S.VolumeImage>
-                                        <S.VolumeSvg alt="volume">
+                                        <S.VolumeSvg
+                                            alt="volume"
+                                            /*onClick={muteAudio()}*/
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                                         </S.VolumeSvg>
                                     </S.VolumeImage>
@@ -151,6 +172,18 @@ export const AudioPlayer = ({
                                         <S.VolumeProgressLine
                                             type="range"
                                             name="range"
+                                            ref={volumeBarRef}
+                                            value={currentVolume}
+                                            min={0}
+                                            max={1}
+                                            step={0.01}
+                                            onChange={() => {
+                                                setCurrentVolume(
+                                                    audioRef.current.volume,
+                                                )
+                                                audioRef.current.volume =
+                                                    volumeBarRef.current.value
+                                            }}
                                         />
                                     </S.VolumeProgress>
                                 </S.VolumeContent>

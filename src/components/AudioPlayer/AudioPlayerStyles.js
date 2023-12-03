@@ -1,5 +1,17 @@
 import { styled } from 'styled-components'
 
+export const TrackTime = styled.div`
+    position: absolute;
+    bottom: 85px;
+    right: 15px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: right;
+    color: #fff;
+`
+
 export const Bar = styled.div`
     position: absolute;
     bottom: 0;

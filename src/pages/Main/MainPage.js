@@ -14,6 +14,7 @@ export const MainPage = ({
     handleStart,
     handleStop,
     togglePlay,
+    convertSecondsToMinutesAndSeconds,
 }) => {
     return (
         <>
@@ -32,6 +33,7 @@ export const MainPage = ({
                             handleStart,
                             handleStop,
                             togglePlay,
+                            convertSecondsToMinutesAndSeconds,
                         })}
                         {Sidebar({ isLoading })}
                     </S.Main>
