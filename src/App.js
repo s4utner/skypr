@@ -23,8 +23,11 @@ function App() {
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [currentTime, setCurrentTime] = useState(0)
 
     const audioRef = useRef(null)
+
+    const duration = audioRef.current ? audioRef.current.duration : 0
 
     const handleStart = () => {
         audioRef.current.play()
@@ -74,6 +77,9 @@ function App() {
                             isPlayerVisible,
                             isLoading,
                             activeTrack,
+                            currentTime,
+                            setCurrentTime,
+                            duration,
                         })}
                     </>
                 </S.Container>

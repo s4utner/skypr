@@ -10,10 +10,11 @@ export const AudioPlayer = ({
     audioRef,
     togglePlay,
     isPlaying,
+    currentTime,
+    setCurrentTime,
+    duration,
 }) => {
     console.log(audioRef)
-    const [currentTime, setCurrentTime] = useState(0)
-    const duration = audioRef.current ? audioRef.current.duration : 0
 
     return (
         isPlayerVisible && (
