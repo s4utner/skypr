@@ -26,6 +26,7 @@ function App() {
     const [currentTime, setCurrentTime] = useState(0)
 
     const audioRef = useRef(null)
+    const progressBarRef = useRef(null)
 
     const duration = audioRef.current ? audioRef.current.duration : 0
 
@@ -40,6 +41,12 @@ function App() {
     }
 
     const togglePlay = isPlaying ? handleStop : handleStart
+
+    useEffect(() => {
+        if (audioRef.current) {
+            handleStart()
+        }
+    }, [activeTrack])
 
     useEffect(() => {
         getAllTracks()
@@ -80,6 +87,7 @@ function App() {
                             currentTime,
                             setCurrentTime,
                             duration,
+                            progressBarRef,
                         })}
                     </>
                 </S.Container>

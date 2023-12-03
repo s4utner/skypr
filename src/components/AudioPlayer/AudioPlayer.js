@@ -1,7 +1,6 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
-import { useEffect, useState } from 'react'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -13,9 +12,9 @@ export const AudioPlayer = ({
     currentTime,
     setCurrentTime,
     duration,
+    progressBarRef,
 }) => {
-    console.log(audioRef)
-
+    console.log(currentTime)
     return (
         isPlayerVisible && (
             <>
@@ -30,14 +29,17 @@ export const AudioPlayer = ({
                 <S.Bar>
                     <S.BarContent>
                         <S.ProgressInput
+                            ref={progressBarRef}
                             type="range"
                             min={0}
                             max={duration}
                             value={currentTime}
                             step={0.01}
-                            onChange={() =>
-                                setCurrentTime(audioRef.current.currentTime)
-                            }
+                            onChange={() => {
+                                setCurrentTime(progressBarRef.current.value)
+                                audioRef.current.currentTime =
+                                    progressBarRef.current.value
+                            }}
                             $color="#ff0000"
                         />
                         <S.BarPlayerBlock>
