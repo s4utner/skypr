@@ -19,6 +19,7 @@ export const AudioPlayer = ({
     volumeBarRef,
     toggleLoop,
     isLooped,
+    notReady,
     //    muteAudio,
 }) => {
     return (
@@ -60,7 +61,10 @@ export const AudioPlayer = ({
                             <S.BarPlayer>
                                 <S.PlayerControls>
                                     <S.PlayerButtonPrev>
-                                        <S.PlayerButtonPrevSvg alt="prev">
+                                        <S.PlayerButtonPrevSvg
+                                            alt="prev"
+                                            onClick={notReady}
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                                         </S.PlayerButtonPrevSvg>
                                     </S.PlayerButtonPrev>
@@ -77,7 +81,10 @@ export const AudioPlayer = ({
                                         </S.PlayerButtonPlaySvg>
                                     </S.PlayerButtonPlay>
                                     <S.PlayerButtonNext>
-                                        <S.PlayerButtonNextSvg alt="next">
+                                        <S.PlayerButtonNextSvg
+                                            alt="next"
+                                            onClick={notReady}
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                                         </S.PlayerButtonNextSvg>
                                     </S.PlayerButtonNext>
@@ -91,7 +98,10 @@ export const AudioPlayer = ({
                                         </S.PlayerButtonRepeatSvg>
                                     </S.PlayerButtonRepeat>
                                     <S.PlayerButtonShuffle>
-                                        <S.PlayerButtonShuffleSvg alt="shuffle">
+                                        <S.PlayerButtonShuffleSvg
+                                            alt="shuffle"
+                                            onClick={notReady}
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                                         </S.PlayerButtonShuffleSvg>
                                     </S.PlayerButtonShuffle>

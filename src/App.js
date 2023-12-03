@@ -6,11 +6,18 @@ import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 
 function App() {
-    const convertSecondsToMinutesAndSeconds = ({ time }) => {
-        const roundedTime = Math.round(Number(time))
-        const minutes = roundedTime / 60
-        const seconds = roundedTime % 60
+    const convertSecondsToMinutesAndSeconds = (time) => {
+        const roundedTime = Math.round(time)
+        const minutes = Math.floor(roundedTime / 60)
+        let seconds = roundedTime % 60
+        if (seconds < 10) {
+            seconds = '0' + seconds
+        }
         return minutes + ':' + seconds
+    }
+
+    const notReady = () => {
+        alert('Еще не реализовано')
     }
 
     const [tracks, setTracks] = useState([])
@@ -115,6 +122,7 @@ function App() {
                             volumeBarRef,
                             toggleLoop,
                             isLooped,
+                            notReady,
                             //                            muteAudio,
                         })}
                     </>
