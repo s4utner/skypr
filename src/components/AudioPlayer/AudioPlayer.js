@@ -15,14 +15,6 @@ export const AudioPlayer = ({
     const [currentTime, setCurrentTime] = useState(0)
     const duration = audioRef.current ? audioRef.current.duration : 0
 
-    useEffect(() => {
-        if (audioRef.current) {
-            setCurrentTime(audioRef.current.currentTime)
-        } else {
-            setCurrentTime(0)
-        }
-    })
-
     return (
         isPlayerVisible && (
             <>
@@ -30,6 +22,9 @@ export const AudioPlayer = ({
                     controls
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
+                    onTimeUpdate={() => {
+                        setCurrentTime(audioRef.current.currentTime)
+                    }}
                 ></audio>
                 <S.Bar>
                     <S.BarContent>
