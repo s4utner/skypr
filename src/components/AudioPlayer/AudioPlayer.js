@@ -20,7 +20,6 @@ export const AudioPlayer = ({
     toggleLoop,
     isLooped,
     notReady,
-    //    muteAudio,
 }) => {
     return (
         isPlayerVisible && (
@@ -156,12 +155,18 @@ export const AudioPlayer = ({
                                     </S.TrackPlayContain>
                                     <S.TrackPlayLikeDis>
                                         <S.TrackPlayLike>
-                                            <S.TrackPlayLikeSvg alt="like">
+                                            <S.TrackPlayLikeSvg
+                                                alt="like"
+                                                onClick={notReady}
+                                            >
                                                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                                             </S.TrackPlayLikeSvg>
                                         </S.TrackPlayLike>
                                         <S.TrackPlayDislike>
-                                            <S.TrackPlayDislikeSvg alt="dislike">
+                                            <S.TrackPlayDislikeSvg
+                                                alt="dislike"
+                                                onClick={notReady}
+                                            >
                                                 <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                                             </S.TrackPlayDislikeSvg>
                                         </S.TrackPlayDislike>
@@ -173,7 +178,7 @@ export const AudioPlayer = ({
                                     <S.VolumeImage>
                                         <S.VolumeSvg
                                             alt="volume"
-                                            /*onClick={muteAudio()}*/
+                                            onClick={notReady}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                                         </S.VolumeSvg>

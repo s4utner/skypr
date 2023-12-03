@@ -26,7 +26,6 @@ function App() {
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [isMuted, setIsMuted] = useState(false)
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
@@ -48,20 +47,13 @@ function App() {
     }
 
     const handleLoop = () => {
-        audioRef.current.loop()
+        audioRef.current.loop = true
         setIsLooped(true)
     }
 
     const handleUnloop = () => {
-        audioRef.current.loop(false)
+        audioRef.current.loop = false
         setIsLooped(false)
-    }
-
-    const muteAudio = () => {
-        if (audioRef.current) {
-            isMuted ? audioRef.current.mute(false) : audioRef.current.mute(true)
-            setIsMuted(!isMuted)
-        }
     }
 
     const togglePlay = isPlaying ? handleStop : handleStart
@@ -123,7 +115,6 @@ function App() {
                             toggleLoop,
                             isLooped,
                             notReady,
-                            muteAudio,
                         })}
                     </>
                 </S.Container>
