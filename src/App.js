@@ -57,12 +57,12 @@ function App() {
         setIsLooped(false)
     }
 
-    //const muteAudio = () => {
-    //   if (audioRef.current) {
-    //        isMuted ? audioRef.current.mute(false) : audioRef.current.mute(true)
-    //        setIsMuted(!isMuted)
-    //   }
-    //}
+    const muteAudio = () => {
+        if (audioRef.current) {
+            isMuted ? audioRef.current.mute(false) : audioRef.current.mute(true)
+            setIsMuted(!isMuted)
+        }
+    }
 
     const togglePlay = isPlaying ? handleStop : handleStart
     const toggleLoop = isLooped ? handleUnloop : handleLoop
@@ -123,7 +123,7 @@ function App() {
                             toggleLoop,
                             isLooped,
                             notReady,
-                            //                            muteAudio,
+                            muteAudio,
                         })}
                     </>
                 </S.Container>
