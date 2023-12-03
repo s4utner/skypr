@@ -2,6 +2,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
 import { useState, useRef } from 'react'
+import { convertSecondsToMinutesAndSeconds, alertFunctionIsNotReady } from '../../helpers.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -10,7 +11,6 @@ export const AudioPlayer = ({
     audioRef,
     togglePlay,
     isPlaying,
-    convertSecondsToMinutesAndSeconds,
 }) => {
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
@@ -31,10 +31,6 @@ export const AudioPlayer = ({
     }
 
     const toggleLoop = isLooped ? handleUnloop : handleLoop
-
-    const alertFunctionIsNotReady = () => {
-        alert('Еще не реализовано')
-    }
 
     return (
         isPlayerVisible && (

@@ -6,16 +6,6 @@ import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 
 function App() {
-    const convertSecondsToMinutesAndSeconds = (time) => {
-        const roundedTime = Math.round(time)
-        const minutes = Math.floor(roundedTime / 60)
-        let seconds = roundedTime % 60
-        if (seconds < 10) {
-            seconds = '0' + seconds
-        }
-        return minutes + ':' + seconds
-    }
-
     const [tracks, setTracks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
@@ -71,9 +61,6 @@ function App() {
                             loadingTracksError={loadingTracksError}
                             setActiveTrack={setActiveTrack}
                             togglePlay={togglePlay}
-                            convertSecondsToMinutesAndSeconds={
-                                convertSecondsToMinutesAndSeconds
-                            }
                         />
                         {AudioPlayer({
                             audioRef,
@@ -82,7 +69,6 @@ function App() {
                             isPlayerVisible,
                             isLoading,
                             activeTrack,
-                            convertSecondsToMinutesAndSeconds,
                         })}
                     </>
                 </S.Container>

@@ -21,7 +21,6 @@ export const AppRoutes = ({
     handleStart,
     handleStop,
     togglePlay,
-    convertSecondsToMinutesAndSeconds,
 }) => {
     return (
         <Routes>
@@ -46,9 +45,6 @@ export const AppRoutes = ({
                             handleStart={handleStart}
                             handleStop={handleStop}
                             togglePlay={togglePlay}
-                            convertSecondsToMinutesAndSeconds={
-                                convertSecondsToMinutesAndSeconds
-                            }
                         />
                     }
                 ></Route>

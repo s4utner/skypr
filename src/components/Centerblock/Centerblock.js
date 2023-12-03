@@ -12,7 +12,6 @@ const Centerblock = (
     handleStart,
     handleStop,
     togglePlay,
-    convertSecondsToMinutesAndSeconds,
 ) => {
     return (
         <S.MainCenterblock>
@@ -45,7 +44,6 @@ const Centerblock = (
                     handleStart,
                     handleStop,
                     togglePlay,
-                    convertSecondsToMinutesAndSeconds,
                 )}
             </S.CenterblockContent>
         </S.MainCenterblock>

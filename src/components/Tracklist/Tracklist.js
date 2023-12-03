@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
+import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 
 const Tracklist = ({
     tracks,
@@ -8,7 +9,6 @@ const Tracklist = ({
     setIsPlayerVisible,
     loadingTracksError,
     setActiveTrack,
-    convertSecondsToMinutesAndSeconds,
 }) => {
     return (
         <S.ContentPlaylist>
