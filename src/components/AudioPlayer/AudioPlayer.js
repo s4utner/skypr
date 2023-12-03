@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
+import { useState, useRef } from 'react'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -9,18 +10,32 @@ export const AudioPlayer = ({
     audioRef,
     togglePlay,
     isPlaying,
-    currentTime,
-    setCurrentTime,
-    duration,
-    progressBarRef,
     convertSecondsToMinutesAndSeconds,
-    currentVolume,
-    setCurrentVolume,
-    volumeBarRef,
-    toggleLoop,
-    isLooped,
-    notReady,
 }) => {
+    const [isLooped, setIsLooped] = useState(false)
+    const [currentTime, setCurrentTime] = useState(0)
+    const [currentVolume, setCurrentVolume] = useState(0.5)
+
+    const progressBarRef = useRef(null)
+    const volumeBarRef = useRef(null)
+    const duration = audioRef.current ? audioRef.current.duration : 0
+
+    const handleLoop = () => {
+        audioRef.current.loop = true
+        setIsLooped(true)
+    }
+
+    const handleUnloop = () => {
+        audioRef.current.loop = false
+        setIsLooped(false)
+    }
+
+    const toggleLoop = isLooped ? handleUnloop : handleLoop
+
+    const alertFunctionIsNotReady = () => {
+        alert('Еще не реализовано')
+    }
+
     return (
         isPlayerVisible && (
             <>
@@ -62,7 +77,7 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonPrev>
                                         <S.PlayerButtonPrevSvg
                                             alt="prev"
-                                            onClick={notReady}
+                                            onClick={alertFunctionIsNotReady}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                                         </S.PlayerButtonPrevSvg>
@@ -82,7 +97,7 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonNext>
                                         <S.PlayerButtonNextSvg
                                             alt="next"
-                                            onClick={notReady}
+                                            onClick={alertFunctionIsNotReady}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                                         </S.PlayerButtonNextSvg>
@@ -99,7 +114,7 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonShuffle>
                                         <S.PlayerButtonShuffleSvg
                                             alt="shuffle"
-                                            onClick={notReady}
+                                            onClick={alertFunctionIsNotReady}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                                         </S.PlayerButtonShuffleSvg>
@@ -157,7 +172,9 @@ export const AudioPlayer = ({
                                         <S.TrackPlayLike>
                                             <S.TrackPlayLikeSvg
                                                 alt="like"
-                                                onClick={notReady}
+                                                onClick={
+                                                    alertFunctionIsNotReady
+                                                }
                                             >
                                                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                                             </S.TrackPlayLikeSvg>
@@ -165,7 +182,9 @@ export const AudioPlayer = ({
                                         <S.TrackPlayDislike>
                                             <S.TrackPlayDislikeSvg
                                                 alt="dislike"
-                                                onClick={notReady}
+                                                onClick={
+                                                    alertFunctionIsNotReady
+                                                }
                                             >
                                                 <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                                             </S.TrackPlayDislikeSvg>
@@ -178,7 +197,7 @@ export const AudioPlayer = ({
                                     <S.VolumeImage>
                                         <S.VolumeSvg
                                             alt="volume"
-                                            onClick={notReady}
+                                            onClick={alertFunctionIsNotReady}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                                         </S.VolumeSvg>

@@ -16,25 +16,14 @@ function App() {
         return minutes + ':' + seconds
     }
 
-    const notReady = () => {
-        alert('Еще не реализовано')
-    }
-
     const [tracks, setTracks] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [isLooped, setIsLooped] = useState(false)
-    const [currentTime, setCurrentTime] = useState(0)
-    const [currentVolume, setCurrentVolume] = useState(0.5)
 
     const audioRef = useRef(null)
-    const progressBarRef = useRef(null)
-    const volumeBarRef = useRef(null)
-
-    const duration = audioRef.current ? audioRef.current.duration : 0
 
     const handleStart = () => {
         audioRef.current.play()
@@ -46,18 +35,7 @@ function App() {
         setIsPlaying(false)
     }
 
-    const handleLoop = () => {
-        audioRef.current.loop = true
-        setIsLooped(true)
-    }
-
-    const handleUnloop = () => {
-        audioRef.current.loop = false
-        setIsLooped(false)
-    }
-
     const togglePlay = isPlaying ? handleStop : handleStart
-    const toggleLoop = isLooped ? handleUnloop : handleLoop
 
     useEffect(() => {
         if (audioRef.current) {
@@ -104,17 +82,7 @@ function App() {
                             isPlayerVisible,
                             isLoading,
                             activeTrack,
-                            currentTime,
-                            setCurrentTime,
-                            duration,
-                            progressBarRef,
                             convertSecondsToMinutesAndSeconds,
-                            currentVolume,
-                            setCurrentVolume,
-                            volumeBarRef,
-                            toggleLoop,
-                            isLooped,
-                            notReady,
                         })}
                     </>
                 </S.Container>
