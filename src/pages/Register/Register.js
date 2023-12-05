@@ -1,7 +1,12 @@
 import * as S from './RegisterStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
+import { signUp } from '../../Api.js'
+import { useState } from 'react'
 
 export const Register = () => {
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
     return (
         <>
             <GlobalStyle />
@@ -21,18 +26,28 @@ export const Register = () => {
                                 type="text"
                                 name="login"
                                 placeholder="Почта"
+                                value={email}
+                                onChange={(event) => {
+                                    setEmail(event.target.value)
+                                }}
                             />
                             <S.ModalInput
                                 type="password"
                                 name="password"
                                 placeholder="Пароль"
+                                value={password}
+                                onChange={(event) => {
+                                    setPassword(event.target.value)
+                                }}
                             />
                             <S.ModalButtonSignin>
                                 <S.ModalButtonLink to="/login">
                                     Войти
                                 </S.ModalButtonLink>
                             </S.ModalButtonSignin>
-                            <S.ModalButton>
+                            <S.ModalButton
+                                onClick={signUp({ email, password })}
+                            >
                                 <S.ModalButtonLink to="/">
                                     Зарегистрироваться
                                 </S.ModalButtonLink>
