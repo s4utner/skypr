@@ -2,7 +2,10 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayerStyles.js'
 import { useState, useRef } from 'react'
-import { convertSecondsToMinutesAndSeconds, alertFunctionIsNotReady } from '../../helpers.js'
+import {
+    convertSecondsToMinutesAndSeconds,
+    alertFunctionIsNotReady,
+} from '../../helpers.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -101,7 +104,7 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonRepeat>
                                         <S.PlayerButtonRepeatSvg
                                             alt="repeat"
-                                            islooped={isLooped}
+                                            $islooped={isLooped}
                                             onClick={toggleLoop}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>

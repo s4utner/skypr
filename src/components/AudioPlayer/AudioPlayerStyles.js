@@ -123,7 +123,7 @@ export const PlayerButtonRepeatSvg = styled.svg`
     width: 18px;
     height: 12px;
     fill: transparent;
-    stroke: ${(props) => (props.islooped ? '#fff' : '#696969')};
+    stroke: ${(props) => (props.$islooped ? '#fff' : '#696969')};
 `
 
 export const PlayerButtonShuffle = styled(PlayerButton)`
