@@ -10,7 +10,7 @@ const Sidebar = ({ isLoading }) => {
                 <S.SidebarPersonalName>Denis Sautner</S.SidebarPersonalName>
                 <S.SidebarIcon>
                     <svg alt="logout">
-                        <use xlinkHref="img/icon/sprite.svg#logout"></use>
+                        <use xlinkHref="../../../public/img/icon/logout.svg"></use>
                     </svg>
                 </S.SidebarIcon>
             </S.SidebarPersonal>
