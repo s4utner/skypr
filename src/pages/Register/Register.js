@@ -29,6 +29,7 @@ export const Register = () => {
                                 value={email}
                                 onChange={(event) => {
                                     setEmail(event.target.value)
+                                    console.log(email)
                                 }}
                             />
                             <S.ModalInput
@@ -38,6 +39,7 @@ export const Register = () => {
                                 value={password}
                                 onChange={(event) => {
                                     setPassword(event.target.value)
+                                    console.log(password)
                                 }}
                             />
                             <S.ModalButtonSignin>
@@ -46,7 +48,7 @@ export const Register = () => {
                                 </S.ModalButtonLink>
                             </S.ModalButtonSignin>
                             <S.ModalButton
-                                onClick={signUp({ email, password })}
+                                onClick={() => signUp({ email, password })}
                             >
                                 <S.ModalButtonLink to="/">
                                     Зарегистрироваться
