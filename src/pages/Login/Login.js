@@ -2,11 +2,13 @@ import * as S from './LoginStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import { useNavigate } from 'react-router-dom'
 import { signIn } from '../../Api.js'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export const Login = () => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
+
+    const signInButtonRef = useRef(null)
 
     const navigate = useNavigate()
     const onClick = () => {
@@ -36,7 +38,6 @@ export const Login = () => {
                                 value={email}
                                 onChange={(event) => {
                                     setEmail(event.target.value)
-                                    console.log(email)
                                 }}
                             />
                             <S.ModalInput
@@ -46,11 +47,14 @@ export const Login = () => {
                                 value={password}
                                 onChange={(event) => {
                                     setPassword(event.target.value)
-                                    console.log(password)
                                 }}
                             />
                             <S.ModalButtonEnter
-                                onClick={() => signIn({ email, password })}
+                                ref={signInButtonRef}
+                                onClick={() => {
+                                    signInButtonRef.current.disabled = true
+                                    signIn({ email, password })
+                                }}
                             >
                                 Войти
                             </S.ModalButtonEnter>

@@ -29,7 +29,6 @@ export const Register = () => {
                                 value={email}
                                 onChange={(event) => {
                                     setEmail(event.target.value)
-                                    console.log(email)
                                 }}
                             />
                             <S.ModalInput
@@ -39,7 +38,6 @@ export const Register = () => {
                                 value={password}
                                 onChange={(event) => {
                                     setPassword(event.target.value)
-                                    console.log(password)
                                 }}
                             />
                             <S.ModalButtonSignin>

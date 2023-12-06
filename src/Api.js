@@ -34,7 +34,6 @@ export async function signUp({ email, password }) {
     }
 
     const data = await response.json()
-    console.log(data)
     return data
 }
 
@@ -58,6 +57,5 @@ export async function signIn({ email, password }) {
     }
 
     const data = await response.json()
-    console.log(data)
     return data
 }
