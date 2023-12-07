@@ -5,16 +5,13 @@ import { signIn } from '../../Api.js'
 import { useRef, useState } from 'react'
 
 export const Login = () => {
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     const signInButtonRef = useRef(null)
 
     const navigate = useNavigate()
-    const onClick = () => {
-        localStorage.setItem('user', 'token')
-        navigate('/')
-    }
 
     return (
         <>
@@ -53,7 +50,10 @@ export const Login = () => {
                                 ref={signInButtonRef}
                                 onClick={() => {
                                     signInButtonRef.current.disabled = true
-                                    signIn({ email, password })
+                                    signIn({ email, password }).then(() => {
+                                        localStorage.setItem('user', 'token')
+                                        navigate('/')
+                                    })
                                 }}
                             >
                                 Войти

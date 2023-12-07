@@ -2,15 +2,22 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './SidebarStyles.js'
 import { Categories } from '../../constants.js'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ isLoading }) => {
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.removeItem('user')
+        navigate('/login')
+    }
+
     return (
         <S.MainSidebar>
             <S.SidebarPersonal>
                 <S.SidebarPersonalName>Denis Sautner</S.SidebarPersonalName>
-                <S.SidebarIcon>
+                <S.SidebarIcon onClick={handleLogout}>
                     <svg alt="logout">
-                        <use xlinkHref="../../../public/img/icon/logout.svg"></use>
+                        <use xlinkHref="img/icon/sprite.svg#logout"></use>
                     </svg>
                 </S.SidebarIcon>
             </S.SidebarPersonal>

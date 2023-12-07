@@ -1,11 +1,61 @@
 import * as S from './RegisterStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
-import { signUp } from '../../Api.js'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export const Register = () => {
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [repeatPassword, setRepeatPassword] = useState('')
+    const [error, setError] = useState('')
+
+    const signUpButtonRef = useRef(null)
+
+    async function handleSignUp({ email, password }) {
+        if (email === '') {
+            setError('Укажите почту')
+            return
+        }
+        if (password === '') {
+            setError('Укажите пароль')
+            return
+        }
+        if (password !== repeatPassword) {
+            setError('Пароли не совпадают')
+            return
+        }
+
+        try {
+            const response = await fetch(
+                'https://skypro-music-api.skyeng.tech/user/signup/',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        username: email,
+                    }),
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                },
+            )
+
+            if (response.status === 400) {
+                setError(
+                    'Произошла ошибка с данными. Попробуйте изменить почту или пароль',
+                )
+                return
+            } else if (response.status === 500) {
+                setError('Сервер не отвечает, попробуй позже')
+                return
+            }
+
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -40,15 +90,31 @@ export const Register = () => {
                                     setPassword(event.target.value)
                                 }}
                             />
+                            <S.ModalInput
+                                type="password"
+                                name="password"
+                                placeholder="Повторите пароль"
+                                value={repeatPassword}
+                                onChange={(event) => {
+                                    setRepeatPassword(event.target.value)
+                                }}
+                            />
+                            {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
                             <S.ModalButtonSignin>
                                 <S.ModalButtonLink to="/login">
                                     Войти
                                 </S.ModalButtonLink>
                             </S.ModalButtonSignin>
                             <S.ModalButton
-                                onClick={() => signUp({ email, password })}
+                                ref={signUpButtonRef}
+                                onClick={() => {
+                                    signUpButtonRef.current.disabled = true
+                                    handleSignUp({ email, password }).then(
+                                        () => {},
+                                    )
+                                }}
                             >
-                                <S.ModalButtonLink to="/">
+                                <S.ModalButtonLink>
                                     Зарегистрироваться
                                 </S.ModalButtonLink>
                             </S.ModalButton>
