@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom'
+import { useAuthorization } from '../../Authorization'
 
 export const ProtectedRoute = ({ redirectPath = '/login' }) => {
-    const user = Boolean(localStorage.getItem('user'))
-    const isAllowed = user
+    const isAllowed = useAuthorization()
     if (!isAllowed) {
         return <Navigate to={redirectPath} replace={true} />
     }

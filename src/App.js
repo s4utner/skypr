@@ -1,9 +1,13 @@
 import { GlobalStyle } from './GlobalStyle.js'
 import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
-import { useState, useEffect, useRef } from 'react'
+import { Authorization } from './Authorization.js'
+import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
+
+export const userContext = createContext()
+export const useUser = () => useContext(userContext)
 
 function App() {
     const [tracks, setTracks] = useState([])
@@ -45,7 +49,7 @@ function App() {
     }, [])
 
     return (
-        <>
+        <Authorization>
             <GlobalStyle />
             <S.Wrapper>
                 <S.Container>
@@ -73,7 +77,7 @@ function App() {
                     </>
                 </S.Container>
             </S.Wrapper>
-        </>
+        </Authorization>
     )
 }
 

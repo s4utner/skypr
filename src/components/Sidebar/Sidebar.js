@@ -3,9 +3,12 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './SidebarStyles.js'
 import { Categories } from '../../constants.js'
 import { useNavigate } from 'react-router-dom'
+import { useAuthorization } from '../../Authorization.js'
 
 const Sidebar = ({ isLoading }) => {
     const navigate = useNavigate()
+    const { authorization } = useAuthorization()
+    console.log(authorization)
     const handleLogout = () => {
         localStorage.removeItem('user')
         navigate('/login')
@@ -14,7 +17,9 @@ const Sidebar = ({ isLoading }) => {
     return (
         <S.MainSidebar>
             <S.SidebarPersonal>
-                <S.SidebarPersonalName>Denis Sautner</S.SidebarPersonalName>
+                <S.SidebarPersonalName>
+                    {authorization.email}
+                </S.SidebarPersonalName>
                 <S.SidebarIcon onClick={handleLogout}>
                     <svg alt="logout">
                         <use xlinkHref="img/icon/sprite.svg#logout"></use>

@@ -1,8 +1,14 @@
 import * as S from './LoginStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import { useRef, useState } from 'react'
+import { useAuthorization } from '../../Authorization.js'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
+    const navigate = useNavigate()
+
+    const { login } = useAuthorization()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -48,7 +54,8 @@ export const Login = () => {
             }
 
             const data = await response.json()
-            return data
+            login(data)
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
