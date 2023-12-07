@@ -1,7 +1,5 @@
 import * as S from './LoginStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
-import { useNavigate } from 'react-router-dom'
-import { signIn } from '../../Api.js'
 import { useRef, useState } from 'react'
 
 export const Login = () => {
@@ -11,7 +9,50 @@ export const Login = () => {
 
     const signInButtonRef = useRef(null)
 
-    const navigate = useNavigate()
+    async function handleSignIn({ email, password }) {
+        if (email === '') {
+            setError('Укажите почту')
+            return
+        }
+        if (password === '') {
+            setError('Укажите пароль')
+            return
+        }
+
+        try {
+            const response = await fetch(
+                'https://skypro-music-api.skyeng.tech/user/login/',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                },
+            )
+
+            if (response.status === 400) {
+                setError(
+                    'Произошла ошибка с данными. Неверные логин или пароль',
+                )
+                return
+            } else if (response.status === 401) {
+                setError('Пользователь с таким email или паролем не найден')
+                return
+            } else if (response.status === 500) {
+                setError('Сервер не отвечает, попробуй позже')
+                return
+            }
+
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -46,14 +87,14 @@ export const Login = () => {
                                     setPassword(event.target.value)
                                 }}
                             />
+                            {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
                             <S.ModalButtonEnter
                                 ref={signInButtonRef}
                                 onClick={() => {
                                     signInButtonRef.current.disabled = true
-                                    signIn({ email, password }).then(() => {
-                                        localStorage.setItem('user', 'token')
-                                        navigate('/')
-                                    })
+                                    handleSignIn({ email, password }).then(
+                                        () => {},
+                                    )
                                 }}
                             >
                                 Войти

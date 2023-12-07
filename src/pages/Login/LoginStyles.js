@@ -25,7 +25,6 @@ export const ModalBlock = styled.div`
 
 export const ModalFormLogin = styled.form`
     width: 366px;
-    height: 439px;
     background-color: #ffffff;
     border-radius: 12px;
     display: -webkit-box;
@@ -62,6 +61,7 @@ export const ModalInput = styled.input`
     border-right: none;
     border-bottom: 1px solid #d0cece;
     padding: 8px 1px;
+    margin-bottom: 30px;
     &::-webkit-input-placeholder {
         font-style: normal;
         font-weight: 400;
@@ -105,7 +105,7 @@ export const ModalButtonEnter = styled.button`
     height: 52px;
     background-color: #580ea2;
     border-radius: 6px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 20px;
     border: none;
     display: -webkit-box;
@@ -199,4 +199,12 @@ export const ModalButtonLink = styled(Link)`
         font-family: 'StratosSkyeng', sans-serif;
         cursor: pointer;
     }
+`
+
+export const ErrorMessage = styled.div`
+    color: red;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
 `
