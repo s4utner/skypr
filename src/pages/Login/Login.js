@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 export const Login = () => {
     const navigate = useNavigate()
 
-    const { login } = useAuthorization()
+    const { user } = useAuthorization()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -54,7 +54,7 @@ export const Login = () => {
             }
 
             const data = await response.json()
-            login(data)
+            user(data)
             navigate('/')
         } catch (error) {
             console.log(error)
