@@ -1,17 +1,17 @@
 import * as S from './LoginStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import { useRef, useState } from 'react'
-import { useAuthorization } from '../../Authorization.js'
+import { UserContext } from '../../Authorization.js'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
     const navigate = useNavigate()
 
-    const { user } = useAuthorization()
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [userData, setUserData] = useContext(UserContext)
 
     const signInButtonRef = useRef(null)
 
@@ -54,7 +54,8 @@ export const Login = () => {
             }
 
             const data = await response.json()
-            user(data)
+            setUserData(data)
+            localStorage.setItem('user', JSON.stringify(userData))
             navigate('/')
         } catch (error) {
             console.log(error)
@@ -99,9 +100,7 @@ export const Login = () => {
                                 ref={signInButtonRef}
                                 onClick={() => {
                                     signInButtonRef.current.disabled = true
-                                    handleSignIn({ email, password }).then(
-                                        () => {},
-                                    )
+                                    handleSignIn({ email, password })
                                 }}
                             >
                                 Войти

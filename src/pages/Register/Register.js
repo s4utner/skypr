@@ -1,12 +1,18 @@
 import * as S from './RegisterStyles.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import { useState, useRef } from 'react'
+import { UserContext } from '../../Authorization.js'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const Register = () => {
+    const navigate = useNavigate()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
     const [error, setError] = useState('')
+    const [userData, setUserData] = useContext(UserContext)
 
     const signUpButtonRef = useRef(null)
 
@@ -51,7 +57,9 @@ export const Register = () => {
             }
 
             const data = await response.json()
-            return data
+            setUserData(data)
+            localStorage.setItem('user', JSON.stringify(userData))
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
@@ -109,9 +117,7 @@ export const Register = () => {
                                 ref={signUpButtonRef}
                                 onClick={() => {
                                     signUpButtonRef.current.disabled = true
-                                    handleSignUp({ email, password }).then(
-                                        () => {},
-                                    )
+                                    handleSignUp({ email, password })
                                 }}
                             >
                                 <S.ModalButtonLink>

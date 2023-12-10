@@ -3,22 +3,23 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './SidebarStyles.js'
 import { Categories } from '../../constants.js'
 import { useNavigate } from 'react-router-dom'
-import { useAuthorization } from '../../Authorization.js'
+import { useContext } from 'react'
+import { UserContext } from '../../Authorization.js'
 
 const Sidebar = ({ isLoading }) => {
     const navigate = useNavigate()
-    const { authorization } = useAuthorization()
-    console.log(authorization)
     const handleLogout = () => {
         localStorage.removeItem('user')
         navigate('/login')
     }
 
+    const [userData, setUserData] = useContext(UserContext)
+
     return (
         <S.MainSidebar>
             <S.SidebarPersonal>
                 <S.SidebarPersonalName>
-                    {authorization ? authorization.email : 'Не авторизован'}
+                    {userData ? userData.email : 'Не авторизован'}
                 </S.SidebarPersonalName>
                 <S.SidebarIcon onClick={handleLogout}>
                     <svg alt="logout">

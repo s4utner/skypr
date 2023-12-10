@@ -1,13 +1,10 @@
 import { GlobalStyle } from './GlobalStyle.js'
 import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
-import { Authorization } from './Authorization.js'
-import { useState, useEffect, useRef, createContext, useContext } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
-
-export const userContext = createContext()
-export const useUser = () => useContext(userContext)
+import { UserContext } from './Authorization.js'
 
 function App() {
     const [tracks, setTracks] = useState([])
@@ -16,6 +13,7 @@ function App() {
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [userData, setUserData] = useState(null)
 
     const audioRef = useRef(null)
 
@@ -49,35 +47,37 @@ function App() {
     }, [])
 
     return (
-        <Authorization>
+        <>
             <GlobalStyle />
-            <S.Wrapper>
-                <S.Container>
-                    <>
-                        <AppRoutes
-                            user={localStorage.getItem('user')}
-                            tracks={tracks}
-                            setTracks={setTracks}
-                            isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            isPlayerVisible={isPlayerVisible}
-                            setIsPlayerVisible={setIsPlayerVisible}
-                            loadingTracksError={loadingTracksError}
-                            setActiveTrack={setActiveTrack}
-                            togglePlay={togglePlay}
-                        />
-                        {AudioPlayer({
-                            audioRef,
-                            togglePlay,
-                            isPlaying,
-                            isPlayerVisible,
-                            isLoading,
-                            activeTrack,
-                        })}
-                    </>
-                </S.Container>
-            </S.Wrapper>
-        </Authorization>
+            <UserContext.Provider value={[userData, setUserData]}>
+                <S.Wrapper>
+                    <S.Container>
+                        <>
+                            <AppRoutes
+                                user={localStorage.getItem('user')}
+                                tracks={tracks}
+                                setTracks={setTracks}
+                                isLoading={isLoading}
+                                setIsLoading={setIsLoading}
+                                isPlayerVisible={isPlayerVisible}
+                                setIsPlayerVisible={setIsPlayerVisible}
+                                loadingTracksError={loadingTracksError}
+                                setActiveTrack={setActiveTrack}
+                                togglePlay={togglePlay}
+                            />
+                            {AudioPlayer({
+                                audioRef,
+                                togglePlay,
+                                isPlaying,
+                                isPlayerVisible,
+                                isLoading,
+                                activeTrack,
+                            })}
+                        </>
+                    </S.Container>
+                </S.Wrapper>
+            </UserContext.Provider>
+        </>
     )
 }
 
