@@ -13,7 +13,9 @@ function App() {
     const [loadingTracksError, setLoadingTracksError] = useState(false)
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
-    const [userData, setUserData] = useState(null)
+    const [userData, setUserData] = useState(
+        localStorage.getItem('user') ?? 'Не авторизован',
+    )
 
     const audioRef = useRef(null)
 
