@@ -14,7 +14,7 @@ function App() {
     const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [userData, setUserData] = useState(
-        localStorage.getItem('user') ?? 'Не авторизован',
+        JSON.parse(localStorage.getItem('user')) ?? 'Не авторизован',
     )
 
     const audioRef = useRef(null)

@@ -54,8 +54,8 @@ export const Login = () => {
             }
 
             const data = await response.json()
-            setUserData(data)
-            localStorage.setItem('user', JSON.stringify(userData.username))
+            setUserData(data.username)
+            localStorage.setItem('user', JSON.stringify(userData))
             navigate('/')
         } catch (error) {
             console.log(error)
