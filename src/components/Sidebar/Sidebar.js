@@ -19,7 +19,7 @@ const Sidebar = ({ isLoading }) => {
         <S.MainSidebar>
             <S.SidebarPersonal>
                 <S.SidebarPersonalName>
-                    {userData ? userData.email : 'Не авторизован'}
+                    {userData ?? 'Не авторизован'}
                 </S.SidebarPersonalName>
                 <S.SidebarIcon onClick={handleLogout}>
                     <svg alt="logout">
