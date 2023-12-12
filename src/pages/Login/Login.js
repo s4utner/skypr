@@ -26,6 +26,7 @@ export const Login = () => {
             return
         }
 
+        signInButtonRef.current.disabled = true
         const response = await login({ email, password })
 
         if (response.status === 400) {
@@ -42,6 +43,7 @@ export const Login = () => {
         const data = await response.json()
         setUserData(data.username)
         localStorage.setItem('user', JSON.stringify(data.username))
+        signInButtonRef.current.disabled = false
         navigate('/')
     }
 
@@ -82,7 +84,6 @@ export const Login = () => {
                             <S.ModalButtonEnter
                                 ref={signInButtonRef}
                                 onClick={() => {
-                                    signInButtonRef.current.disabled = true
                                     handleSignIn({ email, password })
                                 }}
                             >

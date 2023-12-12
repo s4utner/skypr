@@ -31,6 +31,7 @@ export const Register = () => {
             return
         }
 
+        signUpButtonRef.current.disabled = true
         const response = await register()
 
         if (response.status === 400) {
@@ -47,6 +48,7 @@ export const Register = () => {
         setUserData(data.username)
         localStorage.setItem('user', JSON.stringify(data.username))
         navigate('/')
+        signUpButtonRef.current.disabled = false
     }
 
     return (
@@ -100,7 +102,6 @@ export const Register = () => {
                             <S.ModalButton
                                 ref={signUpButtonRef}
                                 onClick={() => {
-                                    signUpButtonRef.current.disabled = true
                                     handleSignUp({ email, password })
                                 }}
                             >
