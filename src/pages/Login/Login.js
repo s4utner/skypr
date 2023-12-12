@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { UserContext } from '../../Authorization.js'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { login } from '../../Api.js'
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -25,41 +26,23 @@ export const Login = () => {
             return
         }
 
-        try {
-            const response = await fetch(
-                'https://skypro-music-api.skyeng.tech/user/login/',
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                    }),
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                },
-            )
+        const response = await login({ email, password })
 
-            if (response.status === 400) {
-                setError(
-                    'Произошла ошибка с данными. Неверные логин или пароль',
-                )
-                return
-            } else if (response.status === 401) {
-                setError('Пользователь с таким email или паролем не найден')
-                return
-            } else if (response.status === 500) {
-                setError('Сервер не отвечает, попробуй позже')
-                return
-            }
-
-            const data = await response.json()
-            setUserData(data.username)
-            localStorage.setItem('user', JSON.stringify(data.username))
-            navigate('/')
-        } catch (error) {
-            console.log(error)
+        if (response.status === 400) {
+            setError('Произошла ошибка с данными. Неверные логин или пароль')
+            return
+        } else if (response.status === 401) {
+            setError('Пользователь с таким email или паролем не найден')
+            return
+        } else if (response.status === 500) {
+            setError('Сервер не отвечает, попробуй позже')
+            return
         }
+
+        const data = await response.json()
+        setUserData(data.username)
+        localStorage.setItem('user', JSON.stringify(data.username))
+        navigate('/')
     }
 
     return (

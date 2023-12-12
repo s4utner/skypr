@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { UserContext } from '../../Authorization.js'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { register } from '../../Api.js'
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -30,39 +31,22 @@ export const Register = () => {
             return
         }
 
-        try {
-            const response = await fetch(
-                'https://skypro-music-api.skyeng.tech/user/signup/',
-                {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                        username: email,
-                    }),
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                },
+        const response = await register()
+
+        if (response.status === 400) {
+            setError(
+                'Произошла ошибка с данными. Попробуйте изменить почту или пароль',
             )
-
-            if (response.status === 400) {
-                setError(
-                    'Произошла ошибка с данными. Попробуйте изменить почту или пароль',
-                )
-                return
-            } else if (response.status === 500) {
-                setError('Сервер не отвечает, попробуй позже')
-                return
-            }
-
-            const data = await response.json()
-            setUserData(data.username)
-            localStorage.setItem('user', JSON.stringify(data.username))
-            navigate('/')
-        } catch (error) {
-            console.log(error)
+            return
+        } else if (response.status === 500) {
+            setError('Сервер не отвечает, попробуй позже')
+            return
         }
+
+        const data = await response.json()
+        setUserData(data.username)
+        localStorage.setItem('user', JSON.stringify(data.username))
+        navigate('/')
     }
 
     return (
