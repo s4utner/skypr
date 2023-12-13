@@ -38,17 +38,19 @@ export const Register = () => {
             setError(
                 'Произошла ошибка с данными. Попробуйте изменить почту или пароль',
             )
+            signUpButtonRef.current.disabled = false
             return
         } else if (response.status === 500) {
             setError('Сервер не отвечает, попробуй позже')
+            signUpButtonRef.current.disabled = false
             return
         }
 
         const data = await response.json()
         setUserData(data.username)
         localStorage.setItem('user', JSON.stringify(data.username))
-        navigate('/')
         signUpButtonRef.current.disabled = false
+        navigate('/')
     }
 
     return (

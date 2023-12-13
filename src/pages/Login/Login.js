@@ -31,12 +31,15 @@ export const Login = () => {
 
         if (response.status === 400) {
             setError('Произошла ошибка с данными. Неверные логин или пароль')
+            signInButtonRef.current.disabled = false
             return
         } else if (response.status === 401) {
             setError('Пользователь с таким email или паролем не найден')
+            signInButtonRef.current.disabled = false
             return
         } else if (response.status === 500) {
             setError('Сервер не отвечает, попробуй позже')
+            signInButtonRef.current.disabled = false
             return
         }
 
