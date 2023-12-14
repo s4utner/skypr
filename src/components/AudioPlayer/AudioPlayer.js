@@ -49,12 +49,11 @@ export const AudioPlayer = ({
                 ></audio>
                 {duration && (
                     <S.TrackTime>
-                        {duration &&
-                            convertSecondsToMinutesAndSeconds(currentTime) +
-                                ' ' +
-                                '/' +
-                                ' ' +
-                                convertSecondsToMinutesAndSeconds(duration)}
+                        {convertSecondsToMinutesAndSeconds(currentTime) +
+                            ' ' +
+                            '/' +
+                            ' ' +
+                            convertSecondsToMinutesAndSeconds(duration)}
                     </S.TrackTime>
                 )}
                 <S.Bar>
