@@ -15,11 +15,11 @@ export const AudioPlayer = ({
     togglePlay,
     isPlaying,
 }) => {
-    const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
 
+    const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const progressBarRef = useRef(null)
     const volumeBarRef = useRef(null)
     const duration = audioRef.current ? audioRef.current.duration : 0
@@ -61,7 +61,11 @@ export const AudioPlayer = ({
                             ref={progressBarRef}
                             type="range"
                             min={0}
-                            max={duration}
+                            max={
+                                !isNaN(audioRef?.current?.duration)
+                                    ? audioRef.current.duration
+                                    : 0
+                            }
                             value={currentTime}
                             step={0.01}
                             onChange={() => {

@@ -11,12 +11,11 @@ const trackSlice = createSlice({
             state.tracks = action.payload.tracks
         },
         setPlayingTrack(state, action) {
-            console.log(state)
-            console.log(action)
-
             state.activeTrack = action.payload.track
         },
-        playNextTrack(state, action) {},
+        playNextTrack(state, action) {
+            state.activeTrack = state.tracks[state.activeTrack.id + 2]
+        },
         playPrevTrack(state, action) {},
         playRandomTrack(state, action) {},
     },

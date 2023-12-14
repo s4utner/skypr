@@ -21,9 +21,7 @@ const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
                     <S.PlaylistItem
                         key={track.id}
                         onClick={() => {
-                            console.log(track)
                             setIsPlayerVisible(true)
-
                             dispatch(setPlayingTrack({ track }))
                         }}
                     >
