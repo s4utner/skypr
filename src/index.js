@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.js'
+import { Provider } from 'react-redux'
+import store from './store/index.js'
 import { IndexStyles } from './indexStyles.js'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -9,9 +11,11 @@ root.render(
     <>
         <IndexStyles />
         <React.StrictMode>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </Provider>
         </React.StrictMode>
     </>,
 )

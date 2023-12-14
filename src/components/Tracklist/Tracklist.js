@@ -2,6 +2,8 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
+import { useDispatch } from 'react-redux'
+import { setPlayingTrack } from '../../store/slices.js'
 
 const Tracklist = ({
     tracks,
@@ -10,6 +12,7 @@ const Tracklist = ({
     loadingTracksError,
     setActiveTrack,
 }) => {
+    const dispatch = useDispatch()
     return (
         <S.ContentPlaylist>
             {loadingTracksError && (
@@ -23,8 +26,10 @@ const Tracklist = ({
                     <S.PlaylistItem
                         key={track.id}
                         onClick={() => {
+                            console.log(track)
                             setIsPlayerVisible(true)
                             setActiveTrack(track)
+                            dispatch(setPlayingTrack({ track }))
                         }}
                     >
                         <S.PlaylistTrack>
