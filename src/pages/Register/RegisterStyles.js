@@ -25,7 +25,6 @@ export const ModalBlock = styled.div`
 
 export const ModalFormLogin = styled.form`
     width: 366px;
-    height: 439px;
     background-color: #ffffff;
     border-radius: 12px;
     display: -webkit-box;
@@ -199,4 +198,12 @@ export const ModalButtonLink = styled(Link)`
         font-family: 'StratosSkyeng', sans-serif;
         cursor: pointer;
     }
+`
+
+export const ErrorMessage = styled.div`
+    color: red;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
 `
