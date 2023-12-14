@@ -6,15 +6,16 @@ import {
     convertSecondsToMinutesAndSeconds,
     alertFunctionIsNotReady,
 } from '../../helpers.js'
+import { useSelector } from 'react-redux'
 
 export const AudioPlayer = ({
     isPlayerVisible,
     isLoading,
-    activeTrack,
     audioRef,
     togglePlay,
     isPlaying,
 }) => {
+    const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)

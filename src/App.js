@@ -5,13 +5,15 @@ import { useState, useEffect, useRef } from 'react'
 import { getAllTracks } from './Api.js'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 import { UserContext } from './Authorization.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTracks } from './store/slices.js'
 
 function App() {
-    const [tracks, setTracks] = useState([])
+    const dispatch = useDispatch()
+    const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState(false)
-    const [activeTrack, setActiveTrack] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
     const [userData, setUserData] = useState(
         JSON.parse(localStorage.getItem('user')) ?? 'Не авторизован',
@@ -39,8 +41,8 @@ function App() {
 
     useEffect(() => {
         getAllTracks()
-            .then((response) => {
-                setTracks(response)
+            .then((tracks) => {
+                dispatch(setTracks({ tracks }))
             })
             .catch((error) => {
                 setLoadingTracksError(error.message)
@@ -57,14 +59,11 @@ function App() {
                         <>
                             <AppRoutes
                                 user={localStorage.getItem('user')}
-                                tracks={tracks}
-                                setTracks={setTracks}
                                 isLoading={isLoading}
                                 setIsLoading={setIsLoading}
                                 isPlayerVisible={isPlayerVisible}
                                 setIsPlayerVisible={setIsPlayerVisible}
                                 loadingTracksError={loadingTracksError}
-                                setActiveTrack={setActiveTrack}
                                 togglePlay={togglePlay}
                             />
                             {AudioPlayer({
@@ -73,7 +72,6 @@ function App() {
                                 isPlaying,
                                 isPlayerVisible,
                                 isLoading,
-                                activeTrack,
                             })}
                         </>
                     </S.Container>

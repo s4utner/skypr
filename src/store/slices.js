@@ -7,6 +7,9 @@ const trackSlice = createSlice({
         tracks: [],
     },
     reducers: {
+        setTracks(state, action) {
+            state.tracks = action.payload.tracks
+        },
         setPlayingTrack(state, action) {
             console.log(state)
             console.log(action)
@@ -24,6 +27,7 @@ export const {
     playNextTrack,
     playPrevTrack,
     playRandomTrack,
+    setTracks,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

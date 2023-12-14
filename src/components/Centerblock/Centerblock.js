@@ -3,11 +3,10 @@ import { FilterButtons } from '../FilterButtons/FilterButtons.js'
 import * as S from './CenterblockStyles.js'
 
 const Centerblock = (
-    tracks,
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
-    setActiveTrack,
+
     isPlaying,
     handleStart,
     handleStop,
@@ -35,11 +34,9 @@ const Centerblock = (
                     </S.PlaylistTitleImage>
                 </S.ContentTitle>
                 {Tracklist(
-                    tracks,
                     isLoading,
                     setIsPlayerVisible,
                     loadingTracksError,
-                    setActiveTrack,
                     isPlaying,
                     handleStart,
                     handleStop,
