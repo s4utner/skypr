@@ -47,14 +47,16 @@ export const AudioPlayer = ({
                         setCurrentTime(audioRef.current.currentTime)
                     }}
                 ></audio>
-                <S.TrackTime>
-                    {duration &&
-                        convertSecondsToMinutesAndSeconds(currentTime) +
-                            ' ' +
-                            '/' +
-                            ' ' +
-                            convertSecondsToMinutesAndSeconds(duration)}
-                </S.TrackTime>
+                {duration && (
+                    <S.TrackTime>
+                        {duration &&
+                            convertSecondsToMinutesAndSeconds(currentTime) +
+                                ' ' +
+                                '/' +
+                                ' ' +
+                                convertSecondsToMinutesAndSeconds(duration)}
+                    </S.TrackTime>
+                )}
                 <S.Bar>
                     <S.BarContent>
                         <S.ProgressInput
