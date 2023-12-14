@@ -10,7 +10,7 @@ const trackSlice = createSlice({
         setTracks(state, action) {
             state.tracks = action.payload.tracks
         },
-        setPlayingTrack(state, action) {
+        setActiveTrack(state, action) {
             state.activeTrack = action.payload.track
         },
         playNextTrack(state, action) {
@@ -22,7 +22,7 @@ const trackSlice = createSlice({
 })
 
 export const {
-    setPlayingTrack,
+    setActiveTrack,
     playNextTrack,
     playPrevTrack,
     playRandomTrack,
