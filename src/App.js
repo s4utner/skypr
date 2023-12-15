@@ -48,7 +48,7 @@ function App() {
                 setLoadingTracksError(error.message)
             })
             .finally(() => setIsLoading(false))
-    }, [])
+    }, [dispatch])
 
     return (
         <>

@@ -6,7 +6,8 @@ import {
     convertSecondsToMinutesAndSeconds,
     alertFunctionIsNotReady,
 } from '../../helpers.js'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { playNextTrack } from '../../store/slices.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -20,6 +21,7 @@ export const AudioPlayer = ({
     const [currentVolume, setCurrentVolume] = useState(0.5)
 
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const dispatch = useDispatch()
     const progressBarRef = useRef(null)
     const volumeBarRef = useRef(null)
     const duration = audioRef.current ? audioRef.current.duration : 0
@@ -102,7 +104,7 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonNext>
                                         <S.PlayerButtonNextSvg
                                             alt="next"
-                                            onClick={alertFunctionIsNotReady}
+                                            onClick={(alertFunctionIsNotReady)}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                                         </S.PlayerButtonNextSvg>
