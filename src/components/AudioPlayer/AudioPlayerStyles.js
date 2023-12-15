@@ -139,7 +139,7 @@ export const PlayerButtonShuffleSvg = styled.svg`
     width: 19px;
     height: 12px;
     fill: transparent;
-    stroke: #696969;
+    stroke: ${(props) => (props.$isshuffled ? '#fff' : '#696969')};
 `
 export const PlayerTrackPlay = styled.div`
     display: -webkit-box;

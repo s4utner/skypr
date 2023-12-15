@@ -7,7 +7,11 @@ import {
     alertFunctionIsNotReady,
 } from '../../helpers.js'
 import { useSelector, useDispatch } from 'react-redux'
-import { playNextTrack, playPrevTrack } from '../../store/slices.js'
+import {
+    playNextTrack,
+    playPrevTrack,
+    setIsShuffled,
+} from '../../store/slices.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -21,6 +25,7 @@ export const AudioPlayer = ({
     const [currentVolume, setCurrentVolume] = useState(0.5)
 
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const isShuffled = useSelector((state) => state.tracks.isShuffled)
     const activeTrackId = activeTrack.id
     const dispatch = useDispatch()
     const progressBarRef = useRef(null)
@@ -48,6 +53,9 @@ export const AudioPlayer = ({
                     ref={audioRef}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
+
+                        audioRef.current.ended ??
+                            dispatch(playNextTrack({ activeTrackId }))
                     }}
                 ></audio>
                 {duration && (
@@ -134,7 +142,10 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonShuffle>
                                         <S.PlayerButtonShuffleSvg
                                             alt="shuffle"
-                                            onClick={alertFunctionIsNotReady}
+                                            $isshuffled={isShuffled}
+                                            onClick={() => {
+                                                dispatch(setIsShuffled())
+                                            }}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                                         </S.PlayerButtonShuffleSvg>
