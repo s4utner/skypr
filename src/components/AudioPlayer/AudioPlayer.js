@@ -51,11 +51,9 @@ export const AudioPlayer = ({
                     controls
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
+                    onEnded={() => dispatch(playNextTrack({ activeTrackId }))}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
-
-                        audioRef.current.ended ??
-                            dispatch(playNextTrack({ activeTrackId }))
                     }}
                 ></audio>
                 {duration && (
