@@ -13,8 +13,18 @@ const trackSlice = createSlice({
         setActiveTrack(state, action) {
             state.activeTrack = action.payload.track
         },
-        playNextTrack(state, action) {},
-        playPrevTrack(state, action) {},
+        playNextTrack(state, action) {
+            const indexCurrentTrack = state.tracks.findIndex((track) => {
+                return track.id === action.payload.activeTrackId
+            })
+            state.activeTrack = state.tracks[indexCurrentTrack + 1]
+        },
+        playPrevTrack(state, action) {
+            const indexCurrentTrack = state.tracks.findIndex((track) => {
+                return track.id === action.payload.activeTrackId
+            })
+            state.activeTrack = state.tracks[indexCurrentTrack - 1]
+        },
         playRandomTrack(state, action) {},
     },
 })
