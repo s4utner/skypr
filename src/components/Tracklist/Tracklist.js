@@ -7,7 +7,6 @@ import { setActiveTrack } from '../../store/slices.js'
 
 const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
-    const activeTrackId = activeTrack.id
     const tracks = useSelector((state) => state.tracks.tracks)
     const dispatch = useDispatch()
     return (
