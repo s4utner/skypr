@@ -39,7 +39,7 @@ const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
                                     ) : (
                                         <S.TrackTitleSvg alt="music">
                                             {activeTrack.id === track.id ? (
-                                                <S.ActiveTrack xlinkHref="img/icon/sprite.svg#icon-note"></S.ActiveTrack>
+                                                <S.ActiveTrack />
                                             ) : (
                                                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                                             )}

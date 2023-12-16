@@ -27,28 +27,30 @@ const trackSlice = createSlice({
             }
         },
         playNextTrack(state, action) {
-            const indexCurrentTrack = state.isShuffled
-                ? state.shuffledTracks.findIndex((track) => {
-                      return track.id === action.payload.activeTrack
-                  })
-                : state.tracks.findIndex((track) => {
-                      return track.id === action.payload.activeTrackId
-                  })
-            state.activeTrack = state.isShuffled
-                ? state.shuffledTracks[indexCurrentTrack - 1]
-                : state.tracks[indexCurrentTrack + 1]
+            const playlist = state.isShuffled
+                ? state.shuffledTracks
+                : state.tracks
+
+            const indexCurrentTrack = playlist.findIndex((track) => {
+                return track.id === action.payload.activeTrack
+            })
+
+            if (playlist[indexCurrentTrack + 1]) {
+                state.activeTrack = playlist[indexCurrentTrack + 1]
+            }
         },
         playPrevTrack(state, action) {
-            const indexCurrentTrack = state.isShuffled
-                ? state.shuffledTracks.findIndex((track) => {
-                      return track.id === action.payload.activeTrack
-                  })
-                : state.tracks.findIndex((track) => {
-                      return track.id === action.payload.activeTrackId
-                  })
-            state.activeTrack = state.isShuffled
-                ? state.shuffledTracks[indexCurrentTrack - 1]
-                : state.tracks[indexCurrentTrack - 1]
+            const playlist = state.isShuffled
+                ? state.shuffledTracks
+                : state.tracks
+
+            const indexCurrentTrack = playlist.findIndex((track) => {
+                return track.id === action.payload.activeTrack
+            })
+
+            if (playlist[indexCurrentTrack] !== 0) {
+                state.activeTrack = playlist[indexCurrentTrack - 1]
+            }
         },
     },
 })
