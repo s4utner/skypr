@@ -46,7 +46,7 @@ const trackSlice = createSlice({
                 return track.id === state.activeTrack.id
             })
 
-            if (indexCurrentTrack >= 0) {
+            if (indexCurrentTrack > 0) {
                 state.activeTrack = playlist[indexCurrentTrack - 1]
             }
         },
