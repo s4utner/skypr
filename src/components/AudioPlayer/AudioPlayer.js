@@ -26,7 +26,6 @@ export const AudioPlayer = ({
 
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const isShuffled = useSelector((state) => state.tracks.isShuffled)
-    const activeTrackId = activeTrack.id
     const dispatch = useDispatch()
     const progressBarRef = useRef(null)
     const volumeBarRef = useRef(null)
@@ -51,7 +50,7 @@ export const AudioPlayer = ({
                     controls
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
-                    onEnded={() => dispatch(playNextTrack({ activeTrackId }))}
+                    onEnded={() => dispatch(playNextTrack())}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
                     }}
@@ -92,11 +91,7 @@ export const AudioPlayer = ({
                                         <S.PlayerButtonPrevSvg
                                             alt="prev"
                                             onClick={() =>
-                                                dispatch(
-                                                    playPrevTrack({
-                                                        activeTrackId,
-                                                    }),
-                                                )
+                                                dispatch(playPrevTrack())
                                             }
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
@@ -118,11 +113,7 @@ export const AudioPlayer = ({
                                         <S.PlayerButtonNextSvg
                                             alt="next"
                                             onClick={() =>
-                                                dispatch(
-                                                    playNextTrack({
-                                                        activeTrackId,
-                                                    }),
-                                                )
+                                                dispatch(playNextTrack())
                                             }
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
