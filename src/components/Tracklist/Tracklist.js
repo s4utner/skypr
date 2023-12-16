@@ -7,6 +7,7 @@ import { setActiveTrack } from '../../store/slices.js'
 
 const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const activeTrackId = activeTrack.id
     const tracks = useSelector((state) => state.tracks.tracks)
     const dispatch = useDispatch()
     return (
@@ -36,13 +37,11 @@ const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
                                             baseColor="#202020"
                                             highlightColor="#444"
                                         />
+                                    ) : activeTrack.id === track.id ? (
+                                        <S.ActiveTrack />
                                     ) : (
                                         <S.TrackTitleSvg alt="music">
-                                            {activeTrack.id === track.id ? (
-                                                <S.ActiveTrack />
-                                            ) : (
-                                                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                            )}
+                                            <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                                         </S.TrackTitleSvg>
                                     )}
                                 </S.TrackTitleImage>
