@@ -6,11 +6,16 @@ import {
     convertSecondsToMinutesAndSeconds,
     alertFunctionIsNotReady,
 } from '../../helpers.js'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+    playNextTrack,
+    playPrevTrack,
+    setIsShuffled,
+} from '../../store/slices.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
     isLoading,
-    activeTrack,
     audioRef,
     togglePlay,
     isPlaying,
@@ -19,6 +24,9 @@ export const AudioPlayer = ({
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
 
+    const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const isShuffled = useSelector((state) => state.tracks.isShuffled)
+    const dispatch = useDispatch()
     const progressBarRef = useRef(null)
     const volumeBarRef = useRef(null)
     const duration = audioRef.current ? audioRef.current.duration : 0
@@ -42,25 +50,31 @@ export const AudioPlayer = ({
                     controls
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
+                    onEnded={() => dispatch(playNextTrack())}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
                     }}
                 ></audio>
-                <S.TrackTime>
-                    {duration &&
-                        convertSecondsToMinutesAndSeconds(currentTime) +
+                {duration && (
+                    <S.TrackTime>
+                        {convertSecondsToMinutesAndSeconds(currentTime) +
                             ' ' +
                             '/' +
                             ' ' +
                             convertSecondsToMinutesAndSeconds(duration)}
-                </S.TrackTime>
+                    </S.TrackTime>
+                )}
                 <S.Bar>
                     <S.BarContent>
                         <S.ProgressInput
                             ref={progressBarRef}
                             type="range"
                             min={0}
-                            max={duration}
+                            max={
+                                !isNaN(audioRef?.current?.duration)
+                                    ? audioRef.current.duration
+                                    : 0
+                            }
                             value={currentTime}
                             step={0.01}
                             onChange={() => {
@@ -76,7 +90,9 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonPrev>
                                         <S.PlayerButtonPrevSvg
                                             alt="prev"
-                                            onClick={alertFunctionIsNotReady}
+                                            onClick={() =>
+                                                dispatch(playPrevTrack())
+                                            }
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                                         </S.PlayerButtonPrevSvg>
@@ -96,7 +112,9 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonNext>
                                         <S.PlayerButtonNextSvg
                                             alt="next"
-                                            onClick={alertFunctionIsNotReady}
+                                            onClick={() =>
+                                                dispatch(playNextTrack())
+                                            }
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                                         </S.PlayerButtonNextSvg>
@@ -113,7 +131,10 @@ export const AudioPlayer = ({
                                     <S.PlayerButtonShuffle>
                                         <S.PlayerButtonShuffleSvg
                                             alt="shuffle"
-                                            onClick={alertFunctionIsNotReady}
+                                            $isshuffled={isShuffled}
+                                            onClick={() => {
+                                                dispatch(setIsShuffled())
+                                            }}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                                         </S.PlayerButtonShuffleSvg>

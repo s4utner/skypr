@@ -32,7 +32,7 @@ export const Register = () => {
         }
 
         signUpButtonRef.current.disabled = true
-        const response = await register()
+        const response = await register({ email, password })
 
         if (response.status === 400) {
             setError(

@@ -9,14 +9,11 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.js'
 
 export const AppRoutes = ({
     user,
-    tracks,
-    setTracks,
     isLoading,
     setIsLoading,
     isPlayerVisible,
     setIsPlayerVisible,
     loadingTracksError,
-    setActiveTrack,
     isPlaying,
     handleStart,
     handleStop,
@@ -33,14 +30,11 @@ export const AppRoutes = ({
                     path="/"
                     element={
                         <MainPage
-                            tracks={tracks}
-                            setTracks={setTracks}
                             isLoading={isLoading}
                             setIsLoading={setIsLoading}
                             isPlayerVisible={isPlayerVisible}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
-                            setActiveTrack={setActiveTrack}
                             isPlaying={isPlaying}
                             handleStart={handleStart}
                             handleStop={handleStop}

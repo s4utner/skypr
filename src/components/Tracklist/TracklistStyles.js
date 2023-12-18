@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { styled, keyframes } from 'styled-components'
 
 export const ContentPlaylist = styled.div`
     display: -webkit-box;
@@ -144,4 +144,23 @@ export const LoadingTracksError = styled.p`
     text-align: center;
     color: red;
     padding: 20px;
+`
+
+const bubble_out = keyframes`
+    0%,
+    to {
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(1);
+    }
+`
+
+export const ActiveTrack = styled.div`
+    width: 16px;
+    height: 16px;
+    background-color: #b672ff;
+    border-radius: 8px;
+    display: block;
+    animation: ${bubble_out} 0.6s ease-in-out infinite both;
 `

@@ -5,8 +5,6 @@ import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
 
 export const MainPage = ({
-    setActiveTrack,
-    tracks,
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
@@ -23,11 +21,9 @@ export const MainPage = ({
                     <S.Main>
                         {NavMenu()}
                         {Centerblock({
-                            tracks,
                             isLoading,
                             setIsPlayerVisible,
                             loadingTracksError,
-                            setActiveTrack,
                             isPlaying,
                             handleStart,
                             handleStop,
