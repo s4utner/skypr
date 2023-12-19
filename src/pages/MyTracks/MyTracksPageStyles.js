@@ -15,16 +15,18 @@ export const Container = styled.div`
     background-color: #181818;
     display: flex;
     justify-content: center;
-    align-items: center;
 `
 
-export const Text = styled.div`
-    font-style: normal;
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 56px;
-    letter-spacing: 2px;
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
+export const Main = styled.main`
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 `

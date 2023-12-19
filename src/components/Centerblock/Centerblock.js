@@ -6,7 +6,6 @@ const Centerblock = (
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
-
     isPlaying,
     handleStart,
     handleStop,

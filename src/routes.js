@@ -25,7 +25,22 @@ export const AppRoutes = ({
             <Route path="/register" element={<Register />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
             <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-                <Route path="/favorites" element={<MyTracksPage />}></Route>
+                <Route
+                    path="/favorites"
+                    element={
+                        <MyTracksPage
+                            isLoading={isLoading}
+                            setIsLoading={setIsLoading}
+                            isPlayerVisible={isPlayerVisible}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                            isPlaying={isPlaying}
+                            handleStart={handleStart}
+                            handleStop={handleStop}
+                            togglePlay={togglePlay}
+                        />
+                    }
+                ></Route>
                 <Route
                     path="/"
                     element={
