@@ -1,6 +1,8 @@
 import Tracklist from '../Tracklist/Tracklist.js'
 import { FilterButtons } from '../FilterButtons/FilterButtons.js'
 import * as S from './CenterblockStyles.js'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 const Centerblock = (
     isLoading,
@@ -11,6 +13,19 @@ const Centerblock = (
     handleStop,
     togglePlay,
 ) => {
+    const [title, setTitle] = useState('')
+    const params = useParams()
+
+    switch (params) {
+        case 'favorites':
+            setTitle('Мои треки')
+            break
+        case 'category/1':
+            setTitle('Плейлист')
+            break
+        default:
+            setTitle('Треки')
+    }
     return (
         <S.MainCenterblock>
             <S.CenterblockSearch>
@@ -19,7 +34,7 @@ const Centerblock = (
                 </S.SearchSvg>
                 <S.SearchText type="search" placeholder="Поиск" name="search" />
             </S.CenterblockSearch>
-            <S.CenterblockHeading>Треки</S.CenterblockHeading>
+            <S.CenterblockHeading>{title}</S.CenterblockHeading>
             {FilterButtons()}
             <S.CenterblockContent>
                 <S.ContentTitle>
