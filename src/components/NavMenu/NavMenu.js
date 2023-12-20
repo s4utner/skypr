@@ -18,7 +18,11 @@ const NavMenu = () => {
     return (
         <S.MainNav>
             <S.NavLogo>
-                <S.LogoImage src="img/logo.png" alt="logo" />
+                <S.LogoImage
+                    src="img/logo.png"
+                    alt="logo"
+                    onClick={() => navigate('/')}
+                />
             </S.NavLogo>
             <S.NavBurger onClick={clickOnBurger}>
                 <S.BurgerLine></S.BurgerLine>
