@@ -13,7 +13,7 @@ function App() {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
-    const [loadingTracksError, setLoadingTracksError] = useState(false)
+    const [loadingTracksError, setLoadingTracksError] = useState('')
     const [isPlaying, setIsPlaying] = useState(false)
     const [userData, setUserData] = useState(
         JSON.parse(localStorage.getItem('user')) ?? 'Не авторизован',
@@ -61,10 +61,9 @@ function App() {
                                 user={localStorage.getItem('user')}
                                 isLoading={isLoading}
                                 setIsLoading={setIsLoading}
-                                isPlayerVisible={isPlayerVisible}
                                 setIsPlayerVisible={setIsPlayerVisible}
                                 loadingTracksError={loadingTracksError}
-                                togglePlay={togglePlay}
+                                setLoadingTracksError={setLoadingTracksError}
                             />
                             {AudioPlayer({
                                 audioRef,

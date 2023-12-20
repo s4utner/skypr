@@ -11,13 +11,9 @@ export const AppRoutes = ({
     user,
     isLoading,
     setIsLoading,
-    isPlayerVisible,
     setIsPlayerVisible,
     loadingTracksError,
-    isPlaying,
-    handleStart,
-    handleStop,
-    togglePlay,
+    setLoadingTracksError,
 }) => {
     return (
         <Routes>
@@ -32,6 +28,8 @@ export const AppRoutes = ({
                             isLoading={isLoading}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
                         />
                     }
                 ></Route>
@@ -42,6 +40,8 @@ export const AppRoutes = ({
                             isLoading={isLoading}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
                         />
                     }
                 ></Route>

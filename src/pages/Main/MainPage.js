@@ -9,6 +9,8 @@ export const MainPage = ({
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
+    setIsLoading,
+    setLoadingTracksError,
 }) => {
     return (
         <>
@@ -51,6 +53,8 @@ export const MainPage = ({
                                     isLoading,
                                     setIsPlayerVisible,
                                     loadingTracksError,
+                                    setIsLoading,
+                                    setLoadingTracksError,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

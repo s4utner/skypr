@@ -4,20 +4,44 @@ import * as S from './TracklistStyles.js'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
+import { useGetAllTracksQuery } from '../../services/musicApi.js'
 
-const Tracklist = ({ isLoading, setIsPlayerVisible, loadingTracksError }) => {
+const Tracklist = ({
+    isLoading,
+    setIsPlayerVisible,
+    loadingTracksError,
+    setIsLoading,
+    setLoadingTracksError,
+}) => {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const tracks = useSelector((state) => state.tracks.tracks)
     const dispatch = useDispatch()
+
+    const { data, error, loading } = useGetAllTracksQuery()
+
+    console.log(data)
+
+    const isEmptyTracklist = !isLoading && !data?.length
+
+    if (loading) {
+        setIsLoading(true)
+    }
+
+    if (error) {
+        setLoadingTracksError(`${error.message}`)
+    }
+
+    if (isEmptyTracklist) {
+        setLoadingTracksError(`Треков нет...`)
+    }
     return (
         <S.ContentPlaylist>
             {loadingTracksError && (
                 <S.LoadingTracksError>
-                    При загрузке треков произошла ошибка. <br />
-                    Попробуй повторить попытку позднее
+                    {loadingTracksError}
                 </S.LoadingTracksError>
             )}
-            {tracks.map((track) => {
+            {data.map((track) => {
                 return (
                     <S.PlaylistItem
                         key={track.id}

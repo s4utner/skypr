@@ -8,6 +8,8 @@ export const MyTracksPage = ({
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
+    setIsLoading,
+    setLoadingTracksError,
 }) => {
     return (
         <>
@@ -51,6 +53,8 @@ export const MyTracksPage = ({
                                     isLoading,
                                     setIsPlayerVisible,
                                     loadingTracksError,
+                                    setIsLoading,
+                                    setLoadingTracksError,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
