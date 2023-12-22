@@ -3,6 +3,10 @@ import { GlobalStyle } from '../../GlobalStyle.js'
 import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
+import { useDispatch } from 'react-redux'
+import { useGetFavTracksQuery } from '../../services/musicApi.js'
+import { useEffect } from 'react'
+import { setFavTracks } from '../../store/slices.js'
 
 export const MyTracksPage = ({
     isLoading,
@@ -11,6 +15,17 @@ export const MyTracksPage = ({
     setIsLoading,
     setLoadingTracksError,
 }) => {
+    const dispatch = useDispatch()
+
+    const { data = [], error, loading } = useGetFavTracksQuery()
+
+    useEffect(() => {
+        dispatch(setFavTracks({ data }))
+        setLoadingTracksError('')
+        setIsLoading(false)
+    }, [data, dispatch, setLoadingTracksError, setIsLoading])
+    console.log(data)
+
     return (
         <>
             <GlobalStyle />
@@ -55,6 +70,9 @@ export const MyTracksPage = ({
                                     loadingTracksError,
                                     setIsLoading,
                                     setLoadingTracksError,
+                                    data,
+                                    error,
+                                    loading,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

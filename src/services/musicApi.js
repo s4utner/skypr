@@ -9,7 +9,14 @@ export const musicApi = createApi({
         getAllTracks: builder.query({
             query: () => 'track/all/',
         }),
+
+        getFavTracks: builder.query({
+            query: () => 'track/favorite/all/',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        }),
     }),
 })
 
-export const { useGetAllTracksQuery } = musicApi
+export const { useGetAllTracksQuery, useGetFavTracksQuery } = musicApi

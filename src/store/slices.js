@@ -16,6 +16,9 @@ const trackSlice = createSlice({
                 () => Math.random() - 0.5,
             )
         },
+        setFavTracks(state, action) {
+            state.favouriteTracks = action.payload.data
+        },
         setActiveTrack(state, action) {
             state.activeTrack = action.payload.track
         },
@@ -60,6 +63,7 @@ export const {
     playNextTrack,
     playPrevTrack,
     setTracks,
+    setFavTracks,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer
