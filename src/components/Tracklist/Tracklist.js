@@ -5,10 +5,6 @@ import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
 import { useState } from 'react'
-import {
-    useRemoveLikeMutation,
-    useSetLikeMutation,
-} from '../../services/musicApi.js'
 
 const Tracklist = ({
     isLoading,
@@ -22,7 +18,6 @@ const Tracklist = ({
 }) => {
     const [isLiked, setIsLiked] = useState(false)
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
-    const favTracks = useSelector((state) => state.tracks.favouriteTracks)
     const dispatch = useDispatch()
 
     const isEmptyTracklist = !isLoading && !data?.length
