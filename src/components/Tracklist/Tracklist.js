@@ -22,6 +22,7 @@ const Tracklist = ({
 }) => {
     const [isLiked, setIsLiked] = useState(false)
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const favTracks = useSelector((state) => state.tracks.favouriteTracks)
     const dispatch = useDispatch()
 
     const isEmptyTracklist = !isLoading && !data?.length
@@ -127,17 +128,7 @@ const Tracklist = ({
                                             alt="time"
                                             onClick={(event) => {
                                                 event.stopPropagation()
-                                                track.stared_user.filter(
-                                                    (element) =>
-                                                        element.username ===
-                                                        JSON.parse(
-                                                            localStorage.getItem(
-                                                                'user',
-                                                            ),
-                                                        ),
-                                                )
-                                                    ? useRemoveLikeMutation()
-                                                    : useSetLikeMutation()
+                                                setIsLiked(!isLiked)
                                                 console.log(track.stared_user)
                                             }}
                                         >
