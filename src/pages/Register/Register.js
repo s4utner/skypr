@@ -13,7 +13,7 @@ export const Register = () => {
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
     const [error, setError] = useState('')
-    const [userData, setUserData] = useContext(UserContext)
+    const [, setUserData] = useContext(UserContext)
 
     const signUpButtonRef = useRef(null)
 

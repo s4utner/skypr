@@ -13,7 +13,7 @@ const Sidebar = ({ isLoading }) => {
         navigate('/login')
     }
 
-    const [userData, setUserData] = useContext(UserContext)
+    const [userData] = useContext(UserContext)
 
     return (
         <S.MainSidebar>

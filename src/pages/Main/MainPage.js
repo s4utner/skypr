@@ -4,6 +4,10 @@ import { FilterButtons } from '../../components/FilterButtons/FilterButtons.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { setTracks } from '../../store/slices.js'
+import { useGetAllTracksQuery } from '../../services/musicApi.js'
 
 export const MainPage = ({
     isLoading,
@@ -12,6 +16,17 @@ export const MainPage = ({
     setIsLoading,
     setLoadingTracksError,
 }) => {
+    const dispatch = useDispatch()
+
+    const { data = [], error, loading } = useGetAllTracksQuery()
+
+    useEffect(() => {
+        dispatch(setTracks({ data }))
+        setLoadingTracksError('')
+        setIsLoading(false)
+    }, [data, dispatch, setLoadingTracksError, setIsLoading])
+    console.log(data)
+
     return (
         <>
             <GlobalStyle />
@@ -55,6 +70,9 @@ export const MainPage = ({
                                     loadingTracksError,
                                     setIsLoading,
                                     setLoadingTracksError,
+                                    data,
+                                    error,
+                                    loading,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

@@ -4,7 +4,6 @@ import * as S from './TracklistStyles.js'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
-import { useGetAllTracksQuery } from '../../services/musicApi.js'
 
 const Tracklist = ({
     isLoading,
@@ -12,14 +11,12 @@ const Tracklist = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    data,
+    error,
+    loading,
 }) => {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
-    const tracks = useSelector((state) => state.tracks.tracks)
     const dispatch = useDispatch()
-
-    const { data, error, loading } = useGetAllTracksQuery()
-
-    console.log(data)
 
     const isEmptyTracklist = !isLoading && !data?.length
 
@@ -34,6 +31,7 @@ const Tracklist = ({
     if (isEmptyTracklist) {
         setLoadingTracksError(`Треков нет...`)
     }
+
     return (
         <S.ContentPlaylist>
             {loadingTracksError && (

@@ -12,7 +12,7 @@ export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
-    const [userData, setUserData] = useContext(UserContext)
+    const [, setUserData] = useContext(UserContext)
 
     const signInButtonRef = useRef(null)
 
