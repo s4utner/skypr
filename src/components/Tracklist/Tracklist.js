@@ -5,6 +5,10 @@ import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
 import { useState } from 'react'
+import {
+    useRemoveLikeMutation,
+    useSetLikeMutation,
+} from '../../services/musicApi.js'
 
 const Tracklist = ({
     isLoading,
@@ -123,6 +127,18 @@ const Tracklist = ({
                                             alt="time"
                                             onClick={(event) => {
                                                 event.stopPropagation()
+                                                track.stared_user.filter(
+                                                    (element) =>
+                                                        element.username ===
+                                                        JSON.parse(
+                                                            localStorage.getItem(
+                                                                'user',
+                                                            ),
+                                                        ),
+                                                )
+                                                    ? useRemoveLikeMutation()
+                                                    : useSetLikeMutation()
+                                                console.log(track.stared_user)
                                             }}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
