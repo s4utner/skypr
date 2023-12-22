@@ -123,8 +123,8 @@ export const TrackTimeSvg = styled.svg`
     width: 14px;
     height: 12px;
     margin-right: 17px;
-    fill: transparent;
-    stroke: #696969;
+    fill: ${(props) => (props.$isLiked ? '#B672FF' : 'transparent')};
+    stroke: ${(props) => (props.$isLiked ? 'none' : '#696969')};
 `
 
 export const TrackTimeText = styled.span`

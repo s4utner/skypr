@@ -11,9 +11,15 @@ export const musicApi = createApi({
         }),
 
         getFavTracks: builder.query({
-            query: () => 'track/favorite/all/',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            query: () => {
+                return {
+                    url: 'track/favorite/all/',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'accessToken',
+                        )}`,
+                    },
+                }
             },
         }),
     }),

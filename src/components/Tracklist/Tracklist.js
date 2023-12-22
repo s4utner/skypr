@@ -4,6 +4,7 @@ import * as S from './TracklistStyles.js'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
+import { useState } from 'react'
 
 const Tracklist = ({
     isLoading,
@@ -15,6 +16,7 @@ const Tracklist = ({
     error,
     loading,
 }) => {
+    const [isLiked, setIsLiked] = useState(false)
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const dispatch = useDispatch()
 
@@ -116,7 +118,14 @@ const Tracklist = ({
                                     />
                                 ) : (
                                     <>
-                                        <S.TrackTimeSvg alt="time">
+                                        <S.TrackTimeSvg
+                                            $isLiked={isLiked}
+                                            alt="time"
+                                            onClick={(event) => {
+                                                event.stopPropagation()
+                                                setIsLiked(!isLiked)
+                                            }}
+                                        >
                                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                                         </S.TrackTimeSvg>
                                         <S.TrackTimeText>
