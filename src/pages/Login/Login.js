@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import { UserContext } from '../../Authorization.js'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../../Api.js'
+import { getToken, login } from '../../Api.js'
 
 export const Login = () => {
     const navigate = useNavigate()
@@ -48,6 +48,14 @@ export const Login = () => {
         localStorage.setItem('user', JSON.stringify(data.username))
         signInButtonRef.current.disabled = false
         navigate('/')
+
+        const tokenResponse = await getToken({ email, password })
+        const tokens = await tokenResponse.json()
+        const accessToken = tokens.access
+        const refreshToken = tokens.refresh
+
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
     }
 
     return (

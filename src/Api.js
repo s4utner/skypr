@@ -11,6 +11,19 @@ export async function getAllTracks() {
     return data
 }
 
+export async function getToken({ email, password }) {
+    return fetch('https://skypro-music-api.skyeng.tech/user/token/', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: email,
+            password: password,
+        }),
+        headers: {
+            'content-type': 'application/json',
+        },
+    })
+}
+
 export async function login({ email, password }) {
     return fetch('https://skypro-music-api.skyeng.tech/user/login/', {
         method: 'POST',
