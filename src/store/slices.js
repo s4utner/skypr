@@ -6,7 +6,6 @@ const trackSlice = createSlice({
         activeTrack: {},
         tracks: [],
         shuffledTracks: [],
-        favouriteTracks: [],
         isShuffled: false,
     },
     reducers: {
@@ -63,7 +62,6 @@ export const {
     playNextTrack,
     playPrevTrack,
     setTracks,
-    setFavTracks,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

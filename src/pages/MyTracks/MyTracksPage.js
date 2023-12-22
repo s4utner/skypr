@@ -6,8 +6,8 @@ import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch } from 'react-redux'
 import { useGetFavTracksQuery } from '../../services/musicApi.js'
 import { useEffect } from 'react'
-import { setFavTracks } from '../../store/slices.js'
 import { refreshToken } from '../../Api.js'
+import { setTracks } from '../../store/slices.js'
 
 export const MyTracksPage = ({
     isLoading,
@@ -35,7 +35,7 @@ export const MyTracksPage = ({
     }
 
     useEffect(() => {
-        dispatch(setFavTracks({ data }))
+        dispatch(setTracks({ data }))
         setLoadingTracksError('')
         setIsLoading(false)
     }, [data, dispatch, setLoadingTracksError, setIsLoading])
