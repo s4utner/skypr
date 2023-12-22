@@ -25,7 +25,6 @@ export const MainPage = ({
         setLoadingTracksError('')
         setIsLoading(false)
     }, [data, dispatch, setLoadingTracksError, setIsLoading])
-    console.log(data)
 
     return (
         <>

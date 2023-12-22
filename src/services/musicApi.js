@@ -22,7 +22,35 @@ export const musicApi = createApi({
                 }
             },
         }),
+
+        setLike: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `/track/${id}/favorite/`,
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'accessToken',
+                        )}`,
+                    },
+                }
+            },
+        }),
+
+        removeLike: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `/track/${id}/favorite/`,
+                    method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'accessToken',
+                        )}`,
+                    },
+                }
+            },
+        }),
     }),
 })
 
-export const { useGetAllTracksQuery, useGetFavTracksQuery } = musicApi
+export const { useGetAllTracksQuery, useGetFavTracksQuery, useSetLikeMutation, useRemoveLikeMutation } = musicApi

@@ -123,7 +123,6 @@ const Tracklist = ({
                                             alt="time"
                                             onClick={(event) => {
                                                 event.stopPropagation()
-                                                setIsLiked(!isLiked)
                                             }}
                                         >
                                             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>

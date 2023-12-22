@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useGetFavTracksQuery } from '../../services/musicApi.js'
 import { useEffect } from 'react'
 import { setFavTracks } from '../../store/slices.js'
+import { refreshToken } from '../../Api.js'
 
 export const MyTracksPage = ({
     isLoading,
@@ -19,12 +20,25 @@ export const MyTracksPage = ({
 
     const { data = [], error, loading } = useGetFavTracksQuery()
 
+    if (error) {
+        if (error.status === 401) {
+            refreshToken()
+                .then((response) => {
+                    return response.json()
+                })
+                .then((response) => {
+                    localStorage.setItem('accessToken', response.access)
+                })
+        }
+
+        setLoadingTracksError(`${error.message}`)
+    }
+
     useEffect(() => {
         dispatch(setFavTracks({ data }))
         setLoadingTracksError('')
         setIsLoading(false)
     }, [data, dispatch, setLoadingTracksError, setIsLoading])
-    console.log(data)
 
     return (
         <>
