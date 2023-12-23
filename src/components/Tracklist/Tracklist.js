@@ -20,8 +20,6 @@ const Tracklist = ({
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const dispatch = useDispatch()
 
-    const isEmptyTracklist = !isLoading && !data?.length
-
     useEffect(() => {
         if (loading) {
             setIsLoading(true)
@@ -29,10 +27,6 @@ const Tracklist = ({
 
         if (error) {
             setLoadingTracksError(`${error.message}`)
-        }
-
-        if (isEmptyTracklist) {
-            setLoadingTracksError(`Треков нет...`)
         }
     })
 

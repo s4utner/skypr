@@ -8,6 +8,7 @@ import { useGetFavTracksQuery } from '../../services/musicApi.js'
 import { useEffect } from 'react'
 import { refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
+import { getFavTracks } from '../../Api.js'
 
 export const MyTracksPage = ({
     isLoading,
@@ -29,6 +30,7 @@ export const MyTracksPage = ({
                 .then((response) => {
                     localStorage.setItem('accessToken', response.access)
                 })
+                .then(() => {})
         }
 
         setLoadingTracksError(`${error.message}`)
