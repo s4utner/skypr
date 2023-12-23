@@ -4,7 +4,7 @@ import * as S from './TracklistStyles.js'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../store/slices.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Tracklist = ({
     isLoading,
@@ -22,17 +22,19 @@ const Tracklist = ({
 
     const isEmptyTracklist = !isLoading && !data?.length
 
-    if (loading) {
-        setIsLoading(true)
-    }
+    useEffect(() => {
+        if (loading) {
+            setIsLoading(true)
+        }
 
-    if (error) {
-        setLoadingTracksError(`${error.message}`)
-    }
+        if (error) {
+            setLoadingTracksError(`${error.message}`)
+        }
 
-    if (isEmptyTracklist) {
-        setLoadingTracksError(`Треков нет...`)
-    }
+        if (isEmptyTracklist) {
+            setLoadingTracksError(`Треков нет...`)
+        }
+    })
 
     return (
         <S.ContentPlaylist>
