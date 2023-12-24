@@ -8,7 +8,6 @@ import { useGetFavTracksQuery } from '../../services/musicApi.js'
 import { useEffect } from 'react'
 import { refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
-import { getFavTracks } from '../../Api.js'
 
 export const MyTracksPage = ({
     isLoading,
@@ -41,6 +40,8 @@ export const MyTracksPage = ({
         setLoadingTracksError('')
         setIsLoading(false)
     }, [data, dispatch, setLoadingTracksError, setIsLoading])
+
+    const playlist = 'fav'
 
     return (
         <>
@@ -89,6 +90,7 @@ export const MyTracksPage = ({
                                     data,
                                     error,
                                     loading,
+                                    playlist,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

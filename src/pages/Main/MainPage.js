@@ -26,6 +26,8 @@ export const MainPage = ({
         setIsLoading(false)
     }, [data, dispatch, setLoadingTracksError, setIsLoading])
 
+    const playlist = 'main'
+
     return (
         <>
             <GlobalStyle />
@@ -72,6 +74,7 @@ export const MainPage = ({
                                     data,
                                     error,
                                     loading,
+                                    playlist,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

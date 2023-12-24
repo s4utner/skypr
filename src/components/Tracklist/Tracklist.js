@@ -12,6 +12,7 @@ const Tracklist = ({
     data,
     error,
     loading,
+    playlist,
 }) => {
     useEffect(() => {
         if (loading) {
@@ -37,6 +38,7 @@ const Tracklist = ({
                         track={track}
                         setIsPlayerVisible={setIsPlayerVisible}
                         isLoading={isLoading}
+                        playlist={playlist}
                     />
                 )
             })}

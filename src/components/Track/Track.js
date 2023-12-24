@@ -3,12 +3,29 @@ import Skeleton from 'react-loading-skeleton'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers'
 import { setActiveTrack } from '../../store/slices'
 import * as S from './TrackStyles.js'
-import { useState } from 'react'
+import {
+    useSetLikeMutation,
+    useRemoveLikeMutation,
+} from '../../services/musicApi'
 
-export const Track = ({ track, setIsPlayerVisible, isLoading }) => {
-    const [isLiked, setIsLiked] = useState()
+export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
+    const [like, { isSuccess: isLikeSuccess }] = useSetLikeMutation()
+    const [dislike, { isSuccess: isDislikeSuccess }] = useRemoveLikeMutation()
+
+    let isLiked = track?.stared_user?.some(
+        ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+    )
+
+    const handleLikeClick = (id) => {
+        isLiked ? dislike(id) : like(id)
+    }
+
     const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+
+    if (playlist === 'fav') {
+        isLiked = true
+    }
 
     return (
         <S.PlaylistItem
@@ -91,7 +108,7 @@ export const Track = ({ track, setIsPlayerVisible, isLoading }) => {
                                 alt="time"
                                 onClick={(event) => {
                                     event.stopPropagation()
-                                    console.log(track.stared_user)
+                                    handleLikeClick(track.id)
                                 }}
                             >
                                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
