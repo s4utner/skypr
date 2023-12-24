@@ -18,7 +18,7 @@ export const MyTracksPage = ({
 }) => {
     const dispatch = useDispatch()
 
-    const { data = [], error, loading } = useGetFavTracksQuery()
+    let { data = [], error, loading } = useGetFavTracksQuery()
 
     if (error) {
         if (error.status === 401) {
@@ -28,8 +28,8 @@ export const MyTracksPage = ({
                 })
                 .then((response) => {
                     localStorage.setItem('accessToken', response.access)
+                    window.location.reload()
                 })
-                .then(() => {})
         }
 
         setLoadingTracksError(`${error.message}`)

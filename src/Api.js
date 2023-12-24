@@ -1,32 +1,3 @@
-export async function getAllTracks() {
-    const response = await fetch(
-        'https://skypro-music-api.skyeng.tech/catalog/track/all/',
-    )
-
-    if (!response.ok) {
-        throw new Error('Произошла ошибка, попробуй позже')
-    }
-
-    const data = await response.json()
-    return data
-}
-
-export async function getFavTracks() {
-    const response = await fetch(
-        'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
-        {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-                'content-type': 'application/json',
-            },
-        },
-    )
-
-    const data = await response.json()
-    console.log(data)
-    return data
-}
-
 export async function getToken({ email, password }) {
     return fetch('https://skypro-music-api.skyeng.tech/user/token/', {
         method: 'POST',
