@@ -1,4 +1,14 @@
-
+export async function getFavTracks() {
+    return fetch(
+        'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
+        {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        },
+    )
+}
 
 export async function getToken({ email, password }) {
     return fetch('https://skypro-music-api.skyeng.tech/user/token/', {

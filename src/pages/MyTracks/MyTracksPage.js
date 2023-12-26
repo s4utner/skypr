@@ -5,8 +5,8 @@ import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch } from 'react-redux'
 import { useGetFavTracksQuery } from '../../services/musicApi.js'
-import { useEffect } from 'react'
-import { refreshToken } from '../../Api.js'
+import { useEffect, useState } from 'react'
+import { getFavTracks, refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
 
 export const MyTracksPage = ({
@@ -18,9 +18,13 @@ export const MyTracksPage = ({
 }) => {
     const dispatch = useDispatch()
 
-    let { data = [], error, isError, loading } = useGetFavTracksQuery()
+    const { data = [], error, isError, loading } = useGetFavTracksQuery()
+
+    const [tracksData, setTracksData] = useState([])
 
     useEffect(() => {
+        //setTracksData(data)
+
         if (error && error.status === 401) {
             refreshToken()
                 .then((response) => {
@@ -30,24 +34,14 @@ export const MyTracksPage = ({
                     localStorage.setItem('accessToken', response.access)
                 })
                 .then(async () => {
-                    const response = await fetch(
-                        'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
-                        {
-                            method: 'POST',
-                            headers: {
-                                Authorization: `Bearer ${localStorage.getItem(
-                                    'accessToken',
-                                )}`,
-                            },
-                        },
-                    )
-
-                    data = await response.json()
+                    const tracksResponse = await getFavTracks()
+                    const tracks = await tracksResponse.json()
+                    //setTracksData(tracks)
                 })
 
             setLoadingTracksError(`${error.message}`)
         }
-    }, [isError, error, setLoadingTracksError])
+    }, [isError, error, setLoadingTracksError, data])
 
     useEffect(() => {
         dispatch(setTracks({ data }))
