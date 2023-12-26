@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers'
-import { setActiveTrack } from '../../store/slices'
+import { setActiveTrack, setCurrentPlaylist } from '../../store/slices'
 import * as S from './TrackStyles.js'
 import {
     useSetLikeMutation,
@@ -39,6 +39,7 @@ export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
             key={track.id}
             onClick={() => {
                 setIsPlayerVisible(true)
+                dispatch(setCurrentPlaylist())
                 dispatch(setActiveTrack({ track }))
             }}
         >

@@ -18,22 +18,36 @@ export const MyTracksPage = ({
 }) => {
     const dispatch = useDispatch()
 
-    let { data = [], error, loading } = useGetFavTracksQuery()
+    let { data = [], error, isError, loading } = useGetFavTracksQuery()
 
-    if (error) {
-        if (error.status === 401) {
+    useEffect(() => {
+        if (error && error.status === 401) {
             refreshToken()
                 .then((response) => {
                     return response.json()
                 })
                 .then((response) => {
                     localStorage.setItem('accessToken', response.access)
-                    window.location.reload()
                 })
-        }
+                .then(async () => {
+                    const response = await fetch(
+                        'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
+                        {
+                            method: 'POST',
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem(
+                                    'accessToken',
+                                )}`,
+                            },
+                        },
+                    )
 
-        setLoadingTracksError(`${error.message}`)
-    }
+                    data = await response.json()
+                })
+
+            setLoadingTracksError(`${error.message}`)
+        }
+    }, [isError, error, setLoadingTracksError])
 
     useEffect(() => {
         dispatch(setTracks({ data }))
