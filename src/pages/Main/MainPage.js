@@ -31,11 +31,7 @@ export const MainPage = ({
                 setIsLoading(false)
             })
             .catch((error) => {
-                if (error) {
-                    setLoadingTracksError(
-                        'При загрузке треков произошла ошибка',
-                    )
-                }
+                console.log(error)
             })
     }, [dispatch, setLoadingTracksError, setIsLoading])
 

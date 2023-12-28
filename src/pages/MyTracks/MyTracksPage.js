@@ -4,7 +4,6 @@ import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch } from 'react-redux'
-import { useGetFavTracksQuery } from '../../services/musicApi.js'
 import { useEffect } from 'react'
 import { getFavTracks, refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
@@ -21,19 +20,7 @@ export const MyTracksPage = ({
     useEffect(() => {
         getFavTracks()
             .then((response) => {
-                return response.json()
-            })
-            .then((tracks) => {
-                dispatch(setTracks({ tracks }))
-            })
-            .then(() => {
-                setLoadingTracksError('')
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.log(error)
-
-                if (error) {
+                if (response.status === 401) {
                     refreshToken()
                         .then((response) => {
                             return response.json()
@@ -49,11 +36,19 @@ export const MyTracksPage = ({
                             dispatch(setTracks({ tracks }))
                             setLoadingTracksError('')
                         })
-                } else {
-                    setLoadingTracksError(
-                        `При загрузке треков произошла ошибка`,
-                    )
                 }
+
+                return response.json()
+            })
+            .then((tracks) => {
+                dispatch(setTracks({ tracks }))
+            })
+            .then(() => {
+                setLoadingTracksError('')
+                setIsLoading(false)
+            })
+            .catch((error) => {
+                console.log(error)
             })
     }, [setLoadingTracksError, dispatch, setIsLoading])
 
