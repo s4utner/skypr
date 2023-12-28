@@ -1,6 +1,8 @@
 export async function getAllTracks() {
     return fetch('https://skypro-music-api.skyeng.tech/catalog/track/all/', {
         method: 'GET',
+    }).then((response) => {
+        return response.json()
     })
 }
 
@@ -25,7 +27,22 @@ export async function setLike(id) {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
         },
-    )
+    ).then((response) => {
+        if (response.status === 401) {
+            refreshToken()
+                .then((response) => {
+                    return response.json()
+                })
+                .then((response) => {
+                    localStorage.setItem('accessToken', response.access)
+                })
+                .then(() => {
+                    setLike(id)
+                })
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+    })
 }
 
 export async function removeLike(id) {
@@ -37,7 +54,22 @@ export async function removeLike(id) {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
         },
-    )
+    ).then((response) => {
+        if (response.status === 401) {
+            refreshToken()
+                .then((response) => {
+                    return response.json()
+                })
+                .then((response) => {
+                    localStorage.setItem('accessToken', response.access)
+                })
+                .then(() => {
+                    removeLike(id)
+                })
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+    })
 }
 
 export async function getTrack(id) {

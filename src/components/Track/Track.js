@@ -10,7 +10,6 @@ import {
     getFavTracks,
     getAllTracks,
 } from '../../Api'
-import { useState } from 'react'
 import { setTracks } from '../../store/slices'
 
 export const Track = ({
@@ -23,7 +22,6 @@ export const Track = ({
 }) => {
     const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
-    const [, setIsFavourite] = useState(null)
 
     let isLiked = track?.stared_user?.some(
         ({ username }) => username === JSON.parse(localStorage.getItem('user')),
@@ -35,22 +33,6 @@ export const Track = ({
 
     const handleLike = (id) => {
         setLike(id)
-            .then((response) => {
-                if (response.status === 401) {
-                    refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(() => {
-                            setLike(id)
-                        })
-                } else if (response.status !== 200) {
-                    console.log('Произошла ошибка')
-                }
-            })
             .then(() => {
                 if (playlist === 'fav') {
                     getFavTracks()
@@ -91,9 +73,6 @@ export const Track = ({
                         })
                 } else {
                     getAllTracks()
-                        .then((response) => {
-                            return response.json()
-                        })
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })
@@ -106,27 +85,10 @@ export const Track = ({
                         })
                 }
             })
-        setIsFavourite(true)
     }
 
     const handleRemoveLike = (id) => {
         removeLike(id)
-            .then((response) => {
-                if (response.status === 401) {
-                    refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(() => {
-                            removeLike(id)
-                        })
-                } else if (response.status !== 200) {
-                    console.log('Произошла ошибка')
-                }
-            })
             .then(() => {
                 if (playlist === 'fav') {
                     getFavTracks()
@@ -167,9 +129,6 @@ export const Track = ({
                         })
                 } else {
                     getAllTracks()
-                        .then((response) => {
-                            return response.json()
-                        })
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })
@@ -182,7 +141,6 @@ export const Track = ({
                         })
                 }
             })
-        setIsFavourite(false)
     }
 
     const handleLikeClick = (id) => {

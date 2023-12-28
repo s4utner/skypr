@@ -20,9 +20,6 @@ export const MainPage = ({
 
     useEffect(() => {
         getAllTracks()
-            .then((response) => {
-                return response.json()
-            })
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
             })
