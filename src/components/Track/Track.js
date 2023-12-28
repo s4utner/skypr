@@ -10,7 +10,7 @@ import {
     getFavTracks,
     getAllTracks,
 } from '../../Api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { setTracks } from '../../store/slices'
 
 export const Track = ({
@@ -23,7 +23,7 @@ export const Track = ({
 }) => {
     const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
-    const [isFavourite, setIsFavourite] = useState(null)
+    const [, setIsFavourite] = useState(null)
 
     let isLiked = track?.stared_user?.some(
         ({ username }) => username === JSON.parse(localStorage.getItem('user')),
@@ -188,8 +188,6 @@ export const Track = ({
     const handleLikeClick = (id) => {
         isLiked ? handleRemoveLike(id) : handleLike(id)
     }
-
-    useEffect(() => {}, [isFavourite, dispatch])
 
     return (
         <S.PlaylistItem
