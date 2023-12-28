@@ -28,7 +28,7 @@ export const MainPage = ({
         dispatch(setTracks({ data }))
         setLoadingTracksError('')
         setIsLoading(false)
-    }, [data, dispatch, setLoadingTracksError, setIsLoading])
+    }, [data, dispatch, setLoadingTracksError, setIsLoading, error])
 
     const playlist = 'main'
 

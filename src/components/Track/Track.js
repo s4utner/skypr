@@ -8,6 +8,7 @@ import {
     useRemoveLikeMutation,
 } from '../../services/musicApi'
 import { useEffect } from 'react'
+import { getTrack } from '../../Api'
 
 export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
     const [like, { isSuccess: isLikeSuccess }] = useSetLikeMutation()
@@ -19,9 +20,15 @@ export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
 
     useEffect(() => {
         if (isLikeSuccess || isDislikeSuccess) {
-            window.location.reload()
+            getTrack(track.id)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((response) => {
+                    track = response
+                })
         }
-    }, [isLikeSuccess, isDislikeSuccess])
+    }, [isLikeSuccess, isDislikeSuccess, track.id])
 
     const handleLikeClick = (id) => {
         isLiked ? dislike(id) : like(id)
