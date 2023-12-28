@@ -7,7 +7,7 @@ import * as S from './MainPageStyles.js'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { setTracks } from '../../store/slices.js'
-import { useGetAllTracksQuery } from '../../services/musicApi.js'
+import { getAllTracks } from '../../Api.js'
 
 export const MainPage = ({
     isLoading,
@@ -18,17 +18,26 @@ export const MainPage = ({
 }) => {
     const dispatch = useDispatch()
 
-    const { data = [], error, loading } = useGetAllTracksQuery()
-
     useEffect(() => {
-        if (error) {
-            setLoadingTracksError('При загрузке треков произошла ошибка')
-        }
-
-        dispatch(setTracks({ data }))
-        setLoadingTracksError('')
-        setIsLoading(false)
-    }, [data, dispatch, setLoadingTracksError, setIsLoading, error])
+        getAllTracks()
+            .then((response) => {
+                return response.json()
+            })
+            .then((tracks) => {
+                dispatch(setTracks({ tracks }))
+            })
+            .then(() => {
+                setLoadingTracksError('')
+                setIsLoading(false)
+            })
+            .catch((error) => {
+                if (error) {
+                    setLoadingTracksError(
+                        'При загрузке треков произошла ошибка',
+                    )
+                }
+            })
+    }, [dispatch, setLoadingTracksError, setIsLoading])
 
     const playlist = 'main'
 
@@ -75,9 +84,6 @@ export const MainPage = ({
                                     loadingTracksError,
                                     setIsLoading,
                                     setLoadingTracksError,
-                                    data,
-                                    error,
-                                    loading,
                                     playlist,
                                 })}
                             </S.CenterblockContent>

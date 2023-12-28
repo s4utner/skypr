@@ -1,14 +1,15 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { Track } from '../Track/Track.js'
+import { useSelector } from 'react-redux'
 
 const Tracklist = ({
     isLoading,
     setIsPlayerVisible,
     loadingTracksError,
-    data,
     playlist,
 }) => {
+    const tracks = useSelector((state) => state.tracks.tracks)
 
     return (
         <S.ContentPlaylist>
@@ -17,7 +18,7 @@ const Tracklist = ({
                     {loadingTracksError}
                 </S.LoadingTracksError>
             )}
-            {data.map((track) => {
+            {tracks.map((track) => {
                 return (
                     <Track
                         key={track.id}

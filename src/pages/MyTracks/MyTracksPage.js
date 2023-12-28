@@ -18,30 +18,44 @@ export const MyTracksPage = ({
 }) => {
     const dispatch = useDispatch()
 
-    let { data = [], error, isError, loading } = useGetFavTracksQuery()
-
     useEffect(() => {
-        if (error && error.status === 401) {
-            refreshToken()
-                .then((response) => {
-                    return response.json()
-                })
-                .then((response) => {
-                    localStorage.setItem('accessToken', response.access)
-                })
-                .then(async () => {
-                    const tracksResponse = await getFavTracks()
-                    const tracks = await tracksResponse.json()
-                    data = tracks
-                })
-        } else if (error && error.status !== 401) {
-            setLoadingTracksError(`При загрузке треков произошла ошибка`)
-        }
+        getFavTracks()
+            .then((response) => {
+                return response.json()
+            })
+            .then((tracks) => {
+                dispatch(setTracks({ tracks }))
+            })
+            .then(() => {
+                setLoadingTracksError('')
+                setIsLoading(false)
+            })
+            .catch((error) => {
+                console.log(error)
 
-        dispatch(setTracks({ data }))
-        setLoadingTracksError('')
-        setIsLoading(false)
-    }, [isError, error, setLoadingTracksError, data, dispatch, setIsLoading])
+                if (error) {
+                    refreshToken()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((response) => {
+                            localStorage.setItem('accessToken', response.access)
+                        })
+                        .then(async () => {
+                            const tracksResponse = await getFavTracks()
+                            return tracksResponse.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                            setLoadingTracksError('')
+                        })
+                } else {
+                    setLoadingTracksError(
+                        `При загрузке треков произошла ошибка`,
+                    )
+                }
+            })
+    }, [setLoadingTracksError, dispatch, setIsLoading])
 
     const playlist = 'fav'
 
@@ -89,9 +103,6 @@ export const MyTracksPage = ({
                                     loadingTracksError,
                                     setIsLoading,
                                     setLoadingTracksError,
-                                    data,
-                                    error,
-                                    loading,
                                     playlist,
                                 })}
                             </S.CenterblockContent>

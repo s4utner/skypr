@@ -1,8 +1,38 @@
+export async function getAllTracks() {
+    return fetch('https://skypro-music-api.skyeng.tech/catalog/track/all/', {
+        method: 'GET',
+    })
+}
+
 export async function getFavTracks() {
     return fetch(
         'https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/',
         {
             method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        },
+    )
+}
+
+export async function setLike(id) {
+    return fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            },
+        },
+    )
+}
+
+export async function removeLike(id) {
+    return fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
+        {
+            method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
