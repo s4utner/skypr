@@ -38,16 +38,14 @@ export const MyTracksPage = ({
                     const tracks = await tracksResponse.json()
                     //setTracksData(tracks)
                 })
-
-            setLoadingTracksError(`${error.message}`)
+        } else if (error && error.status !== 401) {
+            setLoadingTracksError(`При загрузке треков произошла ошибка`)
         }
-    }, [isError, error, setLoadingTracksError, data])
 
-    useEffect(() => {
         dispatch(setTracks({ data }))
         setLoadingTracksError('')
         setIsLoading(false)
-    }, [data, dispatch, setLoadingTracksError, setIsLoading])
+    }, [isError, error, setLoadingTracksError, data, dispatch, setIsLoading])
 
     const playlist = 'fav'
 
