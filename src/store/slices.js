@@ -12,7 +12,6 @@ const trackSlice = createSlice({
     reducers: {
         setTracks(state, action) {
             state.tracks = action.payload.data
-            console.log(state.tracks)
             state.shuffledTracks = [...action.payload.data].sort(
                 () => Math.random() - 0.5,
             )
@@ -22,7 +21,6 @@ const trackSlice = createSlice({
         },
         setActiveTrack(state, action) {
             state.activeTrack = action.payload.track
-            console.log(state.activeTrack)
         },
         setIsShuffled(state) {
             state.isShuffled = !state.isShuffled

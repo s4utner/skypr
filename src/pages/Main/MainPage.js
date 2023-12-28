@@ -21,6 +21,10 @@ export const MainPage = ({
     const { data = [], error, loading } = useGetAllTracksQuery()
 
     useEffect(() => {
+        if (error) {
+            setLoadingTracksError('При загрузке треков произошла ошибка')
+        }
+
         dispatch(setTracks({ data }))
         setLoadingTracksError('')
         setIsLoading(false)
