@@ -8,6 +8,8 @@ const Tracklist = ({
     setIsPlayerVisible,
     loadingTracksError,
     playlist,
+    setLoadingTracksError,
+    setIsLoading,
 }) => {
     const tracks = useSelector((state) => state.tracks.tracks)
 
@@ -26,6 +28,8 @@ const Tracklist = ({
                         setIsPlayerVisible={setIsPlayerVisible}
                         isLoading={isLoading}
                         playlist={playlist}
+                        setLoadingTracksError={setLoadingTracksError}
+                        setIsLoading={setIsLoading}
                     />
                 )
             })}

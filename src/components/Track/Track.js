@@ -3,10 +3,24 @@ import Skeleton from 'react-loading-skeleton'
 import { convertSecondsToMinutesAndSeconds } from '../../helpers'
 import { setActiveTrack, setCurrentPlaylist } from '../../store/slices'
 import * as S from './TrackStyles.js'
-import { removeLike, setLike, refreshToken } from '../../Api'
+import {
+    removeLike,
+    setLike,
+    refreshToken,
+    getFavTracks,
+    getAllTracks,
+} from '../../Api'
 import { useEffect, useState } from 'react'
+import { setTracks } from '../../store/slices'
 
-export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
+export const Track = ({
+    track,
+    setIsPlayerVisible,
+    isLoading,
+    playlist,
+    setLoadingTracksError,
+    setIsLoading,
+}) => {
     const dispatch = useDispatch()
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [isFavourite, setIsFavourite] = useState(null)
@@ -20,22 +34,78 @@ export const Track = ({ track, setIsPlayerVisible, isLoading, playlist }) => {
     }
 
     const handleLike = (id) => {
-        setLike(id).then((response) => {
-            if (response.status === 401) {
-                refreshToken()
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((response) => {
-                        localStorage.setItem('accessToken', response.access)
-                    })
-                    .then(() => {
-                        setLike(id)
-                    })
-            } else if (response.status !== 200) {
-                console.log('Произошла ошибка')
-            }
-        })
+        setLike(id)
+            .then((response) => {
+                if (response.status === 401) {
+                    refreshToken()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((response) => {
+                            localStorage.setItem('accessToken', response.access)
+                        })
+                        .then(() => {
+                            setLike(id)
+                        })
+                } else if (response.status !== 200) {
+                    console.log('Произошла ошибка')
+                }
+            })
+            .then(() => {
+                if (playlist === 'fav') {
+                    getFavTracks()
+                        .then((response) => {
+                            if (response.status === 401) {
+                                refreshToken()
+                                    .then((response) => {
+                                        return response.json()
+                                    })
+                                    .then((response) => {
+                                        localStorage.setItem(
+                                            'accessToken',
+                                            response.access,
+                                        )
+                                    })
+                                    .then(async () => {
+                                        const tracksResponse =
+                                            await getFavTracks()
+                                        return tracksResponse.json()
+                                    })
+                                    .then((tracks) => {
+                                        dispatch(setTracks({ tracks }))
+                                        setLoadingTracksError('')
+                                    })
+                            }
+
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else {
+                    getAllTracks()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }
+            })
         setIsFavourite(true)
     }
 
