@@ -18,6 +18,21 @@ export async function getFavTracks() {
     )
 }
 
+export async function getPlaylist(id) {
+    return fetch(
+        `https://skypro-music-api.skyeng.tech/catalog/selection/${id}/`,
+        {
+            method: 'GET',
+        },
+    )
+        .then((response) => {
+            return response.json()
+        })
+        .then((response) => {
+            return response.items
+        })
+}
+
 export async function setLike(id) {
     return fetch(
         `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,

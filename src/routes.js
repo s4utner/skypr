@@ -45,7 +45,18 @@ export const AppRoutes = ({
                         />
                     }
                 ></Route>
-                <Route path="/category/:id" element={<CategoryPage />}></Route>
+                <Route
+                    path="/category/:id"
+                    element={
+                        <CategoryPage
+                            isLoading={isLoading}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
+                        />
+                    }
+                ></Route>
             </Route>
         </Routes>
     )

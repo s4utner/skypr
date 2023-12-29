@@ -1,19 +1,19 @@
 export const Categories = [
     {
         id: 1,
-        title: 'Плейлист дня',
+        title: 'Классичекая музыка',
         img: 'img/playlist01.png',
         alt: `day's playlist`,
     },
     {
         id: 2,
-        title: '100 танцевальных хитов',
+        title: 'Электронная музыка',
         img: 'img/playlist02.png',
         alt: `dance hits`,
     },
     {
         id: 3,
-        title: 'Инди-заряд',
+        title: 'Рок музыка',
         img: 'img/playlist03.png',
         alt: 'indie power',
     },
