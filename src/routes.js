@@ -11,13 +11,9 @@ export const AppRoutes = ({
     user,
     isLoading,
     setIsLoading,
-    isPlayerVisible,
     setIsPlayerVisible,
     loadingTracksError,
-    isPlaying,
-    handleStart,
-    handleStop,
-    togglePlay,
+    setLoadingTracksError,
 }) => {
     return (
         <Routes>
@@ -25,24 +21,42 @@ export const AppRoutes = ({
             <Route path="/register" element={<Register />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
             <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-                <Route path="/favorites" element={<MyTracksPage />}></Route>
+                <Route
+                    path="/favorites"
+                    element={
+                        <MyTracksPage
+                            isLoading={isLoading}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
+                        />
+                    }
+                ></Route>
                 <Route
                     path="/"
                     element={
                         <MainPage
                             isLoading={isLoading}
-                            setIsLoading={setIsLoading}
-                            isPlayerVisible={isPlayerVisible}
                             setIsPlayerVisible={setIsPlayerVisible}
                             loadingTracksError={loadingTracksError}
-                            isPlaying={isPlaying}
-                            handleStart={handleStart}
-                            handleStop={handleStop}
-                            togglePlay={togglePlay}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
                         />
                     }
                 ></Route>
-                <Route path="/category/:id" element={<CategoryPage />}></Route>
+                <Route
+                    path="/category/:id"
+                    element={
+                        <CategoryPage
+                            isLoading={isLoading}
+                            setIsPlayerVisible={setIsPlayerVisible}
+                            loadingTracksError={loadingTracksError}
+                            setIsLoading={setIsLoading}
+                            setLoadingTracksError={setLoadingTracksError}
+                        />
+                    }
+                ></Route>
             </Route>
         </Routes>
     )

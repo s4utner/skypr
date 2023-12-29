@@ -94,7 +94,7 @@ export const AudioPlayer = ({
                                                 dispatch(playPrevTrack())
                                             }
                                         >
-                                            <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                                         </S.PlayerButtonPrevSvg>
                                     </S.PlayerButtonPrev>
                                     <S.PlayerButtonPlay>
@@ -103,9 +103,9 @@ export const AudioPlayer = ({
                                             onClick={togglePlay}
                                         >
                                             {isPlaying ? (
-                                                <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-pause"></use>
                                             ) : (
-                                                <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                                             )}
                                         </S.PlayerButtonPlaySvg>
                                     </S.PlayerButtonPlay>
@@ -116,7 +116,7 @@ export const AudioPlayer = ({
                                                 dispatch(playNextTrack())
                                             }
                                         >
-                                            <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                                         </S.PlayerButtonNextSvg>
                                     </S.PlayerButtonNext>
                                     <S.PlayerButtonRepeat>
@@ -125,7 +125,7 @@ export const AudioPlayer = ({
                                             $islooped={isLooped}
                                             onClick={toggleLoop}
                                         >
-                                            <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                                         </S.PlayerButtonRepeatSvg>
                                     </S.PlayerButtonRepeat>
                                     <S.PlayerButtonShuffle>
@@ -136,7 +136,7 @@ export const AudioPlayer = ({
                                                 dispatch(setIsShuffled())
                                             }}
                                         >
-                                            <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                                         </S.PlayerButtonShuffleSvg>
                                     </S.PlayerButtonShuffle>
                                 </S.PlayerControls>
@@ -156,7 +156,7 @@ export const AudioPlayer = ({
                                                     {activeTrack ? (
                                                         activeTrack.logo
                                                     ) : (
-                                                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                                                        <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                                                     )}
                                                 </S.TrackPlaySvg>
                                             )}
@@ -196,7 +196,7 @@ export const AudioPlayer = ({
                                                     alertFunctionIsNotReady
                                                 }
                                             >
-                                                <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                                             </S.TrackPlayLikeSvg>
                                         </S.TrackPlayLike>
                                         <S.TrackPlayDislike>
@@ -206,7 +206,7 @@ export const AudioPlayer = ({
                                                     alertFunctionIsNotReady
                                                 }
                                             >
-                                                <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                                             </S.TrackPlayDislikeSvg>
                                         </S.TrackPlayDislike>
                                     </S.TrackPlayLikeDis>
@@ -219,7 +219,7 @@ export const AudioPlayer = ({
                                             alt="volume"
                                             onClick={alertFunctionIsNotReady}
                                         >
-                                            <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
                                         </S.VolumeSvg>
                                     </S.VolumeImage>
                                     <S.VolumeProgress>

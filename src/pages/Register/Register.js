@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { UserContext } from '../../Authorization.js'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { register } from '../../Api.js'
+import { register, getToken } from '../../Api.js'
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -13,7 +13,7 @@ export const Register = () => {
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
     const [error, setError] = useState('')
-    const [userData, setUserData] = useContext(UserContext)
+    const [, setUserData] = useContext(UserContext)
 
     const signUpButtonRef = useRef(null)
 
@@ -51,6 +51,14 @@ export const Register = () => {
         localStorage.setItem('user', JSON.stringify(data.username))
         signUpButtonRef.current.disabled = false
         navigate('/')
+
+        const tokenResponse = await getToken({ email, password })
+        const tokens = await tokenResponse.json()
+        const accessToken = tokens.access
+        const refreshToken = tokens.refresh
+
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
     }
 
     return (

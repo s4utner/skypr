@@ -248,6 +248,7 @@ export const TrackPlayLikeSvg = styled.svg`
     height: 12px;
     fill: transparent;
     stroke: #696969;
+    display: none;
 `
 
 export const TrackPlayDislikeSvg = styled.svg`
@@ -255,6 +256,7 @@ export const TrackPlayDislikeSvg = styled.svg`
     height: 13px;
     fill: transparent;
     stroke: #696969;
+    display: none;
 `
 
 export const BarVolumeBlock = styled.div`
