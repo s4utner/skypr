@@ -50,7 +50,7 @@ export const CategoryPage = ({
                         <S.MainCenterblock>
                             <S.CenterblockSearch>
                                 <S.SearchSvg>
-                                    <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
+                                    <use xlinkHref="/img/icon/sprite.svg#icon-search"></use>
                                 </S.SearchSvg>
                                 <S.SearchText
                                     type="search"
@@ -72,7 +72,7 @@ export const CategoryPage = ({
                                     </S.PlaylistTitleAlbum>
                                     <S.PlaylistTitleImage>
                                         <S.PlaylistTitleSvg alt="time">
-                                            <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+                                            <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
                                         </S.PlaylistTitleSvg>
                                     </S.PlaylistTitleImage>
                                 </S.ContentTitle>

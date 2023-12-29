@@ -19,7 +19,7 @@ const NavMenu = () => {
         <S.MainNav>
             <S.NavLogo>
                 <S.LogoImage
-                    src="img/logo.png"
+                    src="/img/logo.png"
                     alt="logo"
                     onClick={() => navigate('/')}
                 />
