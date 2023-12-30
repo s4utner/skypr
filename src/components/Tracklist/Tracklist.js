@@ -10,6 +10,7 @@ const Tracklist = ({
     playlist,
     setLoadingTracksError,
     setIsLoading,
+    categoryId,
 }) => {
     const tracks = useSelector((state) => state.tracks.tracks)
 
@@ -30,6 +31,7 @@ const Tracklist = ({
                         playlist={playlist}
                         setLoadingTracksError={setLoadingTracksError}
                         setIsLoading={setIsLoading}
+                        categoryId={categoryId}
                     />
                 )
             })}

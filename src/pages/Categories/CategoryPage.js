@@ -16,18 +16,19 @@ export const CategoryPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
-    playlist,
 }) => {
     const params = useParams()
     const category = Categories.find(
         (category) => category.id === Number(params.id),
     )
-    const title = `${category.title}`
+    const categoryId = category.id
 
+    const title = `${category.title}`
+    const playlist = 'category'
     const dispatch = useDispatch()
 
     useEffect(() => {
-        getPlaylist(category.id)
+        getPlaylist(categoryId)
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
             })
@@ -38,7 +39,7 @@ export const CategoryPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [setLoadingTracksError, dispatch, setIsLoading, category.id])
+    }, [setLoadingTracksError, dispatch, setIsLoading, categoryId])
 
     return (
         <>
@@ -83,6 +84,7 @@ export const CategoryPage = ({
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    categoryId,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
