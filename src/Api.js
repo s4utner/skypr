@@ -33,6 +33,14 @@ export async function getPlaylist(id) {
         })
 }
 
+export async function getTrack(id) {
+    return fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}`, {
+        method: 'GET',
+    }).then((response) => {
+        return response.json()
+    })
+}
+
 export async function setLike(id) {
     return fetch(
         `https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`,
@@ -84,12 +92,6 @@ export async function removeLike(id) {
         } else if (response.status !== 200) {
             console.log('Произошла ошибка')
         }
-    })
-}
-
-export async function getTrack(id) {
-    return fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}`, {
-        method: 'GET',
     })
 }
 

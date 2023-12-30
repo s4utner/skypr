@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getTrack } from '../Api'
 
 const trackSlice = createSlice({
     name: 'tracks',
@@ -20,7 +21,11 @@ const trackSlice = createSlice({
             state.currentPlaylist = state.tracks
         },
         setActiveTrack(state, action) {
-            state.activeTrack = action.payload.track
+            const trackId = action.payload.track.id
+            getTrack(trackId).then((track) => {
+                console.log(track)
+                state.activeTrack = track
+            })
         },
         setIsShuffled(state) {
             state.isShuffled = !state.isShuffled
