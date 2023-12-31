@@ -43,6 +43,14 @@ export const AudioPlayer = ({
 
     const toggleLoop = isLooped ? handleUnloop : handleLoop
 
+    let isLiked = activeTrack?.stared_user?.some(
+        ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+    )
+
+    if (!activeTrack.stared_user) {
+        isLiked = true
+    }
+
     return (
         isPlayerVisible && (
             <>
@@ -192,9 +200,10 @@ export const AudioPlayer = ({
                                         <S.TrackPlayLike>
                                             <S.TrackPlayLikeSvg
                                                 alt="like"
-                                                onClick={
-                                                    alertFunctionIsNotReady
-                                                }
+                                                $isLiked={isLiked}
+                                                onClick={(event) => {
+                                                    event.stopPropagation()
+                                                }}
                                             >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                                             </S.TrackPlayLikeSvg>

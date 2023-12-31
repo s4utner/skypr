@@ -244,11 +244,11 @@ export const TrackPlayDislike = styled(TrackPlayLike)`
 `
 
 export const TrackPlayLikeSvg = styled.svg`
+    margin-left: 10px;
     width: 14px;
     height: 12px;
-    fill: transparent;
-    stroke: #696969;
-    display: none;
+    fill: ${(props) => (props.$isLiked ? '#B672FF' : 'transparent')};
+    stroke: ${(props) => (props.$isLiked ? 'none' : '#696969')};
 `
 
 export const TrackPlayDislikeSvg = styled.svg`
