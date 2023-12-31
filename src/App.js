@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 
 function App() {
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const [playlist, setPlaylist] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
     const [loadingTracksError, setLoadingTracksError] = useState('')
@@ -50,6 +51,8 @@ function App() {
                                 setIsPlayerVisible={setIsPlayerVisible}
                                 loadingTracksError={loadingTracksError}
                                 setLoadingTracksError={setLoadingTracksError}
+                                playlist={playlist}
+                                setPlaylist={setPlaylist}
                             />
                             {AudioPlayer({
                                 audioRef,
@@ -57,6 +60,10 @@ function App() {
                                 isPlaying,
                                 isPlayerVisible,
                                 isLoading,
+                                playlist,
+                                setPlaylist,
+                                setLoadingTracksError,
+                                setIsLoading,
                             })}
                         </>
                     </S.Container>

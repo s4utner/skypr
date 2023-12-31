@@ -15,10 +15,13 @@ export const MainPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    playlist,
+    setPlaylist,
 }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setPlaylist('main')
         getAllTracks()
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
@@ -30,9 +33,7 @@ export const MainPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [dispatch, setLoadingTracksError, setIsLoading])
-
-    const playlist = 'main'
+    }, [dispatch, setLoadingTracksError, setIsLoading, setPlaylist])
 
     return (
         <>

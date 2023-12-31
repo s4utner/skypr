@@ -11,7 +11,16 @@ import {
     playNextTrack,
     playPrevTrack,
     setIsShuffled,
+    setTracks,
 } from '../../store/slices.js'
+import {
+    setLike,
+    removeLike,
+    getFavTracks,
+    getAllTracks,
+    getPlaylist,
+    refreshToken,
+} from '../../Api.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -19,11 +28,13 @@ export const AudioPlayer = ({
     audioRef,
     togglePlay,
     isPlaying,
+    playlist,
+    setLoadingTracksError,
+    setIsLoading,
 }) => {
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
-
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const isShuffled = useSelector((state) => state.tracks.isShuffled)
     const dispatch = useDispatch()
@@ -49,6 +60,143 @@ export const AudioPlayer = ({
 
     if (!activeTrack.stared_user) {
         isLiked = true
+    }
+
+    const handleLike = (id, categoryId) => {
+        setLike(id).then(() => {
+            if (playlist === 'fav') {
+                getFavTracks()
+                    .then((response) => {
+                        if (response.status === 401) {
+                            refreshToken()
+                                .then((response) => {
+                                    return response.json()
+                                })
+                                .then((response) => {
+                                    localStorage.setItem(
+                                        'accessToken',
+                                        response.access,
+                                    )
+                                })
+                                .then(async () => {
+                                    const tracksResponse = await getFavTracks()
+                                    return tracksResponse.json()
+                                })
+                                .then((tracks) => {
+                                    dispatch(setTracks({ tracks }))
+                                    setLoadingTracksError('')
+                                })
+                        }
+
+                        return response.json()
+                    })
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            } else if (playlist === 'main') {
+                getAllTracks()
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            } else {
+                getPlaylist(categoryId)
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+        })
+    }
+
+    const handleRemoveLike = (id, categoryId) => {
+        removeLike(id).then(() => {
+            if (playlist === 'fav') {
+                getFavTracks()
+                    .then((response) => {
+                        if (response.status === 401) {
+                            refreshToken()
+                                .then((response) => {
+                                    return response.json()
+                                })
+                                .then((response) => {
+                                    localStorage.setItem(
+                                        'accessToken',
+                                        response.access,
+                                    )
+                                })
+                                .then(async () => {
+                                    const tracksResponse = await getFavTracks()
+                                    return tracksResponse.json()
+                                })
+                                .then((tracks) => {
+                                    dispatch(setTracks({ tracks }))
+                                    setLoadingTracksError('')
+                                })
+                        }
+
+                        return response.json()
+                    })
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            } else if (playlist === 'main') {
+                getAllTracks()
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            } else {
+                getPlaylist(categoryId)
+                    .then((tracks) => {
+                        dispatch(setTracks({ tracks }))
+                    })
+                    .then(() => {
+                        setLoadingTracksError('')
+                        setIsLoading(false)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+        })
+    }
+
+    const handleLikeClick = (id, categoryId) => {
+        isLiked ? handleRemoveLike(id, categoryId) : handleLike(id, categoryId)
+        isLiked = !isLiked
     }
 
     return (
@@ -203,6 +351,9 @@ export const AudioPlayer = ({
                                                 $isLiked={isLiked}
                                                 onClick={(event) => {
                                                     event.stopPropagation()
+                                                    handleLikeClick(
+                                                        activeTrack.id,
+                                                    )
                                                 }}
                                             >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>

@@ -14,10 +14,13 @@ export const MyTracksPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    playlist,
+    setPlaylist,
 }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setPlaylist('fav')
         getFavTracks()
             .then((response) => {
                 if (response.status === 401) {
@@ -50,9 +53,7 @@ export const MyTracksPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [setLoadingTracksError, dispatch, setIsLoading])
-
-    const playlist = 'fav'
+    }, [setLoadingTracksError, dispatch, setIsLoading, setPlaylist])
 
     return (
         <>

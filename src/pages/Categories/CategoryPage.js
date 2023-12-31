@@ -16,6 +16,8 @@ export const CategoryPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    playlist,
+    setPlaylist,
 }) => {
     const params = useParams()
     const category = Categories.find(
@@ -24,10 +26,10 @@ export const CategoryPage = ({
     const categoryId = category.id
 
     const title = `${category.title}`
-    const playlist = 'category'
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setPlaylist('category')
         getPlaylist(categoryId)
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
@@ -39,7 +41,7 @@ export const CategoryPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [setLoadingTracksError, dispatch, setIsLoading, categoryId])
+    }, [setLoadingTracksError, dispatch, setIsLoading, categoryId, setPlaylist])
 
     return (
         <>
