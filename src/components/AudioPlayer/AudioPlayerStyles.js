@@ -327,7 +327,6 @@ export const TrackPlayDislikeSvg = styled.svg`
     height: 13px;
     fill: transparent;
     stroke: #696969;
-    display: none;
 `
 
 export const TrackPlayLikeDis = styled.div`
@@ -356,6 +355,6 @@ export const TrackPlayDislike = styled(TrackPlayLike)`
 export const LikeButton = styled.svg`
     width: 14px;
     height: 12px;
-    fill: ${(props) => (props.$isLiked ? '#B672FF' : 'transparent')};
-    stroke: ${(props) => (props.$isLiked ? 'none' : '#696969')};
+    fill: transparent;
+    stroke: #696969;
 `

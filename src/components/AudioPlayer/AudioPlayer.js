@@ -11,9 +11,16 @@ import {
     playNextTrack,
     playPrevTrack,
     setIsShuffled,
-    setTracks
+    setTracks,
 } from '../../store/slices.js'
-import { setLike, refreshToken, getAllTracks, getFavTracks, getPlaylist, removeLike } from '../../Api.js'
+import {
+    setLike,
+    refreshToken,
+    getAllTracks,
+    getFavTracks,
+    getPlaylist,
+    removeLike,
+} from '../../Api.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -180,10 +187,6 @@ export const AudioPlayer = ({
             })
     }
 
-    const handleLikeClick = (id) => {
-        isLiked ? handleRemoveLike(id) : handleLike(id)
-    }
-
     return (
         isPlayerVisible && (
             <>
@@ -336,14 +339,22 @@ export const AudioPlayer = ({
                                                 $isLiked={isLiked}
                                                 onClick={(event) => {
                                                     event.stopPropagation()
-                                                    handleLikeClick(activeTrack.id)
+                                                    handleLike(activeTrack.id)
                                                 }}
                                             >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
                                             </S.LikeButton>
                                         </S.TrackPlayLike>
                                         <S.TrackPlayDislike>
-                                            <S.TrackPlayDislikeSvg alt="dislike">
+                                            <S.TrackPlayDislikeSvg
+                                                alt="dislike"
+                                                onClick={(event) => {
+                                                    event.stopPropagation()
+                                                    handleRemoveLike(
+                                                        activeTrack.id,
+                                                    )
+                                                }}
+                                            >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                                             </S.TrackPlayDislikeSvg>
                                         </S.TrackPlayDislike>
