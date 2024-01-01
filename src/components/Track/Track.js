@@ -20,10 +20,11 @@ export const Track = ({
     playlist,
     setLoadingTracksError,
     setIsLoading,
-    categoryId,
 }) => {
     const dispatch = useDispatch()
+
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const categoryId = useSelector((state) => state.tracks.categoryId)
 
     let isLiked = track?.stared_user?.some(
         ({ username }) => username === JSON.parse(localStorage.getItem('user')),
@@ -33,7 +34,7 @@ export const Track = ({
         isLiked = true
     }
 
-    const handleLike = (id, categoryId) => {
+    const handleLike = (id) => {
         setLike(id)
             .then((response) => {
                 if (response.status === 401) {
@@ -95,7 +96,7 @@ export const Track = ({
             })
     }
 
-    const handleRemoveLike = (id, categoryId) => {
+    const handleRemoveLike = (id) => {
         removeLike(id)
             .then((response) => {
                 if (response.status === 401) {
@@ -157,8 +158,8 @@ export const Track = ({
             })
     }
 
-    const handleLikeClick = (id, categoryId) => {
-        isLiked ? handleRemoveLike(id, categoryId) : handleLike(id, categoryId)
+    const handleLikeClick = (id) => {
+        isLiked ? handleRemoveLike(id) : handleLike(id)
     }
 
     return (
@@ -243,7 +244,7 @@ export const Track = ({
                                 alt="time"
                                 onClick={(event) => {
                                     event.stopPropagation()
-                                    handleLikeClick(track.id, categoryId)
+                                    handleLikeClick(track.id)
                                 }}
                             >
                                 <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>

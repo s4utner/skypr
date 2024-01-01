@@ -11,8 +11,9 @@ import {
     playNextTrack,
     playPrevTrack,
     setIsShuffled,
+    setTracks
 } from '../../store/slices.js'
-import { LikeButton } from './LikeButton/LikeButton.js'
+import { setLike, refreshToken, getAllTracks, getFavTracks, getPlaylist, removeLike } from '../../Api.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -28,6 +29,7 @@ export const AudioPlayer = ({
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const categoryId = useSelector((state) => state.tracks.categoryId)
     const isShuffled = useSelector((state) => state.tracks.isShuffled)
     const dispatch = useDispatch()
     const progressBarRef = useRef(null)
@@ -45,6 +47,142 @@ export const AudioPlayer = ({
     }
 
     const toggleLoop = isLooped ? handleUnloop : handleLoop
+
+    let isLiked = activeTrack?.stared_user?.some(
+        ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+    )
+
+    if (!activeTrack.stared_user) {
+        isLiked = true
+    }
+
+    const handleLike = (id) => {
+        setLike(id)
+            .then((response) => {
+                if (response.status === 401) {
+                    refreshToken()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((response) => {
+                            localStorage.setItem('accessToken', response.access)
+                        })
+                        .then(() => {
+                            setLike(id)
+                        })
+                } else if (response.status !== 200) {
+                    console.log('Произошла ошибка')
+                }
+            })
+            .then(() => {
+                if (playlist === 'fav') {
+                    getFavTracks()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else if (playlist === 'main') {
+                    getAllTracks()
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else {
+                    getPlaylist(categoryId)
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }
+            })
+    }
+
+    const handleRemoveLike = (id) => {
+        removeLike(id)
+            .then((response) => {
+                if (response.status === 401) {
+                    refreshToken()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((response) => {
+                            localStorage.setItem('accessToken', response.access)
+                        })
+                        .then(() => {
+                            removeLike(id)
+                        })
+                } else if (response.status !== 200) {
+                    console.log('Произошла ошибка')
+                }
+            })
+            .then(() => {
+                if (playlist === 'fav') {
+                    getFavTracks()
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else if (playlist === 'main') {
+                    getAllTracks()
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                } else {
+                    getPlaylist(categoryId)
+                        .then((tracks) => {
+                            dispatch(setTracks({ tracks }))
+                        })
+                        .then(() => {
+                            setLoadingTracksError('')
+                            setIsLoading(false)
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                }
+            })
+    }
+
+    const handleLikeClick = (id) => {
+        isLiked ? handleRemoveLike(id) : handleLike(id)
+    }
 
     return (
         isPlayerVisible && (
@@ -191,13 +329,25 @@ export const AudioPlayer = ({
                                             )}
                                         </S.TrackPlayAlbum>
                                     </S.TrackPlayContain>
-                                    <LikeButton
-                                        setIsLoading={setIsLoading}
-                                        setLoadingTracksError={
-                                            setLoadingTracksError
-                                        }
-                                        playlist={playlist}
-                                    />
+                                    <S.TrackPlayLikeDis>
+                                        <S.TrackPlayLike>
+                                            <S.LikeButton
+                                                alt="like"
+                                                $isLiked={isLiked}
+                                                onClick={(event) => {
+                                                    event.stopPropagation()
+                                                    handleLikeClick(activeTrack.id)
+                                                }}
+                                            >
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
+                                            </S.LikeButton>
+                                        </S.TrackPlayLike>
+                                        <S.TrackPlayDislike>
+                                            <S.TrackPlayDislikeSvg alt="dislike">
+                                                <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
+                                            </S.TrackPlayDislikeSvg>
+                                        </S.TrackPlayDislike>
+                                    </S.TrackPlayLikeDis>
                                 </S.PlayerTrackPlay>
                             </S.BarPlayer>
                             <S.BarVolumeBlock>
