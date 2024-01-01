@@ -5,7 +5,7 @@ import Tracklist from '../../components/Tracklist/Tracklist.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { setTracks } from '../../store/slices.js'
 import { getAllTracks } from '../../Api.js'
 
@@ -18,6 +18,7 @@ export const MainPage = ({
     playlist,
     setPlaylist,
 }) => {
+    const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -51,6 +52,9 @@ export const MainPage = ({
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) => {
+                                        setSearchText(event.target.value)
+                                    }}
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>Треки</S.CenterblockHeading>
@@ -79,6 +83,7 @@ export const MainPage = ({
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    searchText,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

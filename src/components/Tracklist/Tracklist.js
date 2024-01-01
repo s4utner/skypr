@@ -11,8 +11,17 @@ const Tracklist = ({
     setLoadingTracksError,
     setIsLoading,
     categoryId,
+    searchText,
 }) => {
     const tracks = useSelector((state) => state.tracks.tracks)
+
+    if (searchText) {
+        const filteredTracks = tracks.filter((track) =>
+            track.name.toLowerCase().includes(searchText.toLowerCase()),
+        )
+
+        console.log(filteredTracks)
+    }
 
     return (
         <S.ContentPlaylist>
