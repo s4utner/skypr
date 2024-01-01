@@ -8,7 +8,7 @@ import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getPlaylist } from '../../Api.js'
-import { setTracks } from '../../store/slices.js'
+import { setCategoryId, setTracks } from '../../store/slices.js'
 
 export const CategoryPage = ({
     isLoading,
@@ -30,6 +30,7 @@ export const CategoryPage = ({
 
     useEffect(() => {
         setPlaylist('category')
+        dispatch(setCategoryId({ categoryId }))
         getPlaylist(categoryId)
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))

@@ -18,6 +18,7 @@ export const LikeButton = ({
     const dispatch = useDispatch()
 
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const categoryId = useSelector((state) => state.tracks.categoryId)
 
     let isLiked = activeTrack?.stared_user?.some(
         ({ username }) => username === JSON.parse(localStorage.getItem('user')),
@@ -27,7 +28,7 @@ export const LikeButton = ({
         isLiked = true
     }
 
-    const handleLike = (id, categoryId) => {
+    const handleLike = (id) => {
         setLike(id)
             .then((response) => {
                 if (response.status === 401) {
@@ -89,7 +90,7 @@ export const LikeButton = ({
             })
     }
 
-    const handleRemoveLike = (id, categoryId) => {
+    const handleRemoveLike = (id) => {
         removeLike(id)
             .then((response) => {
                 if (response.status === 401) {
@@ -151,8 +152,8 @@ export const LikeButton = ({
             })
     }
 
-    const handleLikeClick = (id, categoryId) => {
-        isLiked ? handleRemoveLike(id, categoryId) : handleLike(id, categoryId)
+    const handleLikeClick = (id) => {
+        isLiked ? handleRemoveLike(id) : handleLike(id)
         isLiked = !isLiked
     }
     return (
