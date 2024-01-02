@@ -45,22 +45,28 @@ const Tracklist = ({
                     {loadingTracksError}
                 </S.LoadingTracksError>
             )}
-            {filterResult.length > 0
-                ? filterResult.map((track) => {
-                      return (
-                          <Track
-                              key={track.id}
-                              track={track}
-                              setIsPlayerVisible={setIsPlayerVisible}
-                              isLoading={isLoading}
-                              playlist={playlist}
-                              setLoadingTracksError={setLoadingTracksError}
-                              setIsLoading={setIsLoading}
-                              categoryId={categoryId}
-                          />
+            {searchText
+                ? filterResult.length > 0
+                    ? filterResult.map((track) => {
+                          setLoadingTracksError('')
+                          return (
+                              <Track
+                                  key={track.id}
+                                  track={track}
+                                  setIsPlayerVisible={setIsPlayerVisible}
+                                  isLoading={isLoading}
+                                  playlist={playlist}
+                                  setLoadingTracksError={setLoadingTracksError}
+                                  setIsLoading={setIsLoading}
+                                  categoryId={categoryId}
+                              />
+                          )
+                      })
+                    : setLoadingTracksError(
+                          'По вашему запросу ничего не найдено',
                       )
-                  })
                 : tracks.map((track) => {
+                      setLoadingTracksError('')
                       return (
                           <Track
                               key={track.id}
