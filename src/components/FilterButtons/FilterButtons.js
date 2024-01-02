@@ -4,7 +4,7 @@ import { YearList } from '../FilterLists/YearList.js'
 import { GenreList } from '../FilterLists/GenreList.js'
 import * as S from './FilterButtonsStyles.js'
 
-export const FilterButtons = () => {
+export const FilterButtons = ({ tracks }) => {
     const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
     const [isActiveYearButton, setIsActiveYearButton] = useState(false)
     const [isActiveGenreButton, setIsActiveGenreButton] = useState(false)
@@ -61,7 +61,7 @@ export const FilterButtons = () => {
                 >
                     исполнителю
                 </S.FilterButton>
-                {visibleAuthor && AuthorList()}
+                {visibleAuthor && AuthorList({ tracks })}
             </S.FilterContent>
             <S.FilterContent>
                 <S.FilterButton

@@ -1,7 +1,6 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { Track } from '../Track/Track.js'
-import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 const Tracklist = ({
@@ -13,8 +12,8 @@ const Tracklist = ({
     setIsLoading,
     categoryId,
     searchText,
+    tracks,
 }) => {
-    const tracks = useSelector((state) => state.tracks.tracks)
     const [filterResult, setFilterResult] = useState([])
 
     useEffect(() => {

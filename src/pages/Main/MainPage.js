@@ -4,7 +4,7 @@ import { FilterButtons } from '../../components/FilterButtons/FilterButtons.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { setTracks } from '../../store/slices.js'
 import { getAllTracks } from '../../Api.js'
@@ -18,6 +18,7 @@ export const MainPage = ({
     playlist,
     setPlaylist,
 }) => {
+    const tracks = useSelector((state) => state.tracks.tracks)
     const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch()
 
@@ -58,7 +59,7 @@ export const MainPage = ({
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>Треки</S.CenterblockHeading>
-                            {FilterButtons()}
+                            {FilterButtons({tracks})}
                             <S.CenterblockContent>
                                 <S.ContentTitle>
                                     <S.PlaylistTitleTrack>
@@ -84,6 +85,7 @@ export const MainPage = ({
                                     setLoadingTracksError,
                                     playlist,
                                     searchText,
+                                    tracks,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
