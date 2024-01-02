@@ -33,10 +33,12 @@ const Tracklist = ({
             )
 
             setFilterResult(filteredTracks)
+            setLoadingTracksError('')
         } else {
             setFilterResult(tracks)
+            setLoadingTracksError('')
         }
-    }, [setFilterResult, searchText, tracks])
+    }, [setFilterResult, searchText, tracks, setLoadingTracksError])
 
     return (
         <S.ContentPlaylist>
@@ -48,7 +50,6 @@ const Tracklist = ({
             {searchText
                 ? filterResult.length > 0
                     ? filterResult.map((track) => {
-                          setLoadingTracksError('')
                           return (
                               <Track
                                   key={track.id}
@@ -66,7 +67,6 @@ const Tracklist = ({
                           'По вашему запросу ничего не найдено',
                       )
                 : tracks.map((track) => {
-                      setLoadingTracksError('')
                       return (
                           <Track
                               key={track.id}
