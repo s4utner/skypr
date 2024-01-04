@@ -134,7 +134,11 @@ const AuthorList = ({
         .map((track) => {
             return { id: track.id, author: track.author }
         })
-        .sort()
+        .filter(
+            (value, index, self) =>
+                self.findIndex((item) => item.author === value.author) ===
+                index,
+        )
 
     const clickOnAuthor = (author) => {
         console.log(selectedAuthors.includes(author))
@@ -179,9 +183,14 @@ const GenreList = ({
     isSelectedGenre,
     setIsSelectedGenre,
 }) => {
-    let genres = tracks.map((track) => {
-        return { id: track.id, genre: track.genre }
-    })
+    let genres = tracks
+        .map((track) => {
+            return { id: track.id, genre: track.genre }
+        })
+        .filter(
+            (value, index, self) =>
+                self.findIndex((item) => item.genre === value.genre) === index,
+        )
 
     const clickOnGenre = (genre) => {
         console.log(selectedGenres.includes(genre))
