@@ -76,6 +76,7 @@ export const PopupList = styled.ul`
 
 export const PopupItem = styled.li`
     transition: all 0.1s;
+    color: ${(props) => (props.$isActive ? '#ad61ff' : '#fff')};
     &:hover {
         color: #b672ff;
         cursor: pointer;

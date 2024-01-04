@@ -202,14 +202,18 @@ const GenreList = ({
         setSelectedGenres([...selectedGenres, genre])
     }
 
-    console.log(genres)
+    console.log(selectedGenres)
     return (
         <S.PopupList>
             {genres.map((genre) => {
                 return (
                     <S.PopupItem
                         key={genre.id}
-                        onClick={() => clickOnGenre(genre.genre)}
+                        $isActive={isSelectedGenre}
+                        onClick={() => {
+                            clickOnGenre(genre.genre)
+                            setIsSelectedGenre(!isSelectedGenre)
+                        }}
                     >
                         {genre.genre}
                     </S.PopupItem>
