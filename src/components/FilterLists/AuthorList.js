@@ -1,9 +1,13 @@
 import * as S from './FIlterListsStyles.js'
 
 export const AuthorList = ({ tracks }) => {
-    const authors = tracks.map((track) => {
-        return { id: track.id, author: track.author }
-    })
+    let authors = tracks
+        .map((track) => {
+            return { id: track.id, author: track.author }
+        })
+        .filter((author) => {
+            return author.author !== '-'
+        })
 
     console.log(authors)
 

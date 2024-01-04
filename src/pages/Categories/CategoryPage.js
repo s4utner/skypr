@@ -5,7 +5,7 @@ import { Categories } from '../../constants.js'
 import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getPlaylist } from '../../Api.js'
 import { setCategoryId, setTracks } from '../../store/slices.js'
@@ -27,6 +27,7 @@ export const CategoryPage = ({
 
     const title = `${category.title}`
     const dispatch = useDispatch()
+    const tracks = useSelector((state) => state.tracks.tracks)
 
     useEffect(() => {
         setPlaylist('category')
@@ -88,6 +89,7 @@ export const CategoryPage = ({
                                     setLoadingTracksError,
                                     playlist,
                                     categoryId,
+                                    tracks,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

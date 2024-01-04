@@ -17,6 +17,7 @@ const Tracklist = ({
     const [filterResult, setFilterResult] = useState([])
 
     useEffect(() => {
+        console.log(searchText)
         if (searchText) {
             const filteredTracks = tracks.filter(
                 (track) =>

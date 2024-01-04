@@ -3,7 +3,7 @@ import { GlobalStyle } from '../../GlobalStyle.js'
 import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getFavTracks, refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
@@ -18,6 +18,7 @@ export const MyTracksPage = ({
     setPlaylist,
 }) => {
     const dispatch = useDispatch()
+    const tracks = useSelector((state) => state.tracks.tracks)
 
     useEffect(() => {
         setPlaylist('fav')
@@ -100,6 +101,7 @@ export const MyTracksPage = ({
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    tracks,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
