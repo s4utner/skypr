@@ -20,6 +20,8 @@ export const MainPage = ({
 }) => {
     const tracks = useSelector((state) => state.tracks.tracks)
     const [searchText, setSearchText] = useState('')
+    const [isSelectedAuthor, setIsSelectedAuthor] = useState(false)
+    const [selectedAuthors, setSelectedAuthors] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -59,7 +61,13 @@ export const MainPage = ({
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>Треки</S.CenterblockHeading>
-                            {FilterButtons({tracks})}
+                            {FilterButtons({
+                                tracks,
+                                selectedAuthors,
+                                setSelectedAuthors,
+                                isSelectedAuthor,
+                                setIsSelectedAuthor,
+                            })}
                             <S.CenterblockContent>
                                 <S.ContentTitle>
                                     <S.PlaylistTitleTrack>
@@ -86,6 +94,7 @@ export const MainPage = ({
                                     playlist,
                                     searchText,
                                     tracks,
+                                    selectedAuthors,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>

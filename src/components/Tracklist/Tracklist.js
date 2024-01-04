@@ -13,13 +13,14 @@ const Tracklist = ({
     categoryId,
     searchText,
     tracks,
+    selectedAuthors,
 }) => {
     const [filterResult, setFilterResult] = useState([])
 
     useEffect(() => {
-        console.log(searchText)
+        let filteredTracks = []
         if (searchText) {
-            const filteredTracks = tracks.filter(
+            filteredTracks = tracks.filter(
                 (track) =>
                     track.name
                         .toLowerCase()
@@ -38,7 +39,16 @@ const Tracklist = ({
             setFilterResult(tracks)
             setLoadingTracksError('')
         }
-    }, [setFilterResult, searchText, tracks, setLoadingTracksError])
+
+        if (selectedAuthors) {
+        }
+    }, [
+        setFilterResult,
+        searchText,
+        tracks,
+        setLoadingTracksError,
+        selectedAuthors,
+    ])
 
     return (
         <S.ContentPlaylist>

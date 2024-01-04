@@ -12,6 +12,17 @@ export const CenterblockFilter = styled.div`
     -ms-flex-align: center;
     align-items: center;
     margin-bottom: 51px;
+    justify-content: space-between;
+`
+
+export const LeftFilters = styled.div`
+    display: flex;
+    align-items: center;
+`
+
+export const RightFilter = styled.div`
+    display: flex;
+    align-items: center;
 `
 
 export const FilterTitle = styled.div`
@@ -44,4 +55,31 @@ export const FilterButton = styled.div`
     border: ${(props) =>
         props.$isActive ? '1px solid #ad61ff' : '1px solid #ffffff'};
     color: ${(props) => (props.$isActive ? '#ad61ff' : '')};
+`
+
+export const PopupList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    background-color: #313131;
+    color: #fff;
+    max-height: 305px;
+    max-width: 248px;
+    box-sizing: border-box;
+    padding: 34px;
+    border-radius: 12px;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    overflow: scroll;
+    margin-top: 10px;
+`
+
+export const PopupItem = styled.li`
+    transition: all 0.1s;
+    &:hover {
+        color: #b672ff;
+        cursor: pointer;
+        text-decoration: underline;
+    }
 `
