@@ -41,6 +41,7 @@ export const FilterContent = styled.div`
 `
 
 export const FilterButton = styled.div`
+    position: relative;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -64,8 +65,6 @@ export const PopupList = styled.ul`
     background-color: #313131;
     color: #fff;
     max-height: 305px;
-    max-width: 248px;
-    box-sizing: border-box;
     padding: 34px;
     border-radius: 12px;
     z-index: 2;
@@ -82,4 +81,19 @@ export const PopupItem = styled.li`
         cursor: pointer;
         text-decoration: underline;
     }
+`
+
+export const FilterCounter = styled.div`
+    width: 26px;
+    height: 26px;
+    border-radius: 45px;
+    background-color: #ad61ff;
+    color: #fff;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `

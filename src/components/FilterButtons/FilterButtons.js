@@ -7,51 +7,57 @@ export const FilterButtons = ({
     setSelectedAuthors,
     isSelectedAuthor,
     setIsSelectedAuthor,
+    selectedGenres,
+    setSelectedGenres,
+    isSelectedGenre,
+    setIsSelectedGenre,
 }) => {
     const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
-    const [isActiveYearButton, setIsActiveYearButton] = useState(false)
+    const [isActiveDateButton, setIsActiveDateButton] = useState(false)
     const [isActiveGenreButton, setIsActiveGenreButton] = useState(false)
 
     const [activeAuthor, setActiveAuthor] = useState(false)
-    const [activeYear, setActiveYear] = useState(false)
+    const [activeDate, setActiveDate] = useState(false)
     const [activeGenre, setActiveGenre] = useState(false)
 
     const [visibleAuthor, setVisibleAuthor] = useState(false)
-    const [visibleYear, setVisibleYear] = useState(false)
+    const [visibleDate, setVisibleDate] = useState(false)
     const [visibleGenre, setVisibleGenre] = useState(false)
+
+    const [activeDateFilter, setActiveDateFilter] = useState('По умолчанию')
 
     const clickOnAuthorFilter = () => {
         setIsActiveAuthorButton(!isActiveAuthorButton)
-        setIsActiveYearButton(false)
+        setIsActiveDateButton(false)
         setIsActiveGenreButton(false)
         setActiveAuthor(!activeAuthor)
-        setActiveYear(false)
+        setActiveDate(false)
         setActiveGenre(false)
         setVisibleAuthor(!visibleAuthor)
-        setVisibleYear(false)
+        setVisibleDate(false)
         setVisibleGenre(false)
     }
-    const clickOnYearFilter = () => {
+    const clickOnDateFilter = () => {
         setIsActiveAuthorButton(false)
-        setIsActiveYearButton(!isActiveYearButton)
+        setIsActiveDateButton(!isActiveDateButton)
         setIsActiveGenreButton(false)
         setActiveAuthor(false)
-        setActiveYear(!activeYear)
+        setActiveDate(!activeDate)
         setActiveGenre(false)
-        setVisibleYear(!visibleYear)
+        setVisibleDate(!visibleDate)
         setVisibleAuthor(false)
         setVisibleGenre(false)
     }
     const clickOnGenreFilter = () => {
         setIsActiveAuthorButton(false)
-        setIsActiveYearButton(false)
+        setIsActiveDateButton(false)
         setIsActiveGenreButton(!isActiveGenreButton)
         setActiveAuthor(false)
-        setActiveYear(false)
+        setActiveDate(false)
         setActiveGenre(!activeGenre)
         setVisibleGenre(!visibleGenre)
         setVisibleAuthor(false)
-        setVisibleYear(false)
+        setVisibleDate(false)
     }
 
     return (
@@ -59,6 +65,11 @@ export const FilterButtons = ({
             <S.LeftFilters>
                 <S.FilterTitle>Искать по:</S.FilterTitle>
                 <S.FilterContent>
+                    {selectedAuthors.length > 0 && (
+                        <S.FilterCounter>
+                            {selectedAuthors.length}
+                        </S.FilterCounter>
+                    )}
                     <S.FilterButton
                         $isActive={isActiveAuthorButton}
                         onClick={clickOnAuthorFilter}
@@ -75,25 +86,37 @@ export const FilterButtons = ({
                         })}
                 </S.FilterContent>
                 <S.FilterContent>
+                    {selectedGenres.length > 0 && (
+                        <S.FilterCounter>
+                            {selectedGenres.length}
+                        </S.FilterCounter>
+                    )}
                     <S.FilterButton
                         $isActive={isActiveGenreButton}
                         onClick={clickOnGenreFilter}
                     >
                         жанру
                     </S.FilterButton>
-                    {visibleGenre && GenreList({ tracks })}
+                    {visibleGenre &&
+                        GenreList({
+                            tracks,
+                            selectedGenres,
+                            setSelectedGenres,
+                            isSelectedGenre,
+                            setIsSelectedGenre,
+                        })}
                 </S.FilterContent>
             </S.LeftFilters>
             <S.RightFilter>
                 <S.FilterTitle>Сортировка:</S.FilterTitle>
                 <S.FilterContent>
                     <S.FilterButton
-                        $isActive={isActiveYearButton}
-                        onClick={clickOnYearFilter}
+                        $isActive={isActiveDateButton}
+                        onClick={clickOnDateFilter}
                     >
-                        году выпуска
+                        {activeDateFilter}
                     </S.FilterButton>
-                    {visibleYear && YearList()}
+                    {visibleDate && DateList({ setActiveDateFilter })}
                 </S.FilterContent>
             </S.RightFilter>
         </S.CenterblockFilter>
@@ -111,15 +134,17 @@ const AuthorList = ({
         .map((track) => {
             return { id: track.id, author: track.author }
         })
-        .filter((author) => {
-            return author.author !== '-'
-        })
+        .sort()
 
     const clickOnAuthor = (author) => {
         console.log(selectedAuthors.includes(author))
 
         if (selectedAuthors.includes(author)) {
-            setSelectedAuthors(null)
+            setSelectedAuthors(
+                selectedAuthors.filter((selectedAuthor) => {
+                    return selectedAuthor !== author
+                }),
+            )
         }
 
         setSelectedAuthors([...selectedAuthors, author])
@@ -147,32 +172,68 @@ const AuthorList = ({
     )
 }
 
-const GenreList = ({ tracks }) => {
+const GenreList = ({
+    tracks,
+    selectedGenres,
+    setSelectedGenres,
+    isSelectedGenre,
+    setIsSelectedGenre,
+}) => {
     let genres = tracks.map((track) => {
         return { id: track.id, genre: track.genre }
     })
 
+    const clickOnGenre = (genre) => {
+        console.log(selectedGenres.includes(genre))
+
+        if (selectedGenres.includes(genre)) {
+            setSelectedGenres(null)
+        }
+
+        setSelectedGenres([...selectedGenres, genre])
+    }
+
     console.log(genres)
     return (
         <S.PopupList>
-            <S.PopupItem>Рок</S.PopupItem>
-            <S.PopupItem>Хип-хоп</S.PopupItem>
-            <S.PopupItem>Поп-музыка</S.PopupItem>
-            <S.PopupItem>Техно</S.PopupItem>
-            <S.PopupItem>Инди</S.PopupItem>
+            {genres.map((genre) => {
+                return (
+                    <S.PopupItem
+                        key={genre.key}
+                        onClick={() => clickOnGenre(genre.genre)}
+                    >
+                        {genre.genre}
+                    </S.PopupItem>
+                )
+            })}
         </S.PopupList>
     )
 }
 
-const YearList = () => {
+const DateList = ({ setActiveDateFilter }) => {
     return (
         <S.PopupList>
-            <S.PopupItem>1991</S.PopupItem>
-            <S.PopupItem>1992</S.PopupItem>
-            <S.PopupItem>1993</S.PopupItem>
-            <S.PopupItem>1994</S.PopupItem>
-            <S.PopupItem>1995</S.PopupItem>
-            <S.PopupItem>1996</S.PopupItem>
+            <S.PopupItem
+                onClick={() => {
+                    setActiveDateFilter('По умолчанию')
+                }}
+            >
+                По умолчанию
+            </S.PopupItem>
+            <S.PopupItem
+                onClick={() => {
+                    setActiveDateFilter('Сначала старые')
+                }}
+            >
+                Сначала старые
+            </S.PopupItem>
+            <S.PopupItem
+                onClick={() => {
+                    setActiveDateFilter('Сначала новые')
+                }}
+            >
+                Сначала новые
+            </S.PopupItem>
         </S.PopupList>
     )
 }

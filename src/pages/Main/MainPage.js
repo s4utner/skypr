@@ -22,6 +22,8 @@ export const MainPage = ({
     const [searchText, setSearchText] = useState('')
     const [isSelectedAuthor, setIsSelectedAuthor] = useState(false)
     const [selectedAuthors, setSelectedAuthors] = useState([])
+    const [isSelectedGenre, setIsSelectedGenre] = useState(false)
+    const [selectedGenres, setSelectedGenres] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -67,6 +69,10 @@ export const MainPage = ({
                                 setSelectedAuthors,
                                 isSelectedAuthor,
                                 setIsSelectedAuthor,
+                                selectedGenres,
+                                setSelectedGenres,
+                                isSelectedGenre,
+                                setIsSelectedGenre,
                             })}
                             <S.CenterblockContent>
                                 <S.ContentTitle>
