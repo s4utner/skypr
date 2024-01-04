@@ -199,7 +199,7 @@ const GenreList = ({
             {genres.map((genre) => {
                 return (
                     <S.PopupItem
-                        key={genre.key}
+                        key={genre.id}
                         onClick={() => clickOnGenre(genre.genre)}
                     >
                         {genre.genre}
