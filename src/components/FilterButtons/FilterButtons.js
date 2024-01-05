@@ -5,16 +5,10 @@ export const FilterButtons = ({
     tracks,
     selectedAuthors,
     setSelectedAuthors,
-    isSelectedAuthor,
-    setIsSelectedAuthor,
     selectedGenres,
     setSelectedGenres,
-    isSelectedGenre,
-    setIsSelectedGenre,
     selectedSort,
     setSelectedSort,
-    isSelectedSort,
-    setIsSelectedSort,
 }) => {
     const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
     const [isActiveDateButton, setIsActiveDateButton] = useState(false)
@@ -83,8 +77,6 @@ export const FilterButtons = ({
                             tracks,
                             selectedAuthors,
                             setSelectedAuthors,
-                            isSelectedAuthor,
-                            setIsSelectedAuthor,
                         })}
                 </S.FilterContent>
                 <S.FilterContent>
@@ -104,8 +96,6 @@ export const FilterButtons = ({
                             tracks,
                             selectedGenres,
                             setSelectedGenres,
-                            isSelectedGenre,
-                            setIsSelectedGenre,
                         })}
                 </S.FilterContent>
             </S.LeftFilters>
@@ -122,8 +112,6 @@ export const FilterButtons = ({
                         DateList({
                             selectedSort,
                             setSelectedSort,
-                            isSelectedSort,
-                            setIsSelectedSort,
                         })}
                 </S.FilterContent>
             </S.RightFilter>
@@ -216,8 +204,6 @@ const GenreList = ({ tracks, selectedGenres, setSelectedGenres }) => {
 const DateList = ({
     selectedSort,
     setSelectedSort,
-    isSelectedSort,
-    setIsSelectedSort,
 }) => {
     const defaultTracks = 'По умолчанию'
     const descTracks = 'Сначала новые'
