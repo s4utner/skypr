@@ -20,7 +20,7 @@ const Tracklist = ({
     const getFilteredTracks = () => {
         let allTracks = tracks
 
-        if (searchText.split('').length > 0) {
+        if (searchText && searchText.split('').length > 0) {
             allTracks = allTracks.filter(
                 (track) =>
                     track.name
@@ -37,7 +37,7 @@ const Tracklist = ({
             setLoadingTracksError('')
         }
 
-        if (selectedAuthors.length > 0) {
+        if (selectedAuthors && selectedAuthors.length > 0) {
             allTracks = allTracks.filter((track) =>
                 selectedAuthors.includes(track.author),
             )
@@ -45,7 +45,7 @@ const Tracklist = ({
             setLoadingTracksError('')
         }
 
-        if (selectedGenres.length > 0) {
+        if (selectedGenres && selectedGenres.length > 0) {
             allTracks = allTracks.filter((track) =>
                 selectedGenres.includes(track.genre),
             )
@@ -53,13 +53,13 @@ const Tracklist = ({
             setLoadingTracksError('')
         }
 
-        if (selectedSort === 'Сначала новые') {
+        if (selectedSort && selectedSort === 'Сначала новые') {
             allTracks = [...allTracks].sort((a, b) =>
                 compareDesc(new Date(a.release_date), new Date(b.release_date)),
             )
         }
 
-        if (selectedSort === 'Сначала старые') {
+        if (selectedSort && selectedSort === 'Сначала старые') {
             allTracks = [...allTracks].sort((a, b) =>
                 compareAsc(new Date(a.release_date), new Date(b.release_date)),
             )
