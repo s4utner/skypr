@@ -152,8 +152,6 @@ const AuthorList = ({
         }
     }
 
-    console.log(selectedAuthors)
-
     return (
         <S.PopupList>
             {authors.map((author) => {
