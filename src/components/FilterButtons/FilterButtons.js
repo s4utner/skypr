@@ -141,17 +141,15 @@ const AuthorList = ({
         )
 
     const clickOnAuthor = (author) => {
-        console.log(selectedAuthors.includes(author))
-
         if (selectedAuthors.includes(author)) {
-            setSelectedAuthors(
-                selectedAuthors.filter((selectedAuthor) => {
-                    return selectedAuthor !== author
-                }),
-            )
-        }
+            const authors = selectedAuthors.filter((selectedAuthor) => {
+                return selectedAuthor !== author
+            })
 
-        setSelectedAuthors([...selectedAuthors, author])
+            setSelectedAuthors(authors)
+        } else {
+            setSelectedAuthors([...selectedAuthors, author])
+        }
     }
 
     console.log(selectedAuthors)
@@ -193,16 +191,16 @@ const GenreList = ({
         )
 
     const clickOnGenre = (genre) => {
-        console.log(selectedGenres.includes(genre))
-
         if (selectedGenres.includes(genre)) {
-            setSelectedGenres(null)
+            const genres = selectedGenres.filter((selectedGenre) => {
+                return selectedGenre !== genre
+            })
+            setSelectedGenres(genres)
+        } else {
+            setSelectedGenres([...selectedGenres, genre])
         }
-
-        setSelectedGenres([...selectedGenres, genre])
     }
 
-    console.log(selectedGenres)
     return (
         <S.PopupList>
             {genres.map((genre) => {
