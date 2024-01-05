@@ -120,6 +120,7 @@ export const FilterButtons = ({
                     </S.FilterButton>
                     {visibleDate &&
                         DateList({
+                            selectedSort,
                             setSelectedSort,
                             isSelectedSort,
                             setIsSelectedSort,
@@ -130,13 +131,7 @@ export const FilterButtons = ({
     )
 }
 
-const AuthorList = ({
-    tracks,
-    selectedAuthors,
-    setSelectedAuthors,
-    isSelectedAuthor,
-    setIsSelectedAuthor,
-}) => {
+const AuthorList = ({ tracks, selectedAuthors, setSelectedAuthors }) => {
     let authors = tracks
         .map((track) => {
             return { id: track.id, author: track.author }
@@ -167,9 +162,8 @@ const AuthorList = ({
                         key={author.id}
                         onClick={() => {
                             clickOnAuthor(author.author)
-                            setIsSelectedAuthor(!isSelectedAuthor)
                         }}
-                        $isActive={isSelectedAuthor}
+                        $isActive={selectedAuthors.includes(author.author)}
                     >
                         {author.author}
                     </S.PopupItem>
@@ -179,13 +173,7 @@ const AuthorList = ({
     )
 }
 
-const GenreList = ({
-    tracks,
-    selectedGenres,
-    setSelectedGenres,
-    isSelectedGenre,
-    setIsSelectedGenre,
-}) => {
+const GenreList = ({ tracks, selectedGenres, setSelectedGenres }) => {
     let genres = tracks
         .map((track) => {
             return { id: track.id, genre: track.genre }
@@ -212,10 +200,9 @@ const GenreList = ({
                 return (
                     <S.PopupItem
                         key={genre.id}
-                        $isActive={isSelectedGenre}
+                        $isActive={selectedGenres.includes(genre.genre)}
                         onClick={() => {
                             clickOnGenre(genre.genre)
-                            setIsSelectedGenre(!isSelectedGenre)
                         }}
                     >
                         {genre.genre}
@@ -226,35 +213,41 @@ const GenreList = ({
     )
 }
 
-const DateList = ({ setSelectedSort, isSelectedSort, setIsSelectedSort }) => {
+const DateList = ({
+    selectedSort,
+    setSelectedSort,
+    isSelectedSort,
+    setIsSelectedSort,
+}) => {
+    const defaultTracks = 'По умолчанию'
+    const descTracks = 'Сначала новые'
+    const ascTracks = 'Сначала старые'
+
     return (
         <S.PopupList>
             <S.PopupItem
-                $isActive={isSelectedSort}
+                $isActive={selectedSort.includes(defaultTracks)}
                 onClick={() => {
-                    setSelectedSort('По умолчанию')
-                    setIsSelectedSort(!isSelectedSort)
+                    setSelectedSort(defaultTracks)
                 }}
             >
-                По умолчанию
+                {defaultTracks}
             </S.PopupItem>
             <S.PopupItem
-                $isActive={isSelectedSort}
+                $isActive={selectedSort.includes(ascTracks)}
                 onClick={() => {
-                    setSelectedSort('Сначала старые')
-                    setIsSelectedSort(!isSelectedSort)
+                    setSelectedSort(ascTracks)
                 }}
             >
-                Сначала старые
+                {ascTracks}
             </S.PopupItem>
             <S.PopupItem
-                $isActive={isSelectedSort}
+                $isActive={selectedSort.includes(descTracks)}
                 onClick={() => {
-                    setSelectedSort('Сначала новые')
-                    setIsSelectedSort(!isSelectedSort)
+                    setSelectedSort(descTracks)
                 }}
             >
-                Сначала новые
+                {descTracks}
             </S.PopupItem>
         </S.PopupList>
     )
