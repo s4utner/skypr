@@ -1,7 +1,6 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { Track } from '../Track/Track.js'
-import { useEffect, useState } from 'react'
 
 const Tracklist = ({
     isLoading,
@@ -14,13 +13,14 @@ const Tracklist = ({
     searchText,
     tracks,
     selectedAuthors,
+    selectedGenres,
+    selectedSort,
 }) => {
-    const [filterResult, setFilterResult] = useState([])
+    const getFilteredTracks = () => {
+        let allTracks = tracks
 
-    useEffect(() => {
-        let filteredTracks = []
-        if (searchText) {
-            filteredTracks = tracks.filter(
+        if (searchText.split('').length > 0) {
+            allTracks.filter(
                 (track) =>
                     track.name
                         .toLowerCase()
@@ -33,22 +33,31 @@ const Tracklist = ({
                         .includes(searchText.toLowerCase()),
             )
 
-            setFilterResult(filteredTracks)
-            setLoadingTracksError('')
-        } else {
-            setFilterResult(tracks)
             setLoadingTracksError('')
         }
 
-        if (selectedAuthors) {
+        if (selectedAuthors.length > 0) {
+            allTracks.filter((track) => selectedAuthors.includes(track.author))
+
+            setLoadingTracksError('')
         }
-    }, [
-        setFilterResult,
-        searchText,
-        tracks,
-        setLoadingTracksError,
-        selectedAuthors,
-    ])
+
+        if (selectedGenres.length > 0) {
+            allTracks.filter((track) => selectedGenres.includes(track.genre))
+
+            setLoadingTracksError('')
+        }
+
+        if (selectedSort === 'Сначала новые') {
+        }
+
+        if (selectedSort === 'Сначала старые') {
+        }
+
+        return allTracks
+    }
+
+    const filteredTracks = getFilteredTracks()
 
     return (
         <S.ContentPlaylist>
@@ -57,39 +66,20 @@ const Tracklist = ({
                     {loadingTracksError}
                 </S.LoadingTracksError>
             )}
-            {searchText
-                ? filterResult.length > 0
-                    ? filterResult.map((track) => {
-                          return (
-                              <Track
-                                  key={track.id}
-                                  track={track}
-                                  setIsPlayerVisible={setIsPlayerVisible}
-                                  isLoading={isLoading}
-                                  playlist={playlist}
-                                  setLoadingTracksError={setLoadingTracksError}
-                                  setIsLoading={setIsLoading}
-                                  categoryId={categoryId}
-                              />
-                          )
-                      })
-                    : setLoadingTracksError(
-                          'По вашему запросу ничего не найдено',
-                      )
-                : tracks.map((track) => {
-                      return (
-                          <Track
-                              key={track.id}
-                              track={track}
-                              setIsPlayerVisible={setIsPlayerVisible}
-                              isLoading={isLoading}
-                              playlist={playlist}
-                              setLoadingTracksError={setLoadingTracksError}
-                              setIsLoading={setIsLoading}
-                              categoryId={categoryId}
-                          />
-                      )
-                  })}
+            {filteredTracks.map((track) => {
+                return (
+                    <Track
+                        key={track.id}
+                        track={track}
+                        setIsPlayerVisible={setIsPlayerVisible}
+                        isLoading={isLoading}
+                        playlist={playlist}
+                        setLoadingTracksError={setLoadingTracksError}
+                        setIsLoading={setIsLoading}
+                        categoryId={categoryId}
+                    />
+                )
+            })}
         </S.ContentPlaylist>
     )
 }

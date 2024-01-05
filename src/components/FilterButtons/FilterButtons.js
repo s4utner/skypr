@@ -11,6 +11,8 @@ export const FilterButtons = ({
     setSelectedGenres,
     isSelectedGenre,
     setIsSelectedGenre,
+    selectedSort,
+    setSelectedSort,
 }) => {
     const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
     const [isActiveDateButton, setIsActiveDateButton] = useState(false)
@@ -23,8 +25,6 @@ export const FilterButtons = ({
     const [visibleAuthor, setVisibleAuthor] = useState(false)
     const [visibleDate, setVisibleDate] = useState(false)
     const [visibleGenre, setVisibleGenre] = useState(false)
-
-    const [activeDateFilter, setActiveDateFilter] = useState('По умолчанию')
 
     const clickOnAuthorFilter = () => {
         setIsActiveAuthorButton(!isActiveAuthorButton)
@@ -114,9 +114,9 @@ export const FilterButtons = ({
                         $isActive={isActiveDateButton}
                         onClick={clickOnDateFilter}
                     >
-                        {activeDateFilter}
+                        {selectedSort}
                     </S.FilterButton>
-                    {visibleDate && DateList({ setActiveDateFilter })}
+                    {visibleDate && DateList({ setSelectedSort })}
                 </S.FilterContent>
             </S.RightFilter>
         </S.CenterblockFilter>
@@ -221,26 +221,26 @@ const GenreList = ({
     )
 }
 
-const DateList = ({ setActiveDateFilter }) => {
+const DateList = ({ setSelectedSort }) => {
     return (
         <S.PopupList>
             <S.PopupItem
                 onClick={() => {
-                    setActiveDateFilter('По умолчанию')
+                    setSelectedSort('По умолчанию')
                 }}
             >
                 По умолчанию
             </S.PopupItem>
             <S.PopupItem
                 onClick={() => {
-                    setActiveDateFilter('Сначала старые')
+                    setSelectedSort('Сначала старые')
                 }}
             >
                 Сначала старые
             </S.PopupItem>
             <S.PopupItem
                 onClick={() => {
-                    setActiveDateFilter('Сначала новые')
+                    setSelectedSort('Сначала новые')
                 }}
             >
                 Сначала новые

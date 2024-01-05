@@ -24,6 +24,7 @@ export const MainPage = ({
     const [selectedAuthors, setSelectedAuthors] = useState([])
     const [isSelectedGenre, setIsSelectedGenre] = useState(false)
     const [selectedGenres, setSelectedGenres] = useState([])
+    const [selectedSort, setSelectedSort] = useState('По умолчанию')
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -73,6 +74,8 @@ export const MainPage = ({
                                 setSelectedGenres,
                                 isSelectedGenre,
                                 setIsSelectedGenre,
+                                selectedSort,
+                                setSelectedSort,
                             })}
                             <S.CenterblockContent>
                                 <S.ContentTitle>
@@ -101,6 +104,8 @@ export const MainPage = ({
                                     searchText,
                                     tracks,
                                     selectedAuthors,
+                                    selectedGenres,
+                                    selectedSort,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
