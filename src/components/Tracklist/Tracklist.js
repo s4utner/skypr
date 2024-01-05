@@ -20,7 +20,7 @@ const Tracklist = ({
         let allTracks = tracks
 
         if (searchText.split('').length > 0) {
-            allTracks.filter(
+            allTracks = allTracks.filter(
                 (track) =>
                     track.name
                         .toLowerCase()
@@ -37,13 +37,17 @@ const Tracklist = ({
         }
 
         if (selectedAuthors.length > 0) {
-            allTracks.filter((track) => selectedAuthors.includes(track.author))
+            allTracks = allTracks.filter((track) =>
+                selectedAuthors.includes(track.author),
+            )
 
             setLoadingTracksError('')
         }
 
         if (selectedGenres.length > 0) {
-            allTracks.filter((track) => selectedGenres.includes(track.genre))
+            allTracks = allTracks.filter((track) =>
+                selectedGenres.includes(track.genre),
+            )
 
             setLoadingTracksError('')
         }
