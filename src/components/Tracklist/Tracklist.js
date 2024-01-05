@@ -1,6 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { Track } from '../Track/Track.js'
+import { compareAsc, compareDesc } from 'date-fns'
 
 const Tracklist = ({
     isLoading,
@@ -53,9 +54,15 @@ const Tracklist = ({
         }
 
         if (selectedSort === 'Сначала новые') {
+            allTracks = [...allTracks].sort((a, b) =>
+                compareDesc(new Date(a.release_date), new Date(b.release_date)),
+            )
         }
 
         if (selectedSort === 'Сначала старые') {
+            allTracks = [...allTracks].sort((a, b) =>
+                compareAsc(new Date(a.release_date), new Date(b.release_date)),
+            )
         }
 
         return allTracks
