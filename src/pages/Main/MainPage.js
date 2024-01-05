@@ -20,11 +20,12 @@ export const MainPage = ({
 }) => {
     const tracks = useSelector((state) => state.tracks.tracks)
     const [searchText, setSearchText] = useState('')
-    const [isSelectedAuthor, setIsSelectedAuthor] = useState(false)
     const [selectedAuthors, setSelectedAuthors] = useState([])
-    const [isSelectedGenre, setIsSelectedGenre] = useState(false)
+    const [isSelectedAuthor, setIsSelectedAuthor] = useState(false)
     const [selectedGenres, setSelectedGenres] = useState([])
+    const [isSelectedGenre, setIsSelectedGenre] = useState(false)
     const [selectedSort, setSelectedSort] = useState('По умолчанию')
+    const [isSelectedSort, setIsSelectedSort] = useState(false)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -76,6 +77,8 @@ export const MainPage = ({
                                 setIsSelectedGenre,
                                 selectedSort,
                                 setSelectedSort,
+                                isSelectedSort,
+                                setIsSelectedSort,
                             })}
                             <S.CenterblockContent>
                                 <S.ContentTitle>

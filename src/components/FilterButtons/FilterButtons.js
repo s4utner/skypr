@@ -13,6 +13,8 @@ export const FilterButtons = ({
     setIsSelectedGenre,
     selectedSort,
     setSelectedSort,
+    isSelectedSort,
+    setIsSelectedSort,
 }) => {
     const [isActiveAuthorButton, setIsActiveAuthorButton] = useState(false)
     const [isActiveDateButton, setIsActiveDateButton] = useState(false)
@@ -116,7 +118,12 @@ export const FilterButtons = ({
                     >
                         {selectedSort}
                     </S.FilterButton>
-                    {visibleDate && DateList({ setSelectedSort })}
+                    {visibleDate &&
+                        DateList({
+                            setSelectedSort,
+                            isSelectedSort,
+                            setIsSelectedSort,
+                        })}
                 </S.FilterContent>
             </S.RightFilter>
         </S.CenterblockFilter>
@@ -219,26 +226,32 @@ const GenreList = ({
     )
 }
 
-const DateList = ({ setSelectedSort }) => {
+const DateList = ({ setSelectedSort, isSelectedSort, setIsSelectedSort }) => {
     return (
         <S.PopupList>
             <S.PopupItem
+                $isActive={isSelectedSort}
                 onClick={() => {
                     setSelectedSort('По умолчанию')
+                    setIsSelectedSort(!isSelectedSort)
                 }}
             >
                 По умолчанию
             </S.PopupItem>
             <S.PopupItem
+                $isActive={isSelectedSort}
                 onClick={() => {
                     setSelectedSort('Сначала старые')
+                    setIsSelectedSort(!isSelectedSort)
                 }}
             >
                 Сначала старые
             </S.PopupItem>
             <S.PopupItem
+                $isActive={isSelectedSort}
                 onClick={() => {
                     setSelectedSort('Сначала новые')
+                    setIsSelectedSort(!isSelectedSort)
                 }}
             >
                 Сначала новые
