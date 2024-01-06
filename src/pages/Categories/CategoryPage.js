@@ -51,7 +51,7 @@ export const CategoryPage = ({
             <S.Wrapper>
                 <S.Container>
                     <S.Main>
-                        {NavMenu()}
+                        {NavMenu({ setIsPlayerVisible })}
                         <S.MainCenterblock>
                             <S.CenterblockSearch>
                                 <S.SearchSvg>
@@ -93,7 +93,7 @@ export const CategoryPage = ({
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
-                        {Sidebar({ isLoading })}
+                        {Sidebar({ isLoading, setIsPlayerVisible })}
                     </S.Main>
                 </S.Container>
             </S.Wrapper>

@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../../Authorization.js'
 
-const Sidebar = ({ isLoading }) => {
+const Sidebar = ({ isLoading, setIsPlayerVisible }) => {
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.removeItem('user')
+        setIsPlayerVisible(false)
         navigate('/login')
     }
 

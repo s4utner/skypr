@@ -2,7 +2,7 @@ import { useState } from 'react'
 import * as S from './NavMenuStyles.js'
 import { useNavigate } from 'react-router-dom'
 
-const NavMenu = () => {
+const NavMenu = ({ setIsPlayerVisible }) => {
     const [visible, setVisible] = useState(false)
     const clickOnBurger = () => setVisible(!visible)
 
@@ -11,6 +11,7 @@ const NavMenu = () => {
         const user = localStorage.getItem('user')
         if (user) {
             localStorage.removeItem('user')
+            setIsPlayerVisible(false)
         }
         navigate('/login')
     }
