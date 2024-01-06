@@ -68,7 +68,7 @@ export const AudioPlayer = ({
         setLike(id)
             .then((response) => {
                 if (response.status === 401) {
-                    refreshToken()
+                    return refreshToken()
                         .then((response) => {
                             return response.json()
                         })
@@ -84,7 +84,7 @@ export const AudioPlayer = ({
             })
             .then(() => {
                 if (playlist === 'fav') {
-                    getFavTracks()
+                    return getFavTracks()
                         .then((response) => {
                             return response.json()
                         })
@@ -99,7 +99,7 @@ export const AudioPlayer = ({
                             console.log(error)
                         })
                 } else if (playlist === 'main') {
-                    getAllTracks()
+                    return getAllTracks()
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })
@@ -111,7 +111,7 @@ export const AudioPlayer = ({
                             console.log(error)
                         })
                 } else {
-                    getPlaylist(categoryId)
+                    return getPlaylist(categoryId)
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })
@@ -130,7 +130,7 @@ export const AudioPlayer = ({
         removeLike(id)
             .then((response) => {
                 if (response.status === 401) {
-                    refreshToken()
+                    return refreshToken()
                         .then((response) => {
                             return response.json()
                         })
@@ -146,7 +146,7 @@ export const AudioPlayer = ({
             })
             .then(() => {
                 if (playlist === 'fav') {
-                    getFavTracks()
+                    return getFavTracks()
                         .then((response) => {
                             return response.json()
                         })
@@ -161,7 +161,7 @@ export const AudioPlayer = ({
                             console.log(error)
                         })
                 } else if (playlist === 'main') {
-                    getAllTracks()
+                    return getAllTracks()
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })
@@ -173,7 +173,7 @@ export const AudioPlayer = ({
                             console.log(error)
                         })
                 } else {
-                    getPlaylist(categoryId)
+                    return getPlaylist(categoryId)
                         .then((tracks) => {
                             dispatch(setTracks({ tracks }))
                         })

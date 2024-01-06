@@ -6,7 +6,7 @@ import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getPlaylist } from '../../Api.js'
 import { setCategoryId, setTracks } from '../../store/slices.js'
 
@@ -28,6 +28,8 @@ export const CategoryPage = ({
     const title = `${category.title}`
     const dispatch = useDispatch()
     const tracks = useSelector((state) => state.tracks.tracks)
+
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
         setPlaylist('category')
@@ -61,6 +63,9 @@ export const CategoryPage = ({
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) =>
+                                        setSearchText(event.target.value)
+                                    }
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>{title}</S.CenterblockHeading>
@@ -89,6 +94,7 @@ export const CategoryPage = ({
                                     setLoadingTracksError,
                                     playlist,
                                     categoryId,
+                                    searchText,
                                     tracks,
                                 })}
                             </S.CenterblockContent>

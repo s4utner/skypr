@@ -4,7 +4,7 @@ import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getFavTracks, refreshToken } from '../../Api.js'
 import { setTracks } from '../../store/slices.js'
 
@@ -19,13 +19,14 @@ export const MyTracksPage = ({
 }) => {
     const dispatch = useDispatch()
     const tracks = useSelector((state) => state.tracks.tracks)
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
         setPlaylist('fav')
         getFavTracks()
             .then((response) => {
                 if (response.status === 401) {
-                    refreshToken()
+                    return refreshToken()
                         .then((response) => {
                             return response.json()
                         })
@@ -72,6 +73,9 @@ export const MyTracksPage = ({
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) => {
+                                        setSearchText(event.target.value)
+                                    }}
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>
@@ -101,6 +105,7 @@ export const MyTracksPage = ({
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    searchText,
                                     tracks,
                                 })}
                             </S.CenterblockContent>
