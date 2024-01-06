@@ -34,128 +34,66 @@ export const Track = ({
         isLiked = true
     }
 
-    const handleLike = (id) => {
-        setLike(id)
-            .then((response) => {
-                if (response.status === 401) {
-                    return refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(() => {
-                            setLike(id)
-                        })
-                } else if (response.status !== 200) {
-                    console.log('Произошла ошибка')
-                }
-            })
-            .then(() => {
-                if (playlist === 'fav') {
-                    return getFavTracks()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                } else if (playlist === 'main') {
-                    return getAllTracks()
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                } else {
-                    return getPlaylist(categoryId)
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                }
-            })
+    async function handleLike(id) {
+        let response = await setLike(id)
+
+        if (response.status === 401) {
+            const tokensResponse = await refreshToken()
+            const tokens = await tokensResponse.json()
+            localStorage.setItem('accessToken', tokens.access)
+            response = await setLike(id)
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+
+        if (playlist === 'fav') {
+            const tracksResponse = await getFavTracks()
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else if (playlist === 'main') {
+            const tracks = await getAllTracks()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else {
+            const tracks = await getPlaylist(categoryId)
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        }
     }
 
-    const handleRemoveLike = (id) => {
-        removeLike(id)
-            .then((response) => {
-                if (response.status === 401) {
-                    return refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(() => {
-                            removeLike(id)
-                        })
-                } else if (response.status !== 200) {
-                    console.log('Произошла ошибка')
-                }
-            })
-            .then(() => {
-                if (playlist === 'fav') {
-                    return getFavTracks()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                } else if (playlist === 'main') {
-                    return getAllTracks()
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                } else {
-                    return getPlaylist(categoryId)
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                        })
-                        .then(() => {
-                            setLoadingTracksError('')
-                            setIsLoading(false)
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
-                }
-            })
+    async function handleRemoveLike(id) {
+        let response = await removeLike(id)
+
+        if (response.status === 401) {
+            const tokensResponse = await refreshToken()
+            const tokens = await tokensResponse.json()
+            localStorage.setItem('accessToken', tokens.access)
+            response = await removeLike(id)
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+
+        if (playlist === 'fav') {
+            const tracksResponse = await getFavTracks()
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else if (playlist === 'main') {
+            const tracks = await getAllTracks()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else {
+            const tracks = await getPlaylist(categoryId)
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        }
     }
 
     const handleLikeClick = (id) => {
