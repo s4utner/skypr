@@ -31,6 +31,7 @@ export const AudioPlayer = ({
     playlist,
     setLoadingTracksError,
     setIsLoading,
+    setIsPlaying,
 }) => {
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
@@ -187,6 +188,11 @@ export const AudioPlayer = ({
             })
     }
 
+    const onCanPlayThrough = () => {
+        audioRef.current.play()
+        setIsPlaying(true)
+    }
+
     return (
         isPlayerVisible && (
             <>
@@ -195,6 +201,7 @@ export const AudioPlayer = ({
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
                     onEnded={() => dispatch(playNextTrack())}
+                    onCanPlayThrough={() => onCanPlayThrough()}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
                     }}

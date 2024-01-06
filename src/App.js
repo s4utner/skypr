@@ -1,13 +1,11 @@
 import { GlobalStyle } from './GlobalStyle.js'
 import * as S from './AppStyles.js'
 import { AppRoutes } from './routes.js'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { AudioPlayer } from './components/AudioPlayer/AudioPlayer.js'
 import { UserContext } from './Authorization.js'
-import { useSelector } from 'react-redux'
 
 function App() {
-    const activeTrack = useSelector((state) => state.tracks.activeTrack)
     const [playlist, setPlaylist] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [isPlayerVisible, setIsPlayerVisible] = useState(false)
@@ -30,12 +28,6 @@ function App() {
     }
 
     const togglePlay = isPlaying ? handleStop : handleStart
-
-    useEffect(() => {
-        if (audioRef.current) {
-            handleStart()
-        }
-    }, [activeTrack])
 
     return (
         <>
@@ -64,6 +56,7 @@ function App() {
                                 setPlaylist,
                                 setLoadingTracksError,
                                 setIsLoading,
+                                setIsPlaying,
                             })}
                         </>
                     </S.Container>
