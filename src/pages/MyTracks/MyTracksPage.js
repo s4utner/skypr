@@ -23,38 +23,22 @@ export const MyTracksPage = ({
 
     useEffect(() => {
         setPlaylist('fav')
-        getFavTracks()
-            .then((response) => {
-                if (response.status === 401) {
-                    return refreshToken()
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            localStorage.setItem('accessToken', response.access)
-                        })
-                        .then(async () => {
-                            const tracksResponse = await getFavTracks()
-                            return tracksResponse.json()
-                        })
-                        .then((tracks) => {
-                            dispatch(setTracks({ tracks }))
-                            setLoadingTracksError('')
-                        })
-                }
+        async function getTracks() {
+            let tracksResponse = await getFavTracks()
 
-                return response.json()
-            })
-            .then((tracks) => {
-                dispatch(setTracks({ tracks }))
-            })
-            .then(() => {
-                setLoadingTracksError('')
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+            if (tracksResponse.status === 401) {
+                const tokensResponse = await refreshToken()
+                const tokens = await tokensResponse.json()
+                localStorage.setItem('accessToken', tokens.access)
+                tracksResponse = await getFavTracks()
+            }
+
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        }
+        getTracks()
     }, [setLoadingTracksError, dispatch, setIsLoading, setPlaylist])
 
     return (
