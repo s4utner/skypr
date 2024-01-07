@@ -111,7 +111,6 @@ export const TrackAlbumLink = styled.a`
 export const TrackTimeSvg = styled.svg`
     width: 14px;
     height: 12px;
-    margin-right: 17px;
     fill: ${(props) => (props.$isLiked ? '#B672FF' : 'transparent')};
     stroke: ${(props) => (props.$isLiked ? 'none' : '#696969')};
 `
@@ -123,6 +122,7 @@ export const TrackTimeText = styled.span`
     line-height: 24px;
     text-align: right;
     color: #696969;
+    margin-left: 17px;
 `
 
 const bubble_out = keyframes`

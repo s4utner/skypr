@@ -1,7 +1,7 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './TracklistStyles.js'
 import { Track } from '../Track/Track.js'
-import { useSelector } from 'react-redux'
+import { compareAsc, compareDesc } from 'date-fns'
 
 const Tracklist = ({
     isLoading,
@@ -11,8 +11,64 @@ const Tracklist = ({
     setLoadingTracksError,
     setIsLoading,
     categoryId,
+    searchText,
+    tracks,
+    selectedAuthors,
+    selectedGenres,
+    selectedSort,
 }) => {
-    const tracks = useSelector((state) => state.tracks.tracks)
+    const getFilteredTracks = () => {
+        let allTracks = tracks
+
+        if (searchText && searchText.split('').length > 0) {
+            allTracks = allTracks.filter(
+                (track) =>
+                    track.name
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase()) ||
+                    track.author
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase()) ||
+                    track.album
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase()),
+            )
+
+            setLoadingTracksError('')
+        }
+
+        if (selectedAuthors && selectedAuthors.length > 0) {
+            allTracks = allTracks.filter((track) =>
+                selectedAuthors.includes(track.author),
+            )
+
+            setLoadingTracksError('')
+        }
+
+        if (selectedGenres && selectedGenres.length > 0) {
+            allTracks = allTracks.filter((track) =>
+                selectedGenres.includes(track.genre),
+            )
+
+            setLoadingTracksError('')
+        }
+
+        if (selectedSort && selectedSort === 'Сначала новые') {
+            allTracks = [...allTracks].sort((a, b) =>
+                compareDesc(new Date(a.release_date), new Date(b.release_date)),
+            )
+        }
+
+        if (selectedSort && selectedSort === 'Сначала старые') {
+            allTracks = [...allTracks].sort((a, b) =>
+                compareAsc(new Date(a.release_date), new Date(b.release_date)),
+            )
+        }
+
+        return allTracks
+    }
+
+    const filteredTracks = getFilteredTracks()
 
     return (
         <S.ContentPlaylist>
@@ -21,7 +77,7 @@ const Tracklist = ({
                     {loadingTracksError}
                 </S.LoadingTracksError>
             )}
-            {tracks.map((track) => {
+            {filteredTracks.map((track) => {
                 return (
                     <Track
                         key={track.id}

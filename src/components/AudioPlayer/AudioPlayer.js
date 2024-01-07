@@ -11,7 +11,16 @@ import {
     playNextTrack,
     playPrevTrack,
     setIsShuffled,
+    setTracks,
 } from '../../store/slices.js'
+import {
+    setLike,
+    refreshToken,
+    getAllTracks,
+    getFavTracks,
+    getPlaylist,
+    removeLike,
+} from '../../Api.js'
 
 export const AudioPlayer = ({
     isPlayerVisible,
@@ -19,12 +28,16 @@ export const AudioPlayer = ({
     audioRef,
     togglePlay,
     isPlaying,
+    playlist,
+    setLoadingTracksError,
+    setIsLoading,
+    setIsPlaying,
 }) => {
     const [isLooped, setIsLooped] = useState(false)
     const [currentTime, setCurrentTime] = useState(0)
     const [currentVolume, setCurrentVolume] = useState(0.5)
-
     const activeTrack = useSelector((state) => state.tracks.activeTrack)
+    const categoryId = useSelector((state) => state.tracks.categoryId)
     const isShuffled = useSelector((state) => state.tracks.isShuffled)
     const dispatch = useDispatch()
     const progressBarRef = useRef(null)
@@ -43,6 +56,81 @@ export const AudioPlayer = ({
 
     const toggleLoop = isLooped ? handleUnloop : handleLoop
 
+    let isLiked = activeTrack?.stared_user?.some(
+        ({ username }) => username === JSON.parse(localStorage.getItem('user')),
+    )
+
+    if (!activeTrack.stared_user) {
+        isLiked = true
+    }
+
+    async function handleLike(id) {
+        let response = await setLike(id)
+
+        if (response.status === 401) {
+            const tokensResponse = await refreshToken()
+            const tokens = await tokensResponse.json()
+            localStorage.setItem('accessToken', tokens.access)
+            response = await setLike(id)
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+
+        if (playlist === 'fav') {
+            const tracksResponse = await getFavTracks()
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else if (playlist === 'main') {
+            const tracks = await getAllTracks()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else {
+            const tracks = await getPlaylist(categoryId)
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        }
+    }
+
+    async function handleRemoveLike(id) {
+        let response = await removeLike(id)
+
+        if (response.status === 401) {
+            const tokensResponse = await refreshToken()
+            const tokens = await tokensResponse.json()
+            localStorage.setItem('accessToken', tokens.access)
+            response = await removeLike(id)
+        } else if (response.status !== 200) {
+            console.log('Произошла ошибка')
+        }
+
+        if (playlist === 'fav') {
+            const tracksResponse = await getFavTracks()
+            const tracks = await tracksResponse.json()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else if (playlist === 'main') {
+            const tracks = await getAllTracks()
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        } else {
+            const tracks = await getPlaylist(categoryId)
+            dispatch(setTracks({ tracks }))
+            setLoadingTracksError('')
+            setIsLoading(false)
+        }
+    }
+
+    const onCanPlayThrough = () => {
+        audioRef.current.play()
+        setIsPlaying(true)
+    }
+
     return (
         isPlayerVisible && (
             <>
@@ -51,6 +139,7 @@ export const AudioPlayer = ({
                     src={activeTrack ? activeTrack.track_file : ''}
                     ref={audioRef}
                     onEnded={() => dispatch(playNextTrack())}
+                    onCanPlayThrough={() => onCanPlayThrough()}
                     onTimeUpdate={() => {
                         setCurrentTime(audioRef.current.currentTime)
                     }}
@@ -190,21 +279,26 @@ export const AudioPlayer = ({
                                     </S.TrackPlayContain>
                                     <S.TrackPlayLikeDis>
                                         <S.TrackPlayLike>
-                                            <S.TrackPlayLikeSvg
+                                            <S.LikeButton
                                                 alt="like"
-                                                onClick={
-                                                    alertFunctionIsNotReady
-                                                }
+                                                $isLiked={isLiked}
+                                                onClick={(event) => {
+                                                    event.stopPropagation()
+                                                    handleLike(activeTrack.id)
+                                                }}
                                             >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
-                                            </S.TrackPlayLikeSvg>
+                                            </S.LikeButton>
                                         </S.TrackPlayLike>
                                         <S.TrackPlayDislike>
                                             <S.TrackPlayDislikeSvg
                                                 alt="dislike"
-                                                onClick={
-                                                    alertFunctionIsNotReady
-                                                }
+                                                onClick={(event) => {
+                                                    event.stopPropagation()
+                                                    handleRemoveLike(
+                                                        activeTrack.id,
+                                                    )
+                                                }}
                                             >
                                                 <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                                             </S.TrackPlayDislikeSvg>

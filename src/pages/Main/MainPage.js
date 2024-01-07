@@ -4,8 +4,8 @@ import { FilterButtons } from '../../components/FilterButtons/FilterButtons.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import { GlobalStyle } from '../../GlobalStyle.js'
 import * as S from './MainPageStyles.js'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { setTracks } from '../../store/slices.js'
 import { getAllTracks } from '../../Api.js'
 
@@ -15,10 +15,18 @@ export const MainPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    playlist,
+    setPlaylist,
 }) => {
+    const tracks = useSelector((state) => state.tracks.tracks)
+    const [searchText, setSearchText] = useState('')
+    const [selectedAuthors, setSelectedAuthors] = useState([])
+    const [selectedGenres, setSelectedGenres] = useState([])
+    const [selectedSort, setSelectedSort] = useState('По умолчанию')
     const dispatch = useDispatch()
 
     useEffect(() => {
+        setPlaylist('main')
         getAllTracks()
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
@@ -30,9 +38,7 @@ export const MainPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [dispatch, setLoadingTracksError, setIsLoading])
-
-    const playlist = 'main'
+    }, [dispatch, setLoadingTracksError, setIsLoading, setPlaylist])
 
     return (
         <>
@@ -40,7 +46,7 @@ export const MainPage = ({
             <S.Wrapper>
                 <S.Container>
                     <S.Main>
-                        {NavMenu()}
+                        {NavMenu({ setIsPlayerVisible })}
                         <S.MainCenterblock>
                             <S.CenterblockSearch>
                                 <S.SearchSvg>
@@ -50,10 +56,21 @@ export const MainPage = ({
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) => {
+                                        setSearchText(event.target.value)
+                                    }}
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>Треки</S.CenterblockHeading>
-                            {FilterButtons()}
+                            {FilterButtons({
+                                tracks,
+                                selectedAuthors,
+                                setSelectedAuthors,
+                                selectedGenres,
+                                setSelectedGenres,
+                                selectedSort,
+                                setSelectedSort,
+                            })}
                             <S.CenterblockContent>
                                 <S.ContentTitle>
                                     <S.PlaylistTitleTrack>
@@ -78,10 +95,15 @@ export const MainPage = ({
                                     setIsLoading,
                                     setLoadingTracksError,
                                     playlist,
+                                    searchText,
+                                    tracks,
+                                    selectedAuthors,
+                                    selectedGenres,
+                                    selectedSort,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
-                        {Sidebar({ isLoading })}
+                        {Sidebar({ isLoading, setIsPlayerVisible })}
                     </S.Main>
                 </S.Container>
             </S.Wrapper>

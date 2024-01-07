@@ -5,10 +5,10 @@ import { Categories } from '../../constants.js'
 import NavMenu from '../../components/NavMenu/NavMenu.js'
 import Tracklist from '../../components/Tracklist/Tracklist.js'
 import Sidebar from '../../components/Sidebar/Sidebar.js'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { getPlaylist } from '../../Api.js'
-import { setTracks } from '../../store/slices.js'
+import { setCategoryId, setTracks } from '../../store/slices.js'
 
 export const CategoryPage = ({
     isLoading,
@@ -16,6 +16,8 @@ export const CategoryPage = ({
     loadingTracksError,
     setIsLoading,
     setLoadingTracksError,
+    playlist,
+    setPlaylist,
 }) => {
     const params = useParams()
     const category = Categories.find(
@@ -24,10 +26,14 @@ export const CategoryPage = ({
     const categoryId = category.id
 
     const title = `${category.title}`
-    const playlist = 'category'
     const dispatch = useDispatch()
+    const tracks = useSelector((state) => state.tracks.tracks)
+
+    const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
+        setPlaylist('category')
+        dispatch(setCategoryId({ categoryId }))
         getPlaylist(categoryId)
             .then((tracks) => {
                 dispatch(setTracks({ tracks }))
@@ -39,7 +45,7 @@ export const CategoryPage = ({
             .catch((error) => {
                 console.log(error)
             })
-    }, [setLoadingTracksError, dispatch, setIsLoading, categoryId])
+    }, [setLoadingTracksError, dispatch, setIsLoading, categoryId, setPlaylist])
 
     return (
         <>
@@ -47,7 +53,7 @@ export const CategoryPage = ({
             <S.Wrapper>
                 <S.Container>
                     <S.Main>
-                        {NavMenu()}
+                        {NavMenu({ setIsPlayerVisible })}
                         <S.MainCenterblock>
                             <S.CenterblockSearch>
                                 <S.SearchSvg>
@@ -57,6 +63,9 @@ export const CategoryPage = ({
                                     type="search"
                                     placeholder="Поиск"
                                     name="search"
+                                    onChange={(event) =>
+                                        setSearchText(event.target.value)
+                                    }
                                 />
                             </S.CenterblockSearch>
                             <S.CenterblockHeading>{title}</S.CenterblockHeading>
@@ -85,10 +94,12 @@ export const CategoryPage = ({
                                     setLoadingTracksError,
                                     playlist,
                                     categoryId,
+                                    searchText,
+                                    tracks,
                                 })}
                             </S.CenterblockContent>
                         </S.MainCenterblock>
-                        {Sidebar({ isLoading })}
+                        {Sidebar({ isLoading, setIsPlayerVisible })}
                     </S.Main>
                 </S.Container>
             </S.Wrapper>

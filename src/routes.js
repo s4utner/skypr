@@ -14,6 +14,8 @@ export const AppRoutes = ({
     setIsPlayerVisible,
     loadingTracksError,
     setLoadingTracksError,
+    playlist,
+    setPlaylist
 }) => {
     return (
         <Routes>
@@ -30,6 +32,8 @@ export const AppRoutes = ({
                             loadingTracksError={loadingTracksError}
                             setIsLoading={setIsLoading}
                             setLoadingTracksError={setLoadingTracksError}
+                            playlist={playlist}
+                            setPlaylist={setPlaylist}
                         />
                     }
                 ></Route>
@@ -42,6 +46,8 @@ export const AppRoutes = ({
                             loadingTracksError={loadingTracksError}
                             setIsLoading={setIsLoading}
                             setLoadingTracksError={setLoadingTracksError}
+                            playlist={playlist}
+                            setPlaylist={setPlaylist}
                         />
                     }
                 ></Route>
@@ -54,6 +60,8 @@ export const AppRoutes = ({
                             loadingTracksError={loadingTracksError}
                             setIsLoading={setIsLoading}
                             setLoadingTracksError={setLoadingTracksError}
+                            playlist={playlist}
+                            setPlaylist={setPlaylist}
                         />
                     }
                 ></Route>
