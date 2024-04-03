@@ -4,7 +4,7 @@ _Музыкальный стриминговый сервис (аналог Spot
 
 ## Ссылка на приложение
 
-[**Skypro-music**](https://sky-search-pro.vercel.app/)
+[**Skypro-music**](https://skypro-music-ten.vercel.app/)
 
 ## Установка и запуск
 
